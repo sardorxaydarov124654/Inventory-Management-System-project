@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %}{% trans "Hisobotlar" %}{% endblock %}
+{% block page_title %}{% trans "Hisobotlar va tahlil" %}{% endblock %}
+{% block page_sub %}{% trans "Kirim-chiqim, sotuv va foyda ko‘rsatkichlari" %}{% endblock %}
+
+{% block content %}
+<div class="toolbar" style="margin-bottom:14px">
+  <div class="tabs" style="background:#fff;border-radius:12px;padding:4px">
+    {% for key, label in periods %}<a href="?period={{ key }}" class="{% if period == key %}active{% endif %}">{{ label }}</a>{% endfor %}
+  </div>
+</div>
+
+<div class="stats">
+  <div class="stat"><div><span class="stat-label">{% trans "Kirim (miqdor)" %}</span><div class="stat-num sm">{{ in_qty }}</div><small style="color:var(--muted)">{% trans "Xarajat:" %} {{ CURRENCY }}{{ in_cost|floatformat:2 }}</small></div><span class="stat-icon green"><i class="bi bi-box-arrow-in-down"></i></span></div>
+  <div class="stat"><div><span class="stat-label">{% trans "Chiqim (miqdor)" %}</span><div class="stat-num sm">{{ out_qty }}</div><small style="color:var(--muted)">{% trans "Tushum:" %} {{ CURRENCY }}{{ revenue|floatformat:2 }}</small></div><span class="stat-icon red"><i class="bi bi-box-arrow-up"></i></span></div>
+  <div class="stat"><div><span class="stat-label">{% trans "Sotuvdan foyda" %}</span><div class="stat-num sm {% if profit >= 0 %}pos{% else %}neg{% endif %}">{{ CURRENCY }}{{ profit|floatformat:2 }}</div></div><span class="stat-icon purple"><i class="bi bi-graph-up-arrow"></i></span></div>
+  <div class="stat"><div><span class="stat-label">{% trans "Ombor qiymati" %}</span><div class="stat-num sm">{{ CURRENCY }}{{ inventory_value|floatformat:2 }}</div></div><span class="stat-icon blue"><i class="bi bi-wallet2"></i></span></div>
+</div>
+
+<div class="grid-2">
+  <section class="panel">
+    <div class="panel-head"><h2>{% trans "Kirim va chiqim dinamikasi" %}</h2>
+      <div class="legend"><span><i style="background:#12a56a"></i>{% trans "Kirim" %}</span><span><i style="background:#f0a35e"></i>{% trans "Chiqim" %}</span></div></div>
+    <div class="chart-box"><canvas id="lineChart"></canvas></div>
+  </section>
+  <section class="panel">
+    <div class="panel-head"><h2>{% trans "Ombor qiymati kategoriya bo‘yicha" %}</h2></div>
+    <div class="chart-box"><canvas id="catChart"></canvas></div>
+  </section>
+</div>
+
+<div class="grid-2 even">
+  <section class="panel">
+    <div class="panel-head"><h2>{% trans "Eng ko‘p sotilgan" %}</h2></div>
+    <div class="chart-box sm"><canvas id="topChart"></canvas></div>
+  </section>
+  <section class="panel">
+    <div class="panel-head"><h2>{% trans "Eng kam sotilgan" %}</h2></div>
+    <div class="list">
+      {% for r in least_products %}<div class="list-item"><span>{{ r.product__name }}</span><b>{{ r.qty }}</b></div>
+      {% empty %}<div class="empty">{% trans "Bu davrda sotuv bo‘lmagan." %}</div>{% endfor %}
+    </div>
+  </section>
+</div>
+
+<section class="panel">
+  <div class="panel-head"><h2>{% trans "Mahsulotlar bo‘yicha foyda" %}</h2></div>
+  <div class="table-wrap"><table class="tbl">
+    <thead><tr><th>{% trans "Mahsulot" %}</th><th class="num">{% trans "Sotilgan" %}</th><th class="num">{% trans "Tushum" %}</th><th class="num">{% trans "Foyda" %}</th></tr></thead>
+    <tbody>
+    {% for r in profit_rows %}
+      <tr><td><b>{{ r.product__name }}</b></td><td class="num">{{ r.qty }}</td><td class="num">{{ CURRENCY }}{{ r.revenue|floatformat:2 }}</td>
+        <td class="num"><span class="{% if r.profit >= 0 %}pos{% else %}neg{% endif %}">{{ CURRENCY }}{{ r.profit|floatformat:2 }}</span></td></tr>
+    {% empty %}<tr><td colspan="4"><div class="empty"><i class="bi bi-graph-up"></i>{% trans "Bu davrda sotuv ma’lumoti yo‘q." %}</div></td></tr>{% endfor %}
+    </tbody></table></div>
+</section>
+{{ chart|json_script:"chart-data" }}
+{% endblock %}
+
+{% block scripts %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+{% trans "Kirim" as t_in %}{% trans "Chiqim" as t_out %}
+<script>
+  const d = JSON.parse(document.getElementById('chart-data').textContent);
+  const grid = { y: { beginAtZero: true, grid: { color: '#eef1f6' }, border: { display: false } }, x: { grid: { display: false } } };
+  new Chart(document.getElementById('lineChart'), { type: 'line',
+    data: { labels: d.series.labels, datasets: [
+      { label: '{{ t_in|escapejs }}', data: d.series.ins, borderColor: '#12a56a', backgroundColor: 'rgba(18,165,106,.12)', fill: true, tension: .35 },
+      { label: '{{ t_out|escapejs }}', data: d.series.outs, borderColor: '#f0a35e', backgroundColor: 'rgba(240,163,94,.12)', fill: true, tension: .35 } ] },
+    options: { maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: grid } });
+  new Chart(document.getElementById('catChart'), { type: 'doughnut',
+    data: { labels: d.cats.labels, datasets: [{ data: d.cats.values, backgroundColor: ['#6fd3a4', '#8ab8f0', '#f0a35e', '#d9a3ec', '#f2c94c', '#f08a9b', '#9ad0c2'], borderWidth: 0 }] },
+    options: { maintainAspectRatio: false, cutout: '62%', plugins: { legend: { position: 'bottom', labels: { boxWidth: 10 } } } } });
+  new Chart(document.getElementById('topChart'), { type: 'bar',
+    data: { labels: d.top.labels, datasets: [{ data: d.top.values, backgroundColor: '#6fd3a4', borderRadius: 6 }] },
+    options: { indexAxis: 'y', maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { x: { beginAtZero: true, grid: { color: '#eef1f6' } }, y: { grid: { display: false } } } } });
+</script>
+{% endblock %}

@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %}{% trans "Boshqaruv paneli" %}{% endblock %}
+{% block page_title %}{% trans "Boshqaruv paneli" %}{% endblock %}
+{% block page_sub %}{% trans "Ombor holati va bugungi operatsiyalar" %}{% endblock %}
+
+{% block content %}
+{% include '_stats.html' %}
+
+<div class="stats three">
+  <div class="stat"><div><span class="stat-label">{% trans "Bugungi kirim" %}</span><div class="stat-num sm pos">+{{ today_in }}</div></div><span class="stat-icon green"><i class="bi bi-box-arrow-in-down"></i></span></div>
+  <div class="stat"><div><span class="stat-label">{% trans "Bugungi chiqim" %}</span><div class="stat-num sm neg">-{{ today_out }}</div></div><span class="stat-icon red"><i class="bi bi-box-arrow-up"></i></span></div>
+  <div class="stat"><div><span class="stat-label">{% trans "Ombor qiymati (xarid narxida)" %}</span><div class="stat-num sm">{{ CURRENCY }}{{ inventory_value|floatformat:2 }}</div></div><span class="stat-icon blue"><i class="bi bi-wallet2"></i></span></div>
+</div>
+
+<div class="grid-2">
+  <section class="panel">
+    <div class="panel-head">
+      <div><h2>{% trans "Kirim va chiqim" %}</h2><p class="sub">{% trans "So‘nggi 7 kun, dona/birlik" %}</p></div>
+      <div class="legend"><span><i style="background:#6fd3a4"></i>{% trans "Kirim" %}</span><span><i style="background:#f0a35e"></i>{% trans "Chiqim" %}</span></div>
+    </div>
+    <div class="chart-box"><canvas id="flowChart"></canvas></div>
+  </section>
+
+  <section class="panel">
+    <div class="panel-head"><h2>{% trans "Kam qolgan mahsulotlar" %}</h2><a class="btn btn-soft btn-sm" href="{% url 'inventory:product_list' %}?status=low">{% trans "Hammasi" %}</a></div>
+    <div class="list">
+      {% for p in low_products %}
+      <div class="list-item">
+        <div class="prod"><span class="thumb">{{ p.name|slice:":1"|upper }}</span><div><b>{{ p.name }}</b><small>{% trans "Min:" %} {{ p.min_quantity }}</small></div></div>
+        <span class="pill {{ p.status }}">{{ p.quantity }} {{ p.get_unit_display }}</span>
+      </div>
+      {% empty %}<div class="empty"><i class="bi bi-check2-circle"></i>{% trans "Hamma mahsulot yetarli." %}</div>{% endfor %}
+    </div>
+  </section>
+</div>
+
+<section class="panel">
+  <div class="panel-head"><h2>{% trans "So‘nggi operatsiyalar" %}</h2><a class="btn btn-soft btn-sm" href="{% url 'stock:movement_list' %}">{% trans "Barchasi" %}</a></div>
+  <div class="table-wrap"><table class="tbl">
+    <thead><tr><th>{% trans "Sana" %}</th><th>{% trans "Mahsulot" %}</th><th>{% trans "Turi" %}</th><th>{% trans "O‘zgarish" %}</th><th>{% trans "Qoldiq" %}</th><th>{% trans "Xodim" %}</th></tr></thead>
+    <tbody>
+    {% for m in recent %}
+      <tr>
+        <td>{{ m.created_at|date:"d.m.Y H:i" }}</td><td><b>{{ m.product.name }}</b></td>
+        <td><span class="pill {{ m.movement_type }}">{{ m.get_movement_type_display }}</span></td>
+        <td><span class="{% if m.change > 0 %}pos{% else %}neg{% endif %}">{% if m.change > 0 %}+{% endif %}{{ m.change }}</span></td>
+        <td>{{ m.balance_after }} {{ m.product.get_unit_display }}</td><td>{{ m.user.get_username|default:"—" }}</td>
+      </tr>
+    {% empty %}<tr><td colspan="6"><div class="empty"><i class="bi bi-inbox"></i>{% trans "Hali operatsiya yo‘q." %}</div></td></tr>{% endfor %}
+    </tbody></table></div>
+</section>
+{{ chart|json_script:"chart-data" }}
+{% endblock %}
+
+{% block scripts %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+{% trans "Kirim" as t_in %}{% trans "Chiqim" as t_out %}
+<script>
+  const d = JSON.parse(document.getElementById('chart-data').textContent);
+  new Chart(document.getElementById('flowChart'), {
+    type: 'bar',
+    data: { labels: d.labels, datasets: [
+      { label: '{{ t_in|escapejs }}', data: d.ins, backgroundColor: '#6fd3a4', borderRadius: 6, maxBarThickness: 22 },
+      { label: '{{ t_out|escapejs }}', data: d.outs, backgroundColor: '#f0a35e', borderRadius: 6, maxBarThickness: 22 } ] },
+    options: { maintainAspectRatio: false, plugins: { legend: { display: false } },
+      scales: { y: { beginAtZero: true, grid: { color: '#eef1f6' }, border: { display: false } }, x: { grid: { display: false } } } }
+  });
+</script>
+{% endblock %}
