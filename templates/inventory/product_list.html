@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %}{% trans "Mahsulotlar" %}{% endblock %}
+{% block page_title %}{% trans "Ombor boshqaruvi" %}{% endblock %}
+{% block page_sub %}{% trans "Zaxira darajalarini kuzating va mahsulotlarni boshqaring" %}{% endblock %}
+
+{% block content %}
+{% include '_stats.html' %}
+
+<section class="panel">
+  <div class="panel-head">
+    <h2>{% trans "Mahsulotlar ro‘yxati" %}</h2>
+    <div class="btn-group">
+      {% if can_manage %}<a class="btn btn-soft" href="{% url 'inventory:product_add' %}"><i class="bi bi-plus-lg"></i>{% trans "Mahsulot qo‘shish" %}</a>{% endif %}
+      <a class="btn btn-green" href="{% url 'inventory:product_export' %}?{{ qs }}"><i class="bi bi-download"></i>{% trans "Eksport" %}</a>
+    </div>
+  </div>
+
+  <div class="toolbar">
+    <div class="tabs">
+      <a href="?{% if q %}q={{ q|urlencode }}{% endif %}" class="{% if not status %}active{% endif %}">{% trans "Barchasi" %}</a>
+      <a href="?status=ok{% if q %}&q={{ q|urlencode }}{% endif %}" class="{% if status == 'ok' %}active{% endif %}">{% trans "Mavjud" %}</a>
+      <a href="?status=low{% if q %}&q={{ q|urlencode }}{% endif %}" class="{% if status == 'low' %}active{% endif %}">{% trans "Kam qolgan" %}</a>
+      <a href="?status=out{% if q %}&q={{ q|urlencode }}{% endif %}" class="{% if status == 'out' %}active{% endif %}">{% trans "Tugagan" %}</a>
+    </div>
+    <form class="filters" method="get">
+      {% if status %}<input type="hidden" name="status" value="{{ status }}">{% endif %}
+      <label class="field-search"><i class="bi bi-search"></i><input type="search" name="q" value="{{ q }}" placeholder="{% trans 'Qidirish...' %}"></label>
+      <select class="input select" name="category" onchange="this.form.submit()" aria-label="{% trans 'Kategoriya' %}">
+        <option value="">{% trans "Barcha kategoriyalar" %}</option>
+        {% for c in categories %}<option value="{{ c.pk }}" {% if category == c.pk|stringformat:"s" %}selected{% endif %}>{{ c.name }}</option>{% endfor %}
+      </select>
+    </form>
+  </div>
+
+  <div class="table-wrap">
+    <table class="tbl">
+      <thead><tr><th>{% trans "Mahsulot" %}</th><th>{% trans "Kategoriya" %}</th><th>{% trans "Zaxira darajasi" %}</th><th>{% trans "Narx" %}</th><th>{% trans "Yetkazib beruvchi" %}</th><th>{% trans "Holat" %}</th><th class="num">{% trans "Amal" %}</th></tr></thead>
+      <tbody>
+      {% for p in products %}
+        <tr>
+          <td><div class="prod">
+            <span class="thumb">{% if p.image %}<img src="{{ p.image.url }}" alt="">{% else %}{{ p.name|slice:":1"|upper }}{% endif %}</span>
+            <div><b>{{ p.name }}</b><small>{{ p.sku }}</small></div></div></td>
+          <td>{{ p.category.name|default:"—" }}</td>
+          <td><div class="stock">
+            <div class="stock-top"><span>{{ p.quantity }} {{ p.get_unit_display }}</span><span class="m">{% trans "Min:" %}{{ p.min_quantity }}</span></div>
+            <div class="bar {{ p.status }}"><i style="width: {{ p.stock_percent }}%"></i></div></div></td>
+          <td>{{ CURRENCY }}{{ p.price|floatformat:2 }}/{{ p.get_unit_display }}</td>
+          <td>{{ p.supplier.company_name|default:"—" }}</td>
+          <td><span class="pill {{ p.status }}">{{ p.status_label }}</span></td>
+          <td class="num">
+            <details class="menu"><summary class="btn btn-soft btn-sm" aria-label="{% trans 'Amallar' %}"><i class="bi bi-three-dots"></i></summary>
+              <div class="menu-list">
+                {% if can_manage %}<a href="{% url 'stock:stockin_add' %}?product={{ p.pk }}"><i class="bi bi-box-arrow-in-down"></i>{% trans "Kirim qo‘shish" %}</a>{% endif %}
+                {% if p.quantity > 0 %}<a href="{% url 'stock:stockout_add' %}?product={{ p.pk }}"><i class="bi bi-box-arrow-up"></i>{% trans "Chiqim qilish" %}</a>{% endif %}
+                {% if can_manage %}
+                <a href="{% url 'inventory:product_edit' p.pk %}"><i class="bi bi-pencil"></i>{% trans "Tahrirlash" %}</a>
+                <a class="danger" href="{% url 'inventory:product_delete' p.pk %}"><i class="bi bi-trash"></i>{% trans "O‘chirish" %}</a>
+                {% endif %}
+              </div></details>
+          </td>
+        </tr>
+      {% empty %}
+        <tr><td colspan="7"><div class="empty"><i class="bi bi-inbox"></i>{% trans "Mahsulot topilmadi." %}{% if can_manage %} <a href="{% url 'inventory:product_add' %}" style="color:var(--green-dark);font-weight:700">{% trans "Birinchi mahsulotni qo‘shing" %}</a>{% endif %}</div></td></tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% include '_pagination.html' %}
+</section>
+{% endblock %}

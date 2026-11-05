@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %}{{ object.company_name }}{% endblock %}
+{% block page_title %}{{ object.company_name }}{% endblock %}
+{% block page_sub %}{% trans "Yetkazib beruvchi ma’lumotlari va kirimlar tarixi" %}{% endblock %}
+{% block content %}
+<div class="grid-2 even">
+  <section class="panel">
+    <div class="panel-head"><h2>{% trans "Aloqa ma’lumotlari" %}</h2>
+      <a class="btn btn-soft btn-sm" href="{% url 'inventory:supplier_edit' object.pk %}"><i class="bi bi-pencil"></i>{% trans "Tahrirlash" %}</a></div>
+    <dl class="kv">
+      <dt>{% trans "Telefon" %}</dt><dd>{{ object.phone|default:"—" }}</dd>
+      <dt>{% trans "Email" %}</dt><dd>{{ object.email|default:"—" }}</dd>
+      <dt>{% trans "Manzil" %}</dt><dd>{{ object.address|default:"—" }}</dd>
+    </dl>
+    <div class="panel-head" style="margin-top:22px"><h2>{% trans "Mahsulotlari" %}</h2></div>
+    <div class="list">
+      {% for p in products %}<div class="list-item"><span>{{ p.name }}</span><span class="pill {{ p.status }}">{{ p.quantity }} {{ p.get_unit_display }}</span></div>
+      {% empty %}<div class="empty">{% trans "Mahsulot biriktirilmagan." %}</div>{% endfor %}
+    </div>
+  </section>
+  <section class="panel">
+    <div class="panel-head"><h2>{% trans "So‘nggi kirimlar" %}</h2></div>
+    <div class="list">
+      {% for h in history %}
+      <div class="list-item">
+        <div><b>{{ h.product.name }}</b><br><small style="color:var(--muted)">{{ h.date|date:"d.m.Y" }} · {{ h.created_by.get_username|default:"—" }}</small></div>
+        <span class="{% if h.is_cancelled %}pill out{% else %}pos{% endif %}">{% if h.is_cancelled %}{% trans "Bekor qilingan" %}{% else %}+{{ h.quantity }}{% endif %}</span>
+      </div>
+      {% empty %}<div class="empty">{% trans "Kirimlar tarixi bo‘sh." %}</div>{% endfor %}
+    </div>
+  </section>
+</div>
+{% endblock %}

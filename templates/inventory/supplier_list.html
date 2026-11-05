@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %}{% trans "Yetkazib beruvchilar" %}{% endblock %}
+{% block page_title %}{% trans "Yetkazib beruvchilar" %}{% endblock %}
+{% block page_sub %}{% trans "Hamkor kompaniyalar va ular bilan ishlash tarixi" %}{% endblock %}
+{% block content %}
+<section class="panel">
+  <div class="panel-head">
+    <h2>{% trans "Barcha yetkazib beruvchilar" %}</h2>
+    <div class="btn-group">
+      <form method="get"><label class="field-search"><i class="bi bi-search"></i><input type="search" name="q" value="{{ q }}" placeholder="{% trans 'Qidirish...' %}"></label></form>
+      <a class="btn btn-green" href="{% url 'inventory:supplier_add' %}"><i class="bi bi-plus-lg"></i>{% trans "Yangi yetkazib beruvchi" %}</a>
+    </div>
+  </div>
+  <div class="table-wrap"><table class="tbl">
+    <thead><tr><th>{% trans "Kompaniya" %}</th><th>{% trans "Telefon" %}</th><th>{% trans "Email" %}</th><th>{% trans "Manzil" %}</th><th>{% trans "Mahsulotlar" %}</th><th class="num">{% trans "Amal" %}</th></tr></thead>
+    <tbody>
+    {% for s in suppliers %}
+      <tr>
+        <td><a href="{% url 'inventory:supplier_detail' s.pk %}"><div class="prod"><span class="thumb">{{ s.company_name|slice:":1"|upper }}</span><b>{{ s.company_name }}</b></div></a></td>
+        <td>{{ s.phone|default:"—" }}</td><td>{{ s.email|default:"—" }}</td><td>{{ s.address|default:"—" }}</td>
+        <td><span class="pill ok">{{ s.product_count }} {% trans "ta" %}</span></td>
+        <td><div class="row-actions">
+          <a class="btn btn-soft btn-sm" href="{% url 'inventory:supplier_detail' s.pk %}"><i class="bi bi-eye"></i></a>
+          <a class="btn btn-soft btn-sm" href="{% url 'inventory:supplier_edit' s.pk %}"><i class="bi bi-pencil"></i></a>
+          <a class="btn btn-soft btn-sm" href="{% url 'inventory:supplier_delete' s.pk %}"><i class="bi bi-trash"></i></a>
+        </div></td>
+      </tr>
+    {% empty %}
+      <tr><td colspan="6"><div class="empty"><i class="bi bi-truck"></i>{% trans "Hali yetkazib beruvchi yo‘q." %}</div></td></tr>
+    {% endfor %}
+    </tbody></table></div>
+  {% include '_pagination.html' %}
+</section>
+{% endblock %}
