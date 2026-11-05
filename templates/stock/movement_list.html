@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %}{% trans "Harakatlar tarixi" %}{% endblock %}
+{% block page_title %}{% trans "Ombor harakatlari tarixi" %}{% endblock %}
+{% block page_sub %}{% trans "Har bir kirim, chiqim va bekor qilish qayd etiladi" %}{% endblock %}
+{% block content %}
+<section class="panel">
+  <div class="toolbar" style="margin-bottom:14px">
+    <div class="tabs">
+      <a href="?{% if q %}q={{ q|urlencode }}{% endif %}" class="{% if not type %}active{% endif %}">{% trans "Barchasi" %}</a>
+      {% for key, label in type_choices %}<a href="?type={{ key }}{% if q %}&q={{ q|urlencode }}{% endif %}" class="{% if type == key %}active{% endif %}">{{ label }}</a>{% endfor %}
+    </div>
+    <form class="filters" method="get">
+      {% if type %}<input type="hidden" name="type" value="{{ type }}">{% endif %}
+      <label class="field-search"><i class="bi bi-search"></i><input type="search" name="q" value="{{ q }}" placeholder="{% trans 'Mahsulot qidirish...' %}"></label>
+    </form>
+  </div>
+  <div class="table-wrap"><table class="tbl">
+    <thead><tr><th>{% trans "Sana" %}</th><th>{% trans "Mahsulot" %}</th><th>{% trans "Turi" %}</th><th>{% trans "O‘zgarish" %}</th><th>{% trans "Qoldiq" %}</th><th>{% trans "Xodim" %}</th><th>{% trans "Izoh" %}</th></tr></thead>
+    <tbody>
+    {% for m in movements %}
+      <tr>
+        <td>{{ m.created_at|date:"d.m.Y H:i" }}</td>
+        <td><b>{{ m.product.name }}</b></td>
+        <td><span class="pill {{ m.movement_type }}">{{ m.get_movement_type_display }}</span></td>
+        <td><span class="{% if m.change > 0 %}pos{% else %}neg{% endif %}">{% if m.change > 0 %}+{% endif %}{{ m.change }}</span></td>
+        <td>{{ m.balance_after }} {{ m.product.get_unit_display }}</td>
+        <td>{{ m.user.get_username|default:"—" }}</td>
+        <td>{{ m.note|default:"—"|truncatechars:50 }}</td>
+      </tr>
+    {% empty %}
+      <tr><td colspan="7"><div class="empty"><i class="bi bi-arrow-left-right"></i>{% trans "Harakatlar topilmadi." %}</div></td></tr>
+    {% endfor %}
+    </tbody></table></div>
+  {% include '_pagination.html' %}
+</section>
+{% endblock %}

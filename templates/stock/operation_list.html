@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %}{% if kind == 'in' %}{% trans "Kirim" %}{% else %}{% trans "Chiqim" %}{% endif %}{% endblock %}
+{% block page_title %}{% if kind == 'in' %}{% trans "Mahsulot kirimi" %}{% else %}{% trans "Mahsulot chiqimi" %}{% endif %}{% endblock %}
+{% block page_sub %}{% if kind == 'in' %}{% trans "Omborga kelgan mahsulotlar tarixi" %}{% else %}{% trans "Ombordan chiqarilgan mahsulotlar tarixi" %}{% endif %}{% endblock %}
+{% block content %}
+<section class="panel">
+  <div class="panel-head">
+    <h2>{% if kind == 'in' %}{% trans "Kirimlar" %}{% else %}{% trans "Chiqimlar" %}{% endif %}</h2>
+    <div class="btn-group">
+      <form method="get"><label class="field-search"><i class="bi bi-search"></i><input type="search" name="q" value="{{ q }}" placeholder="{% trans 'Mahsulot qidirish...' %}"></label></form>
+      <a class="btn btn-green" href="{% if kind == 'in' %}{% url 'stock:stockin_add' %}{% else %}{% url 'stock:stockout_add' %}{% endif %}"><i class="bi bi-plus-lg"></i>{% if kind == 'in' %}{% trans "Yangi kirim" %}{% else %}{% trans "Yangi chiqim" %}{% endif %}</a>
+    </div>
+  </div>
+  <div class="table-wrap"><table class="tbl">
+    <thead><tr>
+      <th>{% trans "Sana" %}</th><th>{% trans "Mahsulot" %}</th><th>{% trans "Miqdor" %}</th>
+      {% if kind == 'in' %}<th>{% trans "Xarid narxi" %}</th><th>{% trans "Yetkazib beruvchi" %}</th>{% else %}<th>{% trans "Sabab" %}</th><th>{% trans "Sotuv narxi" %}</th>{% endif %}
+      <th>{% trans "Xodim" %}</th><th>{% trans "Holat" %}</th>{% if can_manage %}<th class="num">{% trans "Amal" %}</th>{% endif %}
+    </tr></thead>
+    <tbody>
+    {% for o in operations %}
+      <tr class="{% if o.is_cancelled %}muted-row{% endif %}">
+        <td>{{ o.created_at|date:"d.m.Y H:i" }}</td>
+        <td><b>{{ o.product.name }}</b></td>
+        <td><span class="{% if kind == 'in' %}pos{% else %}neg{% endif %}">{% if kind == 'in' %}+{% else %}-{% endif %}{{ o.quantity }}</span> {{ o.product.get_unit_display }}</td>
+        {% if kind == 'in' %}
+          <td>{{ CURRENCY }}{{ o.purchase_price|floatformat:2 }}</td><td>{{ o.supplier.company_name|default:"—" }}</td>
+        {% else %}
+          <td>{{ o.get_reason_display }}</td><td>{{ CURRENCY }}{{ o.unit_price|floatformat:2 }}</td>
+        {% endif %}
+        <td>{{ o.created_by.get_username|default:"—" }}</td>
+        <td><span class="pill {% if o.is_cancelled %}out{% else %}ok{% endif %}">{% if o.is_cancelled %}{% trans "Bekor qilingan" %}{% else %}{% trans "Bajarilgan" %}{% endif %}</span></td>
+        {% if can_manage %}<td class="num">
+          {% if not o.is_cancelled %}
+          <form method="post" action="{% url 'stock:cancel' kind o.pk %}" data-confirm="{% trans 'Operatsiyani bekor qilasizmi? Ombor qoldig‘i tiklanadi.' %}">{% csrf_token %}
+            <button class="btn btn-soft btn-sm" type="submit"><i class="bi bi-arrow-counterclockwise"></i>{% trans "Bekor qilish" %}</button></form>
+          {% endif %}</td>{% endif %}
+      </tr>
+    {% empty %}
+      <tr><td colspan="9"><div class="empty"><i class="bi bi-inbox"></i>{% trans "Operatsiyalar topilmadi." %}</div></td></tr>
+    {% endfor %}
+    </tbody></table></div>
+  {% include '_pagination.html' %}
+</section>
+{% endblock %}
