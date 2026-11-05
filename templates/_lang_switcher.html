@@ -1,0 +1,3 @@
+{% load i18n %}<button type="button" class="lang-btn" data-lang-open aria-haspopup="dialog" aria-label="{% trans 'Tilni tanlang' %}">
+  <i class="bi bi-translate"></i><span class="lang-cur">{{ CUR_LANG }}</span>{% if variant == 'auth' %}<span class="lang-label">{{ CUR_LANG_NAME }}</span>{% endif %}<i class="bi bi-chevron-down lang-chev"></i>
+</button>

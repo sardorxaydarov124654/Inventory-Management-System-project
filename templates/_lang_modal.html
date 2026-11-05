@@ -1,0 +1,49 @@
+{% load i18n %}
+<dialog class="lang-dialog" id="langDialog" aria-labelledby="langTitle">
+  <div class="ld-body">
+    <div class="ld-head">
+      <div>
+        <h2 id="langTitle">{% trans "Tilni tanlang" %}</h2>
+        <p>{% trans "Sayt tanlangan tilda ko‘rinadi va profilingizda saqlanadi." %}</p>
+      </div>
+      <button type="button" class="ld-x" data-lang-close aria-label="{% trans 'Yopish' %}"><i class="bi bi-x-lg"></i></button>
+    </div>
+
+    {% if BROWSER_LANG %}
+    <form class="ld-suggest" method="post" action="{% url 'accounts:set_language' %}">
+      {% csrf_token %}
+      <input type="hidden" name="next" value="{{ request.get_full_path }}">
+      <i class="bi bi-stars"></i>
+      <span>{% if BROWSER_LANG.raw %}{% blocktrans with name=BROWSER_LANG.name raw=BROWSER_LANG.raw %}Siz uchun tavsiya etiladigan til: {{ name }} ({{ raw }}). Sayt shu tilda ko‘rsatilsinmi?{% endblocktrans %}{% else %}{% blocktrans with name=BROWSER_LANG.name %}Siz uchun tavsiya etiladigan til: {{ name }}. Sayt shu tilda ko‘rsatilsinmi?{% endblocktrans %}{% endif %}</span>
+      <button class="btn btn-green btn-sm" type="submit" name="language" value="{{ BROWSER_LANG.code }}">{% trans "Qo‘llash" %}</button>
+    </form>
+    {% endif %}
+
+    <form class="ld-grid" method="post" action="{% url 'accounts:set_language' %}">
+      {% csrf_token %}
+      <input type="hidden" name="next" value="{{ request.get_full_path }}">
+      {% for c in LANG_CARDS %}
+      <button type="submit" name="language" value="{{ c.code }}" class="ld-card{% if c.current %} active{% endif %}" style="--i: {{ forloop.counter0 }}"{% if c.current %} aria-current="true"{% endif %}>
+        {% if c.recommended %}<em class="ld-badge">{% trans "Tavsiya etiladi" %}</em>{% endif %}
+        {% if c.current %}<i class="bi bi-check-circle-fill ld-check"></i>{% endif %}
+        <span class="ld-code">{{ c.code }}</span>
+        <span class="ld-name">{{ c.name }}</span>
+        <span class="ld-native">{{ c.native }}</span>
+      </button>
+      {% endfor %}
+    </form>
+
+    <section class="ld-stats" aria-labelledby="langStats">
+      <h3 id="langStats"><i class="bi bi-bar-chart-fill"></i>{% trans "Eng ko‘p tanlanadigan tillar" %}</h3>
+      {% for s in LANG_STATS %}
+      <div class="ld-row{% if forloop.first and LANG_STATS_HAS_DATA %} top{% endif %}">
+        <span class="ld-rcode">{{ s.code }}</span>
+        <span class="ld-rname">{{ s.name }}{% if forloop.first and LANG_STATS_HAS_DATA %} <i class="bi bi-trophy-fill"></i>{% endif %}</span>
+        <span class="ld-bar"><i style="--w: {{ s.percent }}%"></i></span>
+        <b class="ld-pct"><span data-count="{{ s.percent }}">{{ s.percent }}</span>%</b>
+      </div>
+      {% endfor %}
+      <p class="ld-note">{% if LANG_STATS_HAS_DATA %}{% trans "Foydalanuvchilar tanlovi asosida hisoblangan." %} <b>{% blocktrans with n=LANG_TOTAL %}Jami tanlovlar: {{ n }}{% endblocktrans %}</b>{% else %}{% trans "Hozircha ma’lumot yo‘q." %}{% endif %}</p>
+    </section>
+  </div>
+</dialog>

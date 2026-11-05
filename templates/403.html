@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %}{% trans "Ruxsat yo‘q" %}{% endblock %}
+{% block page_title %}{% trans "Ruxsat yo‘q" %}{% endblock %}
+{% block page_sub %}{% trans "Bu sahifa sizning rolingiz uchun mavjud emas" %}{% endblock %}
+{% block content %}
+<section class="panel"><div class="empty"><i class="bi bi-shield-lock"></i>
+  {% trans "Bu amalni bajarish uchun ruxsatingiz yo‘q." %}<br><br>
+  <a class="btn btn-green" href="{% url 'dashboard:home' %}">{% trans "Bosh sahifaga qaytish" %}</a></div></section>
+{% endblock %}

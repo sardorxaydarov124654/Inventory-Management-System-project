@@ -1,0 +1,23 @@
+{% load i18n %}
+<div class="stats">
+  <div class="stat">
+    <div><span class="stat-label">{% trans "Jami mahsulotlar" %}</span>
+      <div class="stat-num">{{ stats.total }} <em class="pill solid-green">+{{ stats.new_week }}</em></div></div>
+    <span class="stat-icon blue"><i class="bi bi-bag-check-fill"></i></span>
+  </div>
+  <div class="stat">
+    <div><span class="stat-label">{% trans "Kam qolgan" %}</span>
+      <div class="stat-num">{{ stats.low }} <em class="pill solid-red">{{ stats.low_pct }}%</em></div></div>
+    <span class="stat-icon red"><i class="bi bi-exclamation-triangle-fill"></i></span>
+  </div>
+  <div class="stat">
+    <div><span class="stat-label">{% trans "Tugagan" %}</span>
+      <div class="stat-num">{{ stats.out }} <em class="pill solid-green">{{ stats.out_pct }}%</em></div></div>
+    <span class="stat-icon purple"><i class="bi bi-x-octagon-fill"></i></span>
+  </div>
+  <div class="stat">
+    <div><span class="stat-label">{% trans "Top kategoriya" %}{% if stats.top_name != '—' %}: {{ stats.top_name }}{% endif %}</span>
+      <div class="stat-num">{{ stats.top_count }} <em class="pill solid-green">{% trans "mahsulot" %}</em></div></div>
+    <span class="stat-icon green"><i class="bi bi-grid-fill"></i></span>
+  </div>
+</div>

@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %}{% trans "O‘chirish" %}{% endblock %}
+{% block page_title %}{% trans "O‘chirishni tasdiqlang" %}{% endblock %}
+{% block page_sub %}{% trans "Bu amalni qaytarib bo‘lmaydi" %}{% endblock %}
+{% block content %}
+<section class="panel">
+  <p style="margin-bottom:18px;font-size:14px">{% blocktrans with name=object %}“<b>{{ name }}</b>” yozuvini o‘chirishni xohlaysizmi?{% endblocktrans %}</p>
+  <form method="post" class="btn-group">{% csrf_token %}
+    <button class="btn btn-danger" type="submit"><i class="bi bi-trash"></i>{% trans "Ha, o‘chirish" %}</button>
+    <a class="btn btn-soft" href="javascript:history.back()">{% trans "Bekor qilish" %}</a>
+  </form>
+</section>
+{% endblock %}

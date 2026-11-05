@@ -1,0 +1,121 @@
+{% load static i18n %}<!DOCTYPE html>
+{% get_current_language as LANG %}<html lang="{{ LANG }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}{% endblock %} · {{ SITE_NAME }}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+<div class="page">
+  <div class="shell">
+
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="{% url 'dashboard:home' %}">
+        <span class="brand-logo"><i class="bi bi-box-seam-fill"></i></span>{{ SITE_NAME }}
+      </a>
+
+      <div class="nav-label">{% trans "Asosiy" %}</div>
+      <nav class="nav">
+        <a href="{% url 'dashboard:home' %}" class="{% if section == '' %}active{% endif %}"><i class="bi bi-grid"></i>{% trans "Boshqaruv paneli" %}</a>
+        <a href="{% url 'inventory:product_list' %}" class="{% if section == 'products' %}active{% endif %}"><i class="bi bi-box2"></i>{% trans "Mahsulotlar" %}</a>
+        {% if can_manage %}
+        <a href="{% url 'stock:stockin_list' %}" class="{% if section == 'stock-in' %}active{% endif %}"><i class="bi bi-box-arrow-in-down"></i>{% trans "Kirim" %}</a>
+        {% endif %}
+        <a href="{% url 'stock:stockout_list' %}" class="{% if section == 'stock-out' %}active{% endif %}"><i class="bi bi-box-arrow-up"></i>{% trans "Chiqim" %}</a>
+        <a href="{% url 'stock:movement_list' %}" class="{% if section == 'movements' %}active{% endif %}"><i class="bi bi-arrow-left-right"></i>{% trans "Harakatlar tarixi" %}</a>
+        {% if can_manage %}
+        <a href="{% url 'inventory:category_list' %}" class="{% if section == 'categories' %}active{% endif %}"><i class="bi bi-tags"></i>{% trans "Kategoriyalar" %}</a>
+        <a href="{% url 'inventory:supplier_list' %}" class="{% if section == 'suppliers' %}active{% endif %}"><i class="bi bi-truck"></i>{% trans "Yetkazib beruvchilar" %}</a>
+        <a href="{% url 'dashboard:reports' %}" class="{% if section == 'reports' %}active{% endif %}"><i class="bi bi-bar-chart-line"></i>{% trans "Hisobotlar" %}</a>
+        {% endif %}
+      </nav>
+
+      <div class="nav-label">{% trans "Boshqa" %}</div>
+      <nav class="nav">
+        {% if is_admin %}
+        <a href="{% url 'accounts:user_list' %}" class="{% if section == 'users' %}active{% endif %}"><i class="bi bi-people"></i>{% trans "Foydalanuvchilar" %}</a>
+        <a href="{% url 'admin:index' %}"><i class="bi bi-gear"></i>{% trans "Admin panel" %}</a>
+        {% endif %}
+        <form method="post" action="{% url 'accounts:logout' %}">{% csrf_token %}
+          <button type="submit"><i class="bi bi-box-arrow-left"></i>{% trans "Chiqish" %}</button>
+        </form>
+      </nav>
+
+      <div class="help-card">
+        <b>{% trans "Yordam kerakmi?" %}</b>
+        <span>{% trans "Qo‘llab-quvvatlash xizmatiga yozing" %}</span>
+        <a href="mailto:support@example.com">{% trans "Bog‘lanish" %}</a>
+      </div>
+    </aside>
+    <div class="scrim" id="scrim"></div>
+
+    <main class="main">
+      <header class="topbar">
+        <button class="burger" id="burger" type="button" aria-label="{% trans 'Menyu' %}"><i class="bi bi-list"></i></button>
+        <div class="titles">
+          <h1>{% block page_title %}{% endblock %}</h1>
+          <p>{% block page_sub %}{% endblock %}</p>
+        </div>
+        <div class="top-actions">
+          <form class="pill-search" method="get" action="{% url 'inventory:product_list' %}">
+            <i class="bi bi-search"></i>
+            <input type="search" name="q" placeholder="{% trans 'Mahsulot, kategoriya, yetkazib beruvchi qidirish...' %}" aria-label="{% trans 'Qidirish' %}">
+          </form>
+
+          {% include '_lang_switcher.html' %}
+
+          <details class="menu">
+            <summary class="icon-btn" aria-label="{% trans 'Ogohlantirishlar' %}">
+              <i class="bi bi-bell"></i>
+              {% if unread_count %}<span class="dot">{{ unread_count }}</span>{% endif %}
+            </summary>
+            <div class="menu-list notif-list">
+              {% for n in recent_notifications %}
+                <a class="notif-item" href="{% url 'inventory:product_list' %}?q={{ n.product.name|urlencode }}">
+                  <i class="bi {% if n.kind == 'out' %}bi-x-octagon-fill out{% else %}bi-exclamation-triangle-fill low{% endif %}"></i>
+                  <span>{% if n.kind == 'out' %}{% blocktrans with name=n.product.name %}“{{ name }}” tugadi!{% endblocktrans %}{% else %}{% blocktrans with name=n.product.name qty=n.product.quantity unit=n.product.get_unit_display min=n.product.min_quantity %}“{{ name }}” kam qoldi: {{ qty }} {{ unit }} (min: {{ min }}){% endblocktrans %}{% endif %}<small>{{ n.created_at|timesince }} {% trans "oldin" %}</small></span>
+                </a>
+              {% empty %}
+                <div class="notif-empty">{% trans "Yangi ogohlantirish yo‘q" %}</div>
+              {% endfor %}
+              {% if unread_count %}
+              <form method="post" action="{% url 'stock:notifications_read' %}">{% csrf_token %}
+                <button type="submit"><i class="bi bi-check2-all"></i>{% trans "Hammasini o‘qilgan deb belgilash" %}</button>
+              </form>
+              {% endif %}
+            </div>
+          </details>
+
+          <div class="user-chip">
+            <span class="avatar">{{ request.user.get_username|slice:":1"|upper }}</span>
+            <div>
+              <b>{{ request.user.get_full_name|default:request.user.get_username }}</b>
+              <small>{% if role == 'admin' %}{% trans "Administrator" %}{% elif role == 'manager' %}{% trans "Menejer" %}{% else %}{% trans "Xodim" %}{% endif %}</small>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      {% if messages %}
+      <div class="toasts">
+        {% for m in messages %}
+        <div class="toast {{ m.tags }}"><i class="bi {% if m.tags == 'error' %}bi-x-circle-fill{% else %}bi-check-circle-fill{% endif %}"></i>{{ m }}</div>
+        {% endfor %}
+      </div>
+      {% endif %}
+
+      {% block content %}{% endblock %}
+    </main>
+  </div>
+</div>
+{% include '_lang_modal.html' %}
+<script src="{% static 'js/lang.js' %}"></script>
+<script src="{% static 'js/app.js' %}"></script>
+{% block scripts %}{% endblock %}
+</body>
+</html>

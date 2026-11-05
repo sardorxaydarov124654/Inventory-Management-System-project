@@ -1,0 +1,15 @@
+{% load i18n %}
+{% if page_obj.paginator.num_pages > 1 %}
+<nav class="pager" aria-label="{% trans 'Sahifalar' %}">
+  <a class="nav-btn {% if not page_obj.has_previous %}off{% endif %}" {% if page_obj.has_previous %}href="?{% if qs %}{{ qs }}&{% endif %}page={{ page_obj.previous_page_number }}"{% endif %}><i class="bi bi-arrow-left"></i>{% trans "Oldingi" %}</a>
+  <div class="pages">
+    {% for n in page_obj.paginator.page_range %}
+      {% if n == page_obj.number %}<span class="cur">{{ n }}</span>
+      {% elif n == 1 or n == page_obj.paginator.num_pages or n >= page_obj.number|add:"-1" and n <= page_obj.number|add:"1" %}
+        <a href="?{% if qs %}{{ qs }}&{% endif %}page={{ n }}">{{ n }}</a>
+      {% elif n == page_obj.number|add:"-2" or n == page_obj.number|add:"2" %}<span>…</span>{% endif %}
+    {% endfor %}
+  </div>
+  <a class="nav-btn {% if not page_obj.has_next %}off{% endif %}" {% if page_obj.has_next %}href="?{% if qs %}{{ qs }}&{% endif %}page={{ page_obj.next_page_number }}"{% endif %}>{% trans "Keyingi" %}<i class="bi bi-arrow-right"></i></a>
+</nav>
+{% endif %}

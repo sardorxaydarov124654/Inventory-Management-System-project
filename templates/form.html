@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %}{{ title }}{% endblock %}
+{% block page_title %}{{ title }}{% endblock %}
+{% block page_sub %}{{ subtitle }}{% endblock %}
+{% block content %}
+<section class="panel">
+  <form method="post" enctype="multipart/form-data" class="form-grid" novalidate>
+    {% csrf_token %}
+    {% if form.non_field_errors %}<div class="form-errors">{{ form.non_field_errors|join:" " }}</div>{% endif %}
+    {% for f in form %}
+      <div class="field{% if f.field.widget.input_type == 'checkbox' %} is-check{% endif %}">
+        <label for="{{ f.id_for_label }}">{{ f.label }}</label>
+        {{ f }}
+        {% if f.help_text %}<small>{{ f.help_text }}</small>{% endif %}
+        {% for e in f.errors %}<div class="err">{{ e }}</div>{% endfor %}
+      </div>
+    {% endfor %}
+    <div class="form-actions">
+      <button class="btn btn-green" type="submit"><i class="bi bi-check2"></i>{% trans "Saqlash" %}</button>
+      <a class="btn btn-soft" href="javascript:history.back()">{% trans "Bekor qilish" %}</a>
+    </div>
+  </form>
+</section>
+{% endblock %}
