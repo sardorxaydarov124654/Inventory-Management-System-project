@@ -19,10 +19,10 @@ SUPPLIERS = ["Fresh Farms Co.", "Dairy Best", "Golden Bakery", "Sunny Farm", "Gr
 PRODUCTS = [
     ("Organik banan", "Mevalar", "2.99", "1.90", "kg", 0, 100, 245),
     ("Yangi sut", "Sut mahsulotlari", "3.99", "2.70", "l", 1, 150, 120),
-    ("BugвЂdoy noni", "Nonvoyxona", "2.49", "1.40", "pcs", 2, 50, 0),
+    ("Bug‘doy noni", "Nonvoyxona", "2.49", "1.40", "pcs", 2, 50, 0),
     ("Tuxum", "Sut mahsulotlari", "5.99", "4.10", "dozen", 3, 100, 89),
     ("Cherri pomidor", "Sabzavotlar", "4.99", "3.20", "kg", 4, 80, 178),
-    ("Tovuq filesi", "GoвЂsht", "8.99", "6.40", "kg", 5, 100, 124),
+    ("Tovuq filesi", "Go‘sht", "8.99", "6.40", "kg", 5, 100, 124),
     ("Grek yogurti", "Sut mahsulotlari", "4.49", "2.90", "pcs", 1, 60, 0),
     ("Olma", "Mevalar", "1.99", "1.20", "kg", 0, 80, 210),
     ("Sabzi", "Sabzavotlar", "1.49", "0.80", "kg", 4, 60, 55),
@@ -35,7 +35,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         if Product.objects.exists():
-            self.stdout.write(self.style.WARNING("MaвЂ™lumotlar bor, seed oвЂtkazib yuborildi."))
+            self.stdout.write(self.style.WARNING("Ma’lumotlar bor, seed o‘tkazib yuborildi."))
             return
         random.seed(7)
 
@@ -74,7 +74,7 @@ class Command(BaseCommand):
 
             backdate(register_stock_in(product=product, quantity=initial, purchase_price=Decimal(cost),
                                        supplier=suppliers[sup], date=now.date() - timedelta(days=14),
-                                       note="BoshlangвЂich zaxira", user=users["manager"]), 14)
+                                       note="Boshlang‘ich zaxira", user=users["manager"]), 14)
             for day, q in zip(out_days, outs):
                 backdate(register_stock_out(product=product, quantity=q, reason="sale", unit_price=None,
                                             note="", user=random.choice([users["employee"], users["manager"]])), day)
@@ -82,7 +82,7 @@ class Command(BaseCommand):
                 for day in (9, 4):
                     backdate(register_stock_in(product=product, quantity=restock // 2, purchase_price=Decimal(cost),
                                                supplier=suppliers[sup], date=now.date() - timedelta(days=day),
-                                               note="QoвЂshimcha yetkazib berish", user=users["manager"]), day)
+                                               note="Qo‘shimcha yetkazib berish", user=users["manager"]), day)
             # Backdate qilingan operatsiyalar tartibi sababli qoldiqni aniq belgilaymiz
             Product.objects.filter(pk=product.pk).update(quantity=final)
 

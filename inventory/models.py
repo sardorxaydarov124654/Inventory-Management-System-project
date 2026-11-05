@@ -54,14 +54,14 @@ class Product(models.Model):
         ("pcs", _("dona")),
         (_("kg"), _("kg")),
         ("l", "L"),
-        ("dozen", _("oвЂnlik")),
+        ("dozen", _("o‘nlik")),
         ("box", _("quti")),
         (_("m"), _("m")),
     ]
 
     name = models.CharField(_("Nomi"), max_length=200)
     sku = models.CharField(_("SKU / kod"), max_length=40, unique=True, blank=True,
-                           help_text=_("BoвЂsh qoldirsangiz, avtomatik yaratiladi."))
+                           help_text=_("Bo‘sh qoldirsangiz, avtomatik yaratiladi."))
     category = models.ForeignKey(Category, verbose_name=_("Kategoriya"), on_delete=models.PROTECT,
                                  related_name="products", null=True, blank=True)
     supplier = models.ForeignKey(Supplier, verbose_name=_("Yetkazib beruvchi"), on_delete=models.SET_NULL,
@@ -70,7 +70,7 @@ class Product(models.Model):
     image = models.ImageField(_("Rasm"), upload_to="products/", blank=True, null=True)
     price = models.DecimalField(_("Sotuv narxi"), max_digits=12, decimal_places=2)
     cost_price = models.DecimalField(_("Xarid narxi"), max_digits=12, decimal_places=2, default=0)
-    unit = models.CharField(_("OвЂlchov birligi"), max_length=10, choices=UNIT_CHOICES, default="pcs")
+    unit = models.CharField(_("O‘lchov birligi"), max_length=10, choices=UNIT_CHOICES, default="pcs")
     quantity = models.PositiveIntegerField(_("Miqdor"), default=0, editable=False)
     min_quantity = models.PositiveIntegerField(_("Minimal zaxira"), default=10)
     is_active = models.BooleanField(_("Faol"), default=True)

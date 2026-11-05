@@ -20,7 +20,7 @@ class UserAdmin(BaseUserAdmin):
 
     @admin.display(description=_("Rol"))
     def role(self, obj):
-        return obj.profile.get_role_display() if hasattr(obj, "profile") else "вЂ”"
+        return obj.profile.get_role_display() if hasattr(obj, "profile") else "—"
 
     def get_inline_instances(self, request, obj=None):
         # Yangi foydalanuvchi yaratishda profil signal orqali avtomatik yaratiladi

@@ -19,7 +19,7 @@ def languages(request):
         }
         for code, label in settings.LANGUAGES
     ]
-    # Tavsiya: avval brauzer tili; u qo'llab-quvvatlanmasa вЂ” eng ko'p tanlangan til; u ham bo'lmasa вЂ” standart til
+    # Tavsiya: avval brauzer tili; u qo'llab-quvvatlanmasa — eng ko'p tanlangan til; u ham bo'lmasa — standart til
     has_data = any(s["count"] for s in stats)
     if browser:
         recommended, raw = browser

@@ -5,8 +5,8 @@ from django.db.models import Count
 
 # kod -> (inglizcha nom, o'z tilidagi nom)
 NAMES = {
-    "uz": ("Uzbek", "OвЂzbekcha"),
-    "ru": ("Russian", "Р СѓСЃСЃРєРёР№"),
+    "uz": ("Uzbek", "O‘zbekcha"),
+    "ru": ("Russian", "Русский"),
     "en": ("English", "English"),
 }
 STATS_KEY = "language_stats_v2"

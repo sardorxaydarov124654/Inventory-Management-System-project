@@ -132,7 +132,7 @@ class UserCreateView(AdminMixin, SuccessMessageMixin, CreateView):
     form_class = UserForm
     template_name = "form.html"
     success_url = reverse_lazy("accounts:user_list")
-    success_message = _("Foydalanuvchi qoвЂshildi.")
+    success_message = _("Foydalanuvchi qo‘shildi.")
     extra_context = {"title": _("Yangi foydalanuvchi"), "subtitle": _("Xodim hisobini yarating va rolini belgilang")}
 
 
@@ -141,8 +141,8 @@ class UserUpdateView(AdminMixin, SuccessMessageMixin, UpdateView):
     form_class = UserForm
     template_name = "form.html"
     success_url = reverse_lazy("accounts:user_list")
-    success_message = _("Foydalanuvchi maвЂ™lumotlari saqlandi.")
-    extra_context = {"title": _("Foydalanuvchini tahrirlash"), "subtitle": _("MaвЂ™lumotlar va rolni oвЂzgartiring")}
+    success_message = _("Foydalanuvchi ma’lumotlari saqlandi.")
+    extra_context = {"title": _("Foydalanuvchini tahrirlash"), "subtitle": _("Ma’lumotlar va rolni o‘zgartiring")}
 
 
 @require_POST
@@ -150,9 +150,9 @@ class UserUpdateView(AdminMixin, SuccessMessageMixin, UpdateView):
 def toggle_active(request, pk):
     user = get_object_or_404(User, pk=pk)
     if user == request.user:
-        messages.error(request, _("OвЂzingizning hisobingizni oвЂchira olmaysiz."))
+        messages.error(request, _("O‘zingizning hisobingizni o‘chira olmaysiz."))
     else:
         user.is_active = not user.is_active
         user.save(update_fields=["is_active"])
-        messages.success(request, _("Holat oвЂzgartirildi."))
+        messages.success(request, _("Holat o‘zgartirildi."))
     return redirect("accounts:user_list")

@@ -14,7 +14,7 @@ User = get_user_model()
 class UserForm(StyledFormMixin, forms.ModelForm):
     password = forms.CharField(
         label=_("Parol"), widget=forms.PasswordInput(render_value=False), required=False,
-        help_text=_("Tahrirlashda boвЂsh qoldirsangiz, parol oвЂzgarmaydi."),
+        help_text=_("Tahrirlashda bo‘sh qoldirsangiz, parol o‘zgarmaydi."),
     )
     role = forms.ChoiceField(label=_("Rol"), choices=UserProfile.ROLE_CHOICES)
     phone = forms.CharField(label=_("Telefon"), required=False)

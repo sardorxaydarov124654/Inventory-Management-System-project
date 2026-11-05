@@ -12,10 +12,10 @@ from .models import Notification, StockIn, StockMovement, StockOut
 def check_alert(product):
     """Zaxira minimal darajadan kamaysa ogohlantirish yaratadi, tiklansa yopadi."""
     if product.quantity <= 0:
-        kind, msg = Notification.OUT, _("вЂњ%(name)sвЂќ tugadi!") % {"name": product.name}
+        kind, msg = Notification.OUT, _("“%(name)s” tugadi!") % {"name": product.name}
     elif product.quantity <= product.min_quantity:
         kind = Notification.LOW
-        msg = _("вЂњ%(name)sвЂќ kam qoldi: %(qty)s %(unit)s (min: %(min)s)") % {
+        msg = _("“%(name)s” kam qoldi: %(qty)s %(unit)s (min: %(min)s)") % {
             "name": product.name, "qty": product.quantity, "unit": product.get_unit_display(), "min": product.min_quantity}
     else:
         Notification.objects.filter(product=product, is_read=False).update(is_read=True)
@@ -77,7 +77,7 @@ def cancel_operation(obj, user):
     product = _lock(obj.product)
     if isinstance(obj, StockIn):
         if product.quantity < obj.quantity:
-            raise ValidationError(_("Kirimni bekor qilib boвЂlmaydi: mahsulot qisman chiqarib yuborilgan."))
+            raise ValidationError(_("Kirimni bekor qilib bo‘lmaydi: mahsulot qisman chiqarib yuborilgan."))
         product.quantity -= obj.quantity
         movement = dict(movement_type=StockMovement.CANCEL_IN, change=-obj.quantity, stock_in=obj)
     else:

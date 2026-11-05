@@ -25,6 +25,6 @@ def inventory_stats():
         "low_pct": pct(low),
         "out_pct": pct(out),
         "new_week": products.filter(created_at__gte=week_ago).count(),
-        "top_name": top.name if top else "вЂ”",
+        "top_name": top.name if top else "—",
         "top_count": top.n if top else 0,
     }

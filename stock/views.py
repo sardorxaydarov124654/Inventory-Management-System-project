@@ -33,7 +33,7 @@ class StockInCreateView(ManagerMixin, OperationCreateMixin, FormView):
 
     def form_valid(self, form):
         register_stock_in(user=self.request.user, **form.cleaned_data)
-        messages.success(self.request, _("Kirim qayd etildi, ombor qoldigвЂi yangilandi."))
+        messages.success(self.request, _("Kirim qayd etildi, ombor qoldig‘i yangilandi."))
         return super().form_valid(form)
 
 
@@ -48,7 +48,7 @@ class StockOutCreateView(StaffMixin, OperationCreateMixin, FormView):
         except ValidationError as e:
             form.add_error(None, e)
             return self.form_invalid(form)
-        messages.success(self.request, _("Chiqim qayd etildi, ombor qoldigвЂi yangilandi."))
+        messages.success(self.request, _("Chiqim qayd etildi, ombor qoldig‘i yangilandi."))
         return super().form_valid(form)
 
 

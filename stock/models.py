@@ -51,7 +51,7 @@ class StockOut(models.Model):
     quantity = models.PositiveIntegerField(_("Miqdor"), validators=[MinValueValidator(1)])
     reason = models.CharField(_("Sabab"), max_length=10, choices=REASON_CHOICES, default=SALE)
     unit_price = models.DecimalField(_("Sotuv narxi"), max_digits=12, decimal_places=2, null=True, blank=True,
-                                     help_text=_("BoвЂsh qoldirsangiz, mahsulotning joriy narxi olinadi."))
+                                     help_text=_("Bo‘sh qoldirsangiz, mahsulotning joriy narxi olinadi."))
     note = models.TextField(_("Izoh"), blank=True)
     created_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True,
                                    related_name="stock_outs")
@@ -86,7 +86,7 @@ class StockMovement(models.Model):
 
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="movements")
     movement_type = models.CharField(_("Turi"), max_length=10, choices=TYPE_CHOICES)
-    change = models.IntegerField(_("OвЂzgarish"))
+    change = models.IntegerField(_("O‘zgarish"))
     balance_after = models.PositiveIntegerField(_("Qoldiq"))
     stock_in = models.ForeignKey(StockIn, null=True, blank=True, on_delete=models.SET_NULL, related_name="movements")
     stock_out = models.ForeignKey(StockOut, null=True, blank=True, on_delete=models.SET_NULL, related_name="movements")

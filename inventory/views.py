@@ -26,10 +26,10 @@ class SafeDeleteView(ManagerMixin, DeleteView):
         try:
             response = super().form_valid(form)
         except ProtectedError:
-            messages.error(self.request, _("Bu yozuvga bogвЂlangan maвЂ™lumotlar bor, uni oвЂchirib boвЂlmaydi. "
-                                         "Mahsulotni oвЂchirish oвЂrniga nofaol qiling."))
+            messages.error(self.request, _("Bu yozuvga bog‘langan ma’lumotlar bor, uni o‘chirib bo‘lmaydi. "
+                                         "Mahsulotni o‘chirish o‘rniga nofaol qiling."))
             return redirect(self.success_url)
-        messages.success(self.request, _("Yozuv oвЂchirildi."))
+        messages.success(self.request, _("Yozuv o‘chirildi."))
         return response
 
 
@@ -86,8 +86,8 @@ class ProductCreateView(ManagerMixin, SuccessMessageMixin, CreateView):
     form_class = ProductForm
     template_name = "form.html"
     success_url = reverse_lazy("inventory:product_list")
-    success_message = _("Mahsulot qoвЂshildi. Zaxira qoвЂshish uchun вЂњKirimвЂќ boвЂlimidan foydalaning.")
-    extra_context = {"title": _("Yangi mahsulot"), "subtitle": _("Mahsulot maвЂ™lumotlarini kiriting")}
+    success_message = _("Mahsulot qo‘shildi. Zaxira qo‘shish uchun “Kirim” bo‘limidan foydalaning.")
+    extra_context = {"title": _("Yangi mahsulot"), "subtitle": _("Mahsulot ma’lumotlarini kiriting")}
 
 
 class ProductUpdateView(ManagerMixin, SuccessMessageMixin, UpdateView):
@@ -96,7 +96,7 @@ class ProductUpdateView(ManagerMixin, SuccessMessageMixin, UpdateView):
     template_name = "form.html"
     success_url = reverse_lazy("inventory:product_list")
     success_message = _("Mahsulot saqlandi.")
-    extra_context = {"title": _("Mahsulotni tahrirlash"), "subtitle": _("MaвЂ™lumotlarni yangilang")}
+    extra_context = {"title": _("Mahsulotni tahrirlash"), "subtitle": _("Ma’lumotlarni yangilang")}
 
 
 class ProductDeleteView(SafeDeleteView):
@@ -121,7 +121,7 @@ class CategoryCreateView(ManagerMixin, SuccessMessageMixin, CreateView):
     form_class = CategoryForm
     template_name = "form.html"
     success_url = reverse_lazy("inventory:category_list")
-    success_message = _("Kategoriya qoвЂshildi.")
+    success_message = _("Kategoriya qo‘shildi.")
     extra_context = {"title": _("Yangi kategoriya"), "subtitle": _("Mahsulotlarni guruhlash uchun")}
 
 
@@ -169,8 +169,8 @@ class SupplierCreateView(ManagerMixin, SuccessMessageMixin, CreateView):
     form_class = SupplierForm
     template_name = "form.html"
     success_url = reverse_lazy("inventory:supplier_list")
-    success_message = _("Yetkazib beruvchi qoвЂshildi.")
-    extra_context = {"title": _("Yangi yetkazib beruvchi"), "subtitle": _("Kompaniya maвЂ™lumotlari")}
+    success_message = _("Yetkazib beruvchi qo‘shildi.")
+    extra_context = {"title": _("Yangi yetkazib beruvchi"), "subtitle": _("Kompaniya ma’lumotlari")}
 
 
 class SupplierUpdateView(ManagerMixin, SuccessMessageMixin, UpdateView):
@@ -178,7 +178,7 @@ class SupplierUpdateView(ManagerMixin, SuccessMessageMixin, UpdateView):
     form_class = SupplierForm
     template_name = "form.html"
     success_url = reverse_lazy("inventory:supplier_list")
-    success_message = _("MaвЂ™lumotlar saqlandi.")
+    success_message = _("Ma’lumotlar saqlandi.")
     extra_context = {"title": _("Yetkazib beruvchini tahrirlash"), "subtitle": ""}
 
 
