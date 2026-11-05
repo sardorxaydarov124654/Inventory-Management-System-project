@@ -1,0 +1,1036 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: InvenTrack\n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+#: templates/403.html
+msgid "Ruxsat yo‘q"
+msgstr "Нет доступа"
+
+#: templates/403.html
+msgid "Bu sahifa sizning rolingiz uchun mavjud emas"
+msgstr "Эта страница недоступна для вашей роли"
+
+#: templates/403.html
+msgid "Bu amalni bajarish uchun ruxsatingiz yo‘q."
+msgstr "У вас нет прав для этого действия."
+
+#: templates/403.html
+msgid "Bosh sahifaga qaytish"
+msgstr "Вернуться на главную"
+
+#: templates/_lang_modal.html
+msgid "Tilni tanlang"
+msgstr "Выберите язык"
+
+#: templates/_lang_modal.html
+msgid "Sayt tanlangan tilda ko‘rinadi va profilingizda saqlanadi."
+msgstr ""
+"Сайт отображается на выбранном языке, выбор сохраняется в вашем профиле."
+
+#: templates/_lang_modal.html
+msgid "Yopish"
+msgstr "Закрыть"
+
+#: templates/_lang_modal.html
+msgid "Qo‘llash"
+msgstr "Применить"
+
+#: templates/_lang_modal.html
+msgid "Tavsiya etiladi"
+msgstr "Рекомендуется"
+
+#: templates/_lang_modal.html
+msgid "Eng ko‘p tanlanadigan tillar"
+msgstr "Самые популярные языки"
+
+#: templates/_lang_modal.html
+msgid "Foydalanuvchilar tanlovi asosida hisoblangan."
+msgstr "Рассчитано по выбору пользователей."
+
+#: templates/_lang_modal.html
+msgid "Hozircha ma’lumot yo‘q."
+msgstr "Пока нет данных."
+
+#: templates/_lang_modal.html
+msgid ""
+"Siz uchun tavsiya etiladigan til: %(name)s (%(raw)s). Sayt shu tilda "
+"ko‘rsatilsinmi?"
+msgstr ""
+"Рекомендуемый для вас язык: %(name)s (%(raw)s). Показывать сайт на этом "
+"языке?"
+
+#: templates/_lang_modal.html
+msgid ""
+"Siz uchun tavsiya etiladigan til: %(name)s. Sayt shu tilda ko‘rsatilsinmi?"
+msgstr "Рекомендуемый для вас язык: %(name)s. Показывать сайт на этом языке?"
+
+#: templates/_lang_modal.html
+msgid "Jami tanlovlar: %(n)s"
+msgstr "Всего выборов: %(n)s"
+
+#: templates/_pagination.html
+msgid "Sahifalar"
+msgstr "Страницы"
+
+#: templates/_pagination.html
+msgid "Oldingi"
+msgstr "Назад"
+
+#: templates/_pagination.html
+msgid "Keyingi"
+msgstr "Далее"
+
+#: templates/_stats.html
+msgid "Jami mahsulotlar"
+msgstr "Всего товаров"
+
+#: templates/_stats.html
+msgid "Kam qolgan"
+msgstr "Заканчивается"
+
+#: templates/_stats.html
+msgid "Tugagan"
+msgstr "Нет в наличии"
+
+#: templates/_stats.html
+msgid "Top kategoriya"
+msgstr "Топ категория"
+
+#: templates/_stats.html
+msgid "mahsulot"
+msgstr "товаров"
+
+#: templates/accounts/auth.html
+msgid "Ro‘yxatdan o‘tish"
+msgstr "Регистрация"
+
+#: templates/accounts/auth.html
+msgid "Kirish"
+msgstr "Войти"
+
+#: templates/accounts/auth.html
+msgid "Omborni bir joyda boshqaring"
+msgstr "Управляйте складом в одном месте"
+
+#: templates/accounts/auth.html
+msgid "Mahsulotlar, kirim-chiqim va hisobotlar — hammasi bitta tizimda."
+msgstr "Товары, приход-расход и отчёты — всё в одной системе."
+
+#: templates/accounts/auth.html
+msgid "Banan"
+msgstr "Бананы"
+
+#: templates/accounts/auth.html
+msgid "Mavjud"
+msgstr "В наличии"
+
+#: templates/accounts/auth.html
+msgid "Sut"
+msgstr "Молоко"
+
+#: templates/accounts/auth.html
+msgid "Non"
+msgstr "Хлеб"
+
+#: templates/accounts/auth.html
+msgid "Zaxira nazorati real vaqtda"
+msgstr "Контроль запасов в реальном времени"
+
+#: templates/accounts/auth.html
+msgid "Kam qolgan mahsulotlar haqida ogohlantirish"
+msgstr "Уведомления о товарах на исходе"
+
+#: templates/accounts/auth.html
+msgid "Kirim-chiqim tarixi har doim saqlanadi"
+msgstr "История прихода и расхода всегда сохраняется"
+
+#: templates/accounts/auth.html
+msgid "Yangi hisob yarating"
+msgstr "Создайте новый аккаунт"
+
+#: templates/accounts/auth.html
+msgid ""
+"Tanlangan til sizning asosiy tilingiz bo‘lib saqlanadi. Uni keyin yuqoridagi"
+" menyudan o‘zgartirishingiz mumkin."
+msgstr ""
+"Выбранный язык сохранится как основной. Позже его можно изменить в меню "
+"сверху."
+
+#: templates/accounts/auth.html
+msgid "Parolni ko‘rsatish"
+msgstr "Показать пароль"
+
+#: templates/accounts/auth.html
+msgid "Hisob yaratish"
+msgstr "Создать аккаунт"
+
+#: templates/accounts/auth.html
+msgid "Hisobingiz bormi?"
+msgstr "Уже есть аккаунт?"
+
+#: templates/accounts/auth.html
+msgid "Tizimga kirish"
+msgstr "Вход в систему"
+
+#: templates/accounts/auth.html
+msgid "Ombor hisobini yuritish uchun login va parolingizni kiriting."
+msgstr "Введите логин и пароль, чтобы вести складской учёт."
+
+#: templates/accounts/auth.html
+msgid "Login yoki parol noto‘g‘ri."
+msgstr "Неверный логин или пароль."
+
+#: templates/accounts/auth.html
+msgid "Login"
+msgstr "Логин"
+
+#: templates/accounts/auth.html
+msgid "Parol"
+msgstr "Пароль"
+
+#: templates/accounts/auth.html
+msgid "Hisobingiz yo‘qmi?"
+msgstr "Нет аккаунта?"
+
+#: templates/accounts/user_list.html
+msgid "Foydalanuvchilar"
+msgstr "Пользователи"
+
+#: templates/accounts/user_list.html
+msgid "Xodimlar hisobi va rollarini boshqaring"
+msgstr "Управляйте аккаунтами и ролями сотрудников"
+
+#: templates/accounts/user_list.html
+msgid "Barcha foydalanuvchilar"
+msgstr "Все пользователи"
+
+#: templates/accounts/user_list.html
+msgid "Yangi foydalanuvchi"
+msgstr "Новый пользователь"
+
+#: templates/accounts/user_list.html
+msgid "Foydalanuvchi"
+msgstr "Пользователь"
+
+#: templates/accounts/user_list.html
+msgid "Email"
+msgstr "Email"
+
+#: templates/accounts/user_list.html
+msgid "Telefon"
+msgstr "Телефон"
+
+#: templates/accounts/user_list.html
+msgid "Rol"
+msgstr "Роль"
+
+#: templates/accounts/user_list.html
+msgid "Holat"
+msgstr "Статус"
+
+#: templates/accounts/user_list.html
+msgid "Amal"
+msgstr "Действие"
+
+#: templates/accounts/user_list.html
+msgid "Administrator"
+msgstr "Администратор"
+
+#: templates/accounts/user_list.html
+msgid "Faol"
+msgstr "Активен"
+
+#: templates/accounts/user_list.html
+msgid "Nofaol"
+msgstr "Неактивен"
+
+#: templates/accounts/user_list.html
+msgid "Faol / nofaol"
+msgstr "Активен / неактивен"
+
+#: templates/accounts/user_list.html
+msgid "Xodim"
+msgstr "Сотрудник"
+
+#: templates/base.html
+msgid "Asosiy"
+msgstr "Главное"
+
+#: templates/base.html
+msgid "Boshqaruv paneli"
+msgstr "Панель управления"
+
+#: templates/base.html
+msgid "Mahsulotlar"
+msgstr "Товары"
+
+#: templates/base.html
+msgid "Kirim"
+msgstr "Приход"
+
+#: templates/base.html
+msgid "Chiqim"
+msgstr "Расход"
+
+#: templates/base.html
+msgid "Harakatlar tarixi"
+msgstr "История движений"
+
+#: templates/base.html
+msgid "Kategoriyalar"
+msgstr "Категории"
+
+#: templates/base.html
+msgid "Yetkazib beruvchilar"
+msgstr "Поставщики"
+
+#: templates/base.html
+msgid "Hisobotlar"
+msgstr "Отчёты"
+
+#: templates/base.html
+msgid "Boshqa"
+msgstr "Прочее"
+
+#: templates/base.html
+msgid "Admin panel"
+msgstr "Админ-панель"
+
+#: templates/base.html
+msgid "Chiqish"
+msgstr "Выйти"
+
+#: templates/base.html
+msgid "Yordam kerakmi?"
+msgstr "Нужна помощь?"
+
+#: templates/base.html
+msgid "Qo‘llab-quvvatlash xizmatiga yozing"
+msgstr "Напишите в службу поддержки"
+
+#: templates/base.html
+msgid "Bog‘lanish"
+msgstr "Связаться"
+
+#: templates/base.html
+msgid "Menyu"
+msgstr "Меню"
+
+#: templates/base.html
+msgid "Mahsulot, kategoriya, yetkazib beruvchi qidirish..."
+msgstr "Поиск товаров, категорий, поставщиков..."
+
+#: templates/base.html
+msgid "Qidirish"
+msgstr "Поиск"
+
+#: templates/base.html
+msgid "Ogohlantirishlar"
+msgstr "Уведомления"
+
+#: templates/base.html
+msgid "oldin"
+msgstr "назад"
+
+#: templates/base.html
+msgid "Yangi ogohlantirish yo‘q"
+msgstr "Новых уведомлений нет"
+
+#: templates/base.html
+msgid "Hammasini o‘qilgan deb belgilash"
+msgstr "Отметить все как прочитанные"
+
+#: templates/base.html
+msgid "Menejer"
+msgstr "Менеджер"
+
+#: templates/base.html
+msgid "“%(name)s” tugadi!"
+msgstr "«%(name)s» закончился!"
+
+#: templates/base.html
+msgid "“%(name)s” kam qoldi: %(qty)s %(unit)s (min: %(min)s)"
+msgstr "«%(name)s» заканчивается: %(qty)s %(unit)s (мин: %(min)s)"
+
+#: templates/confirm_delete.html
+msgid "O‘chirish"
+msgstr "Удалить"
+
+#: templates/confirm_delete.html
+msgid "O‘chirishni tasdiqlang"
+msgstr "Подтвердите удаление"
+
+#: templates/confirm_delete.html
+msgid "Bu amalni qaytarib bo‘lmaydi"
+msgstr "Это действие нельзя отменить"
+
+#: templates/confirm_delete.html
+msgid "Ha, o‘chirish"
+msgstr "Да, удалить"
+
+#: templates/confirm_delete.html
+msgid "Bekor qilish"
+msgstr "Отмена"
+
+#: templates/confirm_delete.html
+msgid "“<b>%(name)s</b>” yozuvini o‘chirishni xohlaysizmi?"
+msgstr "Удалить запись «<b>%(name)s</b>»?"
+
+#: templates/dashboard/home.html
+msgid "Ombor holati va bugungi operatsiyalar"
+msgstr "Состояние склада и операции за сегодня"
+
+#: templates/dashboard/home.html
+msgid "Bugungi kirim"
+msgstr "Приход за сегодня"
+
+#: templates/dashboard/home.html
+msgid "Bugungi chiqim"
+msgstr "Расход за сегодня"
+
+#: templates/dashboard/home.html
+msgid "Ombor qiymati (xarid narxida)"
+msgstr "Стоимость склада (по закупке)"
+
+#: templates/dashboard/home.html
+msgid "Kirim va chiqim"
+msgstr "Приход и расход"
+
+#: templates/dashboard/home.html
+msgid "So‘nggi 7 kun, dona/birlik"
+msgstr "Последние 7 дней, единиц"
+
+#: templates/dashboard/home.html
+msgid "Kam qolgan mahsulotlar"
+msgstr "Товары на исходе"
+
+#: templates/dashboard/home.html
+msgid "Hammasi"
+msgstr "Все"
+
+#: templates/dashboard/home.html
+msgid "Min:"
+msgstr "Мин:"
+
+#: templates/dashboard/home.html
+msgid "Hamma mahsulot yetarli."
+msgstr "Всех товаров достаточно."
+
+#: templates/dashboard/home.html
+msgid "So‘nggi operatsiyalar"
+msgstr "Последние операции"
+
+#: templates/dashboard/home.html
+msgid "Barchasi"
+msgstr "Все"
+
+#: templates/dashboard/home.html
+msgid "Sana"
+msgstr "Дата"
+
+#: templates/dashboard/home.html
+msgid "Mahsulot"
+msgstr "Товар"
+
+#: templates/dashboard/home.html
+msgid "Turi"
+msgstr "Тип"
+
+#: templates/dashboard/home.html
+msgid "O‘zgarish"
+msgstr "Изменение"
+
+#: templates/dashboard/home.html
+msgid "Qoldiq"
+msgstr "Остаток"
+
+#: templates/dashboard/home.html
+msgid "Hali operatsiya yo‘q."
+msgstr "Операций пока нет."
+
+#: templates/dashboard/reports.html
+msgid "Hisobotlar va tahlil"
+msgstr "Отчёты и аналитика"
+
+#: templates/dashboard/reports.html
+msgid "Kirim-chiqim, sotuv va foyda ko‘rsatkichlari"
+msgstr "Приход, расход, продажи и прибыль"
+
+#: templates/dashboard/reports.html
+msgid "Kirim (miqdor)"
+msgstr "Приход (кол-во)"
+
+#: templates/dashboard/reports.html
+msgid "Xarajat:"
+msgstr "Затраты:"
+
+#: templates/dashboard/reports.html
+msgid "Chiqim (miqdor)"
+msgstr "Расход (кол-во)"
+
+#: templates/dashboard/reports.html
+msgid "Tushum:"
+msgstr "Выручка:"
+
+#: templates/dashboard/reports.html
+msgid "Sotuvdan foyda"
+msgstr "Прибыль от продаж"
+
+#: templates/dashboard/reports.html
+msgid "Ombor qiymati"
+msgstr "Стоимость склада"
+
+#: templates/dashboard/reports.html
+msgid "Kirim va chiqim dinamikasi"
+msgstr "Динамика прихода и расхода"
+
+#: templates/dashboard/reports.html
+msgid "Ombor qiymati kategoriya bo‘yicha"
+msgstr "Стоимость склада по категориям"
+
+#: templates/dashboard/reports.html
+msgid "Eng ko‘p sotilgan"
+msgstr "Самые продаваемые"
+
+#: templates/dashboard/reports.html
+msgid "Eng kam sotilgan"
+msgstr "Наименее продаваемые"
+
+#: templates/dashboard/reports.html
+msgid "Bu davrda sotuv bo‘lmagan."
+msgstr "В этом периоде продаж не было."
+
+#: templates/dashboard/reports.html
+msgid "Mahsulotlar bo‘yicha foyda"
+msgstr "Прибыль по товарам"
+
+#: templates/dashboard/reports.html
+msgid "Sotilgan"
+msgstr "Продано"
+
+#: templates/dashboard/reports.html
+msgid "Tushum"
+msgstr "Выручка"
+
+#: templates/dashboard/reports.html
+msgid "Foyda"
+msgstr "Прибыль"
+
+#: templates/dashboard/reports.html
+msgid "Bu davrda sotuv ma’lumoti yo‘q."
+msgstr "Нет данных о продажах за этот период."
+
+#: templates/form.html
+msgid "Saqlash"
+msgstr "Сохранить"
+
+#: templates/inventory/category_list.html
+msgid "Mahsulotlarni guruhlarga ajrating"
+msgstr "Группируйте товары по категориям"
+
+#: templates/inventory/category_list.html
+msgid "Barcha kategoriyalar"
+msgstr "Все категории"
+
+#: templates/inventory/category_list.html
+msgid "Qidirish..."
+msgstr "Поиск..."
+
+#: templates/inventory/category_list.html
+msgid "Yangi kategoriya"
+msgstr "Новая категория"
+
+#: templates/inventory/category_list.html
+msgid "Nomi"
+msgstr "Название"
+
+#: templates/inventory/category_list.html
+msgid "Tavsif"
+msgstr "Описание"
+
+#: templates/inventory/category_list.html
+msgid "ta"
+msgstr "шт."
+
+#: templates/inventory/category_list.html
+msgid "Hali kategoriya yo‘q."
+msgstr "Категорий пока нет."
+
+#: templates/inventory/product_list.html
+msgid "Ombor boshqaruvi"
+msgstr "Управление складом"
+
+#: templates/inventory/product_list.html
+msgid "Zaxira darajalarini kuzating va mahsulotlarni boshqaring"
+msgstr "Следите за запасами и управляйте товарами"
+
+#: templates/inventory/product_list.html
+msgid "Mahsulotlar ro‘yxati"
+msgstr "Список товаров"
+
+#: templates/inventory/product_list.html
+msgid "Mahsulot qo‘shish"
+msgstr "Добавить товар"
+
+#: templates/inventory/product_list.html
+msgid "Eksport"
+msgstr "Экспорт"
+
+#: templates/inventory/product_list.html
+msgid "Kategoriya"
+msgstr "Категория"
+
+#: templates/inventory/product_list.html
+msgid "Zaxira darajasi"
+msgstr "Уровень запасов"
+
+#: templates/inventory/product_list.html
+msgid "Narx"
+msgstr "Цена"
+
+#: templates/inventory/product_list.html
+msgid "Yetkazib beruvchi"
+msgstr "Поставщик"
+
+#: templates/inventory/product_list.html
+msgid "Amallar"
+msgstr "Действия"
+
+#: templates/inventory/product_list.html
+msgid "Kirim qo‘shish"
+msgstr "Добавить приход"
+
+#: templates/inventory/product_list.html
+msgid "Chiqim qilish"
+msgstr "Оформить расход"
+
+#: templates/inventory/product_list.html
+msgid "Tahrirlash"
+msgstr "Редактировать"
+
+#: templates/inventory/product_list.html
+msgid "Mahsulot topilmadi."
+msgstr "Товары не найдены."
+
+#: templates/inventory/product_list.html
+msgid "Birinchi mahsulotni qo‘shing"
+msgstr "Добавьте первый товар"
+
+#: templates/inventory/supplier_detail.html
+msgid "Yetkazib beruvchi ma’lumotlari va kirimlar tarixi"
+msgstr "Данные поставщика и история поставок"
+
+#: templates/inventory/supplier_detail.html
+msgid "Aloqa ma’lumotlari"
+msgstr "Контактные данные"
+
+#: templates/inventory/supplier_detail.html
+msgid "Manzil"
+msgstr "Адрес"
+
+#: templates/inventory/supplier_detail.html
+msgid "Mahsulotlari"
+msgstr "Товары поставщика"
+
+#: templates/inventory/supplier_detail.html
+msgid "Mahsulot biriktirilmagan."
+msgstr "Товары не привязаны."
+
+#: templates/inventory/supplier_detail.html
+msgid "So‘nggi kirimlar"
+msgstr "Последние поставки"
+
+#: templates/inventory/supplier_detail.html
+msgid "Bekor qilingan"
+msgstr "Отменено"
+
+#: templates/inventory/supplier_detail.html
+msgid "Kirimlar tarixi bo‘sh."
+msgstr "История поставок пуста."
+
+#: templates/inventory/supplier_list.html
+msgid "Hamkor kompaniyalar va ular bilan ishlash tarixi"
+msgstr "Компании-партнёры и история работы с ними"
+
+#: templates/inventory/supplier_list.html
+msgid "Barcha yetkazib beruvchilar"
+msgstr "Все поставщики"
+
+#: templates/inventory/supplier_list.html
+msgid "Yangi yetkazib beruvchi"
+msgstr "Новый поставщик"
+
+#: templates/inventory/supplier_list.html
+msgid "Kompaniya"
+msgstr "Компания"
+
+#: templates/inventory/supplier_list.html
+msgid "Hali yetkazib beruvchi yo‘q."
+msgstr "Поставщиков пока нет."
+
+#: templates/stock/movement_list.html
+msgid "Ombor harakatlari tarixi"
+msgstr "История движений склада"
+
+#: templates/stock/movement_list.html
+msgid "Har bir kirim, chiqim va bekor qilish qayd etiladi"
+msgstr "Фиксируется каждый приход, расход и отмена"
+
+#: templates/stock/movement_list.html
+msgid "Mahsulot qidirish..."
+msgstr "Поиск товара..."
+
+#: templates/stock/movement_list.html
+msgid "Izoh"
+msgstr "Комментарий"
+
+#: templates/stock/movement_list.html
+msgid "Harakatlar topilmadi."
+msgstr "Движения не найдены."
+
+#: templates/stock/operation_list.html
+msgid "Mahsulot kirimi"
+msgstr "Приход товара"
+
+#: templates/stock/operation_list.html
+msgid "Mahsulot chiqimi"
+msgstr "Расход товара"
+
+#: templates/stock/operation_list.html
+msgid "Omborga kelgan mahsulotlar tarixi"
+msgstr "История поступлений на склад"
+
+#: templates/stock/operation_list.html
+msgid "Ombordan chiqarilgan mahsulotlar tarixi"
+msgstr "История списаний со склада"
+
+#: templates/stock/operation_list.html
+msgid "Kirimlar"
+msgstr "Приходы"
+
+#: templates/stock/operation_list.html
+msgid "Chiqimlar"
+msgstr "Расходы"
+
+#: templates/stock/operation_list.html
+msgid "Yangi kirim"
+msgstr "Новый приход"
+
+#: templates/stock/operation_list.html
+msgid "Yangi chiqim"
+msgstr "Новый расход"
+
+#: templates/stock/operation_list.html
+msgid "Miqdor"
+msgstr "Количество"
+
+#: templates/stock/operation_list.html
+msgid "Xarid narxi"
+msgstr "Закупочная цена"
+
+#: templates/stock/operation_list.html
+msgid "Sabab"
+msgstr "Причина"
+
+#: templates/stock/operation_list.html
+msgid "Sotuv narxi"
+msgstr "Цена продажи"
+
+#: templates/stock/operation_list.html
+msgid "Bajarilgan"
+msgstr "Выполнено"
+
+#: templates/stock/operation_list.html
+msgid "Operatsiyani bekor qilasizmi? Ombor qoldig‘i tiklanadi."
+msgstr "Отменить операцию? Остаток на складе будет восстановлен."
+
+#: templates/stock/operation_list.html
+msgid "Operatsiyalar topilmadi."
+msgstr "Операции не найдены."
+
+#: accounts/forms.py
+msgid "Parolni takrorlang"
+msgstr "Повторите пароль"
+
+#: accounts/forms.py
+msgid "Tahrirlashda bo‘sh qoldirsangiz, parol o‘zgarmaydi."
+msgstr "Если оставить пустым при редактировании, пароль не изменится."
+
+#: accounts/forms.py
+msgid "Til"
+msgstr "Язык"
+
+#: accounts/forms.py
+msgid "Ism"
+msgstr "Имя"
+
+#: accounts/forms.py
+msgid "Familiya"
+msgstr "Фамилия"
+
+#: accounts/models.py
+msgid "Foydalanuvchi profili"
+msgstr "Профиль пользователя"
+
+#: accounts/models.py
+msgid "Foydalanuvchi profillari"
+msgstr "Профили пользователей"
+
+#: accounts/models.py
+msgid "Tizimga kirganda avtomatik tanlanadigan til."
+msgstr "Язык, который выбирается автоматически при входе."
+
+#: accounts/views.py
+msgid "Foydalanuvchi qo‘shildi."
+msgstr "Пользователь добавлен."
+
+#: accounts/views.py
+msgid "Foydalanuvchi ma’lumotlari saqlandi."
+msgstr "Данные пользователя сохранены."
+
+#: accounts/views.py
+msgid "Xodim hisobini yarating va rolini belgilang"
+msgstr "Создайте аккаунт сотрудника и назначьте роль"
+
+#: accounts/views.py
+msgid "Foydalanuvchini tahrirlash"
+msgstr "Редактирование пользователя"
+
+#: accounts/views.py
+msgid "Ma’lumotlar va rolni o‘zgartiring"
+msgstr "Измените данные и роль"
+
+#: accounts/views.py
+msgid "Hisobingiz yaratildi. Xush kelibsiz!"
+msgstr "Аккаунт создан. Добро пожаловать!"
+
+#: accounts/views.py
+msgid "O‘zingizning hisobingizni o‘chira olmaysiz."
+msgstr "Нельзя деактивировать собственный аккаунт."
+
+#: accounts/views.py
+msgid "Holat o‘zgartirildi."
+msgstr "Статус изменён."
+
+#: dashboard/apps.py
+msgid "Dashboard va hisobotlar"
+msgstr "Панель и отчёты"
+
+#: dashboard/forms.py
+msgid "Bugun"
+msgstr "Сегодня"
+
+#: dashboard/forms.py
+msgid "7 kun"
+msgstr "7 дней"
+
+#: dashboard/forms.py
+msgid "30 kun"
+msgstr "30 дней"
+
+#: inventory/apps.py
+msgid "Ombor"
+msgstr "Склад"
+
+#: inventory/models.py
+msgid "Kompaniya nomi"
+msgstr "Название компании"
+
+#: inventory/models.py
+msgid "SKU / kod"
+msgstr "SKU / код"
+
+#: inventory/models.py
+msgid "Rasm"
+msgstr "Изображение"
+
+#: inventory/models.py
+msgid "O‘lchov birligi"
+msgstr "Единица измерения"
+
+#: inventory/models.py
+msgid "Minimal zaxira"
+msgstr "Минимальный запас"
+
+#: inventory/models.py
+msgid "dona"
+msgstr "шт."
+
+#: inventory/models.py
+msgid "kg"
+msgstr "кг"
+
+#: inventory/models.py
+msgid "o‘nlik"
+msgstr "десяток"
+
+#: inventory/models.py
+msgid "quti"
+msgstr "коробка"
+
+#: inventory/models.py
+msgid "m"
+msgstr "м"
+
+#: inventory/models.py
+msgid "Bo‘sh qoldirsangiz, avtomatik yaratiladi."
+msgstr "Если оставить пустым, создаётся автоматически."
+
+#: inventory/views.py
+msgid ""
+"Mahsulot qo‘shildi. Zaxira qo‘shish uchun “Kirim” bo‘limidan foydalaning."
+msgstr "Товар добавлен. Чтобы пополнить запас, используйте раздел «Приход»."
+
+#: inventory/views.py
+msgid "Mahsulot saqlandi."
+msgstr "Товар сохранён."
+
+#: inventory/views.py
+msgid "Kategoriya qo‘shildi."
+msgstr "Категория добавлена."
+
+#: inventory/views.py
+msgid "Kategoriya saqlandi."
+msgstr "Категория сохранена."
+
+#: inventory/views.py
+msgid "Yetkazib beruvchi qo‘shildi."
+msgstr "Поставщик добавлен."
+
+#: inventory/views.py
+msgid "Ma’lumotlar saqlandi."
+msgstr "Данные сохранены."
+
+#: inventory/views.py
+msgid "Yangi mahsulot"
+msgstr "Новый товар"
+
+#: inventory/views.py
+msgid "Mahsulot ma’lumotlarini kiriting"
+msgstr "Введите данные товара"
+
+#: inventory/views.py
+msgid "Mahsulotni tahrirlash"
+msgstr "Редактирование товара"
+
+#: inventory/views.py
+msgid "Ma’lumotlarni yangilang"
+msgstr "Обновите данные"
+
+#: inventory/views.py
+msgid "Mahsulotlarni guruhlash uchun"
+msgstr "Для группировки товаров"
+
+#: inventory/views.py
+msgid "Kategoriyani tahrirlash"
+msgstr "Редактирование категории"
+
+#: inventory/views.py
+msgid "Kompaniya ma’lumotlari"
+msgstr "Данные компании"
+
+#: inventory/views.py
+msgid "Yetkazib beruvchini tahrirlash"
+msgstr "Редактирование поставщика"
+
+#: inventory/views.py
+msgid "Yozuv o‘chirildi."
+msgstr "Запись удалена."
+
+#: inventory/views.py
+msgid "Birlik"
+msgstr "Ед. изм."
+
+#: inventory/views.py
+msgid ""
+"Bu yozuvga bog‘langan ma’lumotlar bor, uni o‘chirib bo‘lmaydi. Mahsulotni "
+"o‘chirish o‘rniga nofaol qiling."
+msgstr ""
+"К этой записи привязаны данные, её нельзя удалить. Вместо удаления товара "
+"сделайте его неактивным."
+
+#: stock/apps.py
+msgid "Kirim-chiqim"
+msgstr "Приход и расход"
+
+#: stock/forms.py
+msgid "Omborda faqat %(qty)s %(unit)s mavjud."
+msgstr "На складе только %(qty)s %(unit)s."
+
+#: stock/models.py
+msgid "Kirim sanasi"
+msgstr "Дата прихода"
+
+#: stock/models.py
+msgid "Harakat"
+msgstr "Движение"
+
+#: stock/models.py
+msgid "Ombor harakatlari"
+msgstr "Движения склада"
+
+#: stock/models.py
+msgid "Ogohlantirish"
+msgstr "Уведомление"
+
+#: stock/models.py
+msgid "Sotuv"
+msgstr "Продажа"
+
+#: stock/models.py
+msgid "Yaroqsiz / buzilgan"
+msgstr "Брак / повреждено"
+
+#: stock/models.py
+msgid "Qaytarish"
+msgstr "Возврат"
+
+#: stock/models.py
+msgid "Bo‘sh qoldirsangiz, mahsulotning joriy narxi olinadi."
+msgstr "Если оставить пустым, берётся текущая цена товара."
+
+#: stock/models.py
+msgid "Kirim bekor qilindi"
+msgstr "Приход отменён"
+
+#: stock/models.py
+msgid "Chiqim bekor qilindi"
+msgstr "Расход отменён"
+
+#: stock/services.py
+msgid "Bu operatsiya allaqachon bekor qilingan."
+msgstr "Эта операция уже отменена."
+
+#: stock/services.py
+msgid "Operatsiya bekor qilindi"
+msgstr "Операция отменена"
+
+#: stock/services.py
+msgid "Kirimni bekor qilib bo‘lmaydi: mahsulot qisman chiqarib yuborilgan."
+msgstr "Приход нельзя отменить: товар уже частично списан."
+
+#: stock/views.py
+msgid "Omborga kelgan mahsulotni qayd eting"
+msgstr "Зарегистрируйте поступивший на склад товар"
+
+#: stock/views.py
+msgid "Ombordan chiqayotgan mahsulotni qayd eting"
+msgstr "Зарегистрируйте товар, уходящий со склада"
+
+#: stock/views.py
+msgid "Kirim qayd etildi, ombor qoldig‘i yangilandi."
+msgstr "Приход зарегистрирован, остаток обновлён."
+
+#: stock/views.py
+msgid "Chiqim qayd etildi, ombor qoldig‘i yangilandi."
+msgstr "Расход зарегистрирован, остаток обновлён."
+
+#: stock/views.py
+msgid "Operatsiya bekor qilindi, qoldiq tiklandi."
+msgstr "Операция отменена, остаток восстановлен."

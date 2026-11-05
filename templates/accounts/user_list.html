@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %}{% trans "Foydalanuvchilar" %}{% endblock %}
+{% block page_title %}{% trans "Foydalanuvchilar" %}{% endblock %}
+{% block page_sub %}{% trans "Xodimlar hisobi va rollarini boshqaring" %}{% endblock %}
+{% block content %}
+<section class="panel">
+  <div class="panel-head">
+    <h2>{% trans "Barcha foydalanuvchilar" %}</h2>
+    <a class="btn btn-green" href="{% url 'accounts:user_add' %}"><i class="bi bi-plus-lg"></i>{% trans "Yangi foydalanuvchi" %}</a>
+  </div>
+  <div class="table-wrap">
+    <table class="tbl">
+      <thead><tr><th>{% trans "Foydalanuvchi" %}</th><th>{% trans "Email" %}</th><th>{% trans "Telefon" %}</th><th>{% trans "Rol" %}</th><th>{% trans "Holat" %}</th><th class="num">{% trans "Amal" %}</th></tr></thead>
+      <tbody>
+      {% for u in users %}
+        <tr>
+          <td><div class="prod"><span class="thumb">{{ u.username|slice:":1"|upper }}</span><div><b>{{ u.get_full_name|default:u.username }}</b><small>@{{ u.username }}</small></div></div></td>
+          <td>{{ u.email|default:"—" }}</td>
+          <td>{{ u.profile.phone|default:"—" }}</td>
+          <td>{% if u.is_superuser %}{% trans "Administrator" %}{% else %}{{ u.profile.get_role_display|default:_("Xodim") }}{% endif %}</td>
+          <td><span class="pill {% if u.is_active %}ok{% else %}out{% endif %}">{% if u.is_active %}{% trans "Faol" %}{% else %}{% trans "Nofaol" %}{% endif %}</span></td>
+          <td><div class="row-actions">
+            <a class="btn btn-soft btn-sm" href="{% url 'accounts:user_edit' u.pk %}"><i class="bi bi-pencil"></i></a>
+            {% if u != request.user %}
+            <form method="post" action="{% url 'accounts:user_toggle' u.pk %}">{% csrf_token %}
+              <button class="btn btn-soft btn-sm" type="submit" title="{% trans 'Faol / nofaol' %}">{% if u.is_active %}<i class="bi bi-pause-circle"></i>{% else %}<i class="bi bi-play-circle"></i>{% endif %}</button>
+            </form>{% endif %}
+          </div></td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% include '_pagination.html' %}
+</section>
+{% endblock %}

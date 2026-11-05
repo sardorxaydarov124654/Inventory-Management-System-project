@@ -1,0 +1,91 @@
+{% load static i18n %}<!DOCTYPE html>
+{% get_current_language as LANG %}<html lang="{{ LANG }}">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% trans "Ro‘yxatdan o‘tish" %} · {% trans "Kirish" %} · {{ SITE_NAME }}</title>
+  <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link rel="stylesheet" href="{% static 'css/auth.css' %}">
+</head>
+<body class="auth-body">
+<main class="auth-page">
+  <div class="auth-shell" data-auth data-mode="{{ mode }}"
+       data-url-login="{% url 'accounts:login' %}{% if next %}?next={{ next|urlencode }}{% endif %}"
+       data-url-register="{% url 'accounts:register' %}{% if next %}?next={{ next|urlencode }}{% endif %}">
+
+    <aside class="auth-hero" aria-hidden="false">
+      <div class="brand reveal" style="--i:0"><span class="brand-logo"><i class="bi bi-box-seam-fill"></i></span>{{ SITE_NAME }}</div>
+      <div class="reveal" style="--i:1">
+        <h2>{% trans "Omborni bir joyda boshqaring" %}</h2>
+        <p class="hero-sub">{% trans "Mahsulotlar, kirim-chiqim va hisobotlar — hammasi bitta tizimda." %}</p>
+      </div>
+      <div class="hero-card reveal" style="--i:2">
+        <div class="hero-row"><span>{% trans "Banan" %}</span><span class="pill ok">{% trans "Mavjud" %}</span><span class="bar"><i class="hb" style="--w:88%;--k:0"></i></span></div>
+        <div class="hero-row"><span>{% trans "Sut" %}</span><span class="pill low">{% trans "Kam qolgan" %}</span><span class="bar low"><i class="hb" style="--w:34%;--k:1"></i></span></div>
+        <div class="hero-row"><span>{% trans "Non" %}</span><span class="pill out">{% trans "Tugagan" %}</span><span class="bar out"><i class="hb" style="--w:0%;--k:2"></i></span></div>
+      </div>
+      <ul class="hero-list">
+        <li class="reveal" style="--i:3"><i class="bi bi-check-circle-fill"></i>{% trans "Zaxira nazorati real vaqtda" %}</li>
+        <li class="reveal" style="--i:4"><i class="bi bi-check-circle-fill"></i>{% trans "Kam qolgan mahsulotlar haqida ogohlantirish" %}</li>
+        <li class="reveal" style="--i:5"><i class="bi bi-check-circle-fill"></i>{% trans "Kirim-chiqim tarixi har doim saqlanadi" %}</li>
+      </ul>
+    </aside>
+
+    <section class="auth-main">
+      <div class="auth-top reveal" style="--i:1">
+        <div class="brand brand-m"><span class="brand-logo"><i class="bi bi-box-seam-fill"></i></span>{{ SITE_NAME }}</div>
+        {% include '_lang_switcher.html' with variant='auth' %}
+      </div>
+
+      <div class="auth-tabs reveal" style="--i:2" role="tablist">
+        <span class="auth-thumb" aria-hidden="true"></span>
+        <a class="auth-tab" role="tab" href="{% url 'accounts:register' %}" data-mode-tab="register" aria-selected="{% if mode == 'register' %}true{% else %}false{% endif %}">{% trans "Ro‘yxatdan o‘tish" %}</a>
+        <a class="auth-tab" role="tab" href="{% url 'accounts:login' %}" data-mode-tab="login" aria-selected="{% if mode == 'login' %}true{% else %}false{% endif %}">{% trans "Kirish" %}</a>
+      </div>
+
+      <div class="auth-panels reveal" style="--i:3">
+        <!-- Ro'yxatdan o'tish -->
+        <div class="auth-panel panel-register" data-panel="register"{% if mode != 'register' %} inert{% endif %}>
+          <h1 class="auth-title">{% trans "Yangi hisob yarating" %}</h1>
+          <p class="auth-lead">{% trans "Tanlangan til sizning asosiy tilingiz bo‘lib saqlanadi. Uni keyin yuqoridagi menyudan o‘zgartirishingiz mumkin." %}</p>
+          <form method="post" action="{% url 'accounts:register' %}" class="reg-grid" novalidate>{% csrf_token %}
+            <input type="hidden" name="next" value="{{ next }}">
+            {% if register_form.non_field_errors %}<div class="form-errors">{{ register_form.non_field_errors|join:" " }}</div>{% endif %}
+            {% for f in register_form %}
+            <div class="field{% if f.name == 'username' or f.name == 'email' %} full{% endif %}">
+              <label for="{{ f.id_for_label }}">{{ f.label }}</label>
+              {% if f.name == 'password1' or f.name == 'password2' %}<div class="pw">{{ f }}<button type="button" class="pw-toggle" aria-label="{% trans 'Parolni ko‘rsatish' %}"><i class="bi bi-eye"></i></button></div>{% else %}{{ f }}{% endif %}
+              {% for e in f.errors %}<div class="err">{{ e }}</div>{% endfor %}
+            </div>
+            {% endfor %}
+            <button class="btn btn-green full" type="submit">{% trans "Hisob yaratish" %}</button>
+          </form>
+          <p class="auth-alt">{% trans "Hisobingiz bormi?" %} <a href="{% url 'accounts:login' %}" data-mode-tab="login">{% trans "Kirish" %}</a></p>
+        </div>
+
+        <!-- Kirish -->
+        <div class="auth-panel panel-login" data-panel="login"{% if mode != 'login' %} inert{% endif %}>
+          <h1 class="auth-title">{% trans "Tizimga kirish" %}</h1>
+          <p class="auth-lead">{% trans "Ombor hisobini yuritish uchun login va parolingizni kiriting." %}</p>
+          <form method="post" action="{% url 'accounts:login' %}" novalidate>{% csrf_token %}
+            {% if mode == 'login' and login_form.errors %}<div class="form-errors" style="margin-bottom:14px">{% trans "Login yoki parol noto‘g‘ri." %}</div>{% endif %}
+            <div class="field"><label for="login_username">{% trans "Login" %}</label>
+              <input class="input" type="text" name="username" id="login_username" autocomplete="username" required value="{% if mode == 'login' %}{{ login_form.username.value|default:'' }}{% endif %}"></div>
+            <div class="field"><label for="login_password">{% trans "Parol" %}</label>
+              <div class="pw"><input class="input" type="password" name="password" id="login_password" autocomplete="current-password" required>
+                <button type="button" class="pw-toggle" aria-label="{% trans 'Parolni ko‘rsatish' %}"><i class="bi bi-eye"></i></button></div></div>
+            <input type="hidden" name="next" value="{{ next }}">
+            <button class="btn btn-green full" type="submit">{% trans "Kirish" %}</button>
+          </form>
+          <p class="auth-alt">{% trans "Hisobingiz yo‘qmi?" %} <a href="{% url 'accounts:register' %}" data-mode-tab="register">{% trans "Ro‘yxatdan o‘tish" %}</a></p>
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
+{% include '_lang_modal.html' %}
+<script src="{% static 'js/lang.js' %}"></script>
+<script src="{% static 'js/auth.js' %}"></script>
+</body>
+</html>

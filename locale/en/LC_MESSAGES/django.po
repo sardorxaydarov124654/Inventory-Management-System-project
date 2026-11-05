@@ -1,0 +1,1037 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: InvenTrack\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: templates/403.html
+msgid "Ruxsat yo‘q"
+msgstr "Access denied"
+
+#: templates/403.html
+msgid "Bu sahifa sizning rolingiz uchun mavjud emas"
+msgstr "This page is not available for your role"
+
+#: templates/403.html
+msgid "Bu amalni bajarish uchun ruxsatingiz yo‘q."
+msgstr "You do not have permission to do this."
+
+#: templates/403.html
+msgid "Bosh sahifaga qaytish"
+msgstr "Back to home"
+
+#: templates/_lang_modal.html
+msgid "Tilni tanlang"
+msgstr "Choose language"
+
+#: templates/_lang_modal.html
+msgid "Sayt tanlangan tilda ko‘rinadi va profilingizda saqlanadi."
+msgstr "The site is shown in the selected language and saved to your profile."
+
+#: templates/_lang_modal.html
+msgid "Yopish"
+msgstr "Close"
+
+#: templates/_lang_modal.html
+msgid "Qo‘llash"
+msgstr "Apply"
+
+#: templates/_lang_modal.html
+msgid "Tavsiya etiladi"
+msgstr "Recommended"
+
+#: templates/_lang_modal.html
+msgid "Eng ko‘p tanlanadigan tillar"
+msgstr "Most popular languages"
+
+#: templates/_lang_modal.html
+msgid "Foydalanuvchilar tanlovi asosida hisoblangan."
+msgstr "Based on users’ choices."
+
+#: templates/_lang_modal.html
+msgid "Hozircha ma’lumot yo‘q."
+msgstr "No data yet."
+
+#: templates/_lang_modal.html
+msgid ""
+"Siz uchun tavsiya etiladigan til: %(name)s (%(raw)s). Sayt shu tilda "
+"ko‘rsatilsinmi?"
+msgstr ""
+"Recommended language for you: %(name)s (%(raw)s). Show the site in this "
+"language?"
+
+#: templates/_lang_modal.html
+msgid ""
+"Siz uchun tavsiya etiladigan til: %(name)s. Sayt shu tilda ko‘rsatilsinmi?"
+msgstr ""
+"Recommended language for you: %(name)s. Show the site in this language?"
+
+#: templates/_lang_modal.html
+msgid "Jami tanlovlar: %(n)s"
+msgstr "Total choices: %(n)s"
+
+#: templates/_pagination.html
+msgid "Sahifalar"
+msgstr "Pages"
+
+#: templates/_pagination.html
+msgid "Oldingi"
+msgstr "Previous"
+
+#: templates/_pagination.html
+msgid "Keyingi"
+msgstr "Next"
+
+#: templates/_stats.html
+msgid "Jami mahsulotlar"
+msgstr "Total products"
+
+#: templates/_stats.html
+msgid "Kam qolgan"
+msgstr "Low stock"
+
+#: templates/_stats.html
+msgid "Tugagan"
+msgstr "Out of stock"
+
+#: templates/_stats.html
+msgid "Top kategoriya"
+msgstr "Top category"
+
+#: templates/_stats.html
+msgid "mahsulot"
+msgstr "products"
+
+#: templates/accounts/auth.html
+msgid "Ro‘yxatdan o‘tish"
+msgstr "Sign up"
+
+#: templates/accounts/auth.html
+msgid "Kirish"
+msgstr "Sign in"
+
+#: templates/accounts/auth.html
+msgid "Omborni bir joyda boshqaring"
+msgstr "Manage your warehouse in one place"
+
+#: templates/accounts/auth.html
+msgid "Mahsulotlar, kirim-chiqim va hisobotlar — hammasi bitta tizimda."
+msgstr "Products, stock flow and reports — all in one system."
+
+#: templates/accounts/auth.html
+msgid "Banan"
+msgstr "Bananas"
+
+#: templates/accounts/auth.html
+msgid "Mavjud"
+msgstr "In stock"
+
+#: templates/accounts/auth.html
+msgid "Sut"
+msgstr "Milk"
+
+#: templates/accounts/auth.html
+msgid "Non"
+msgstr "Bread"
+
+#: templates/accounts/auth.html
+msgid "Zaxira nazorati real vaqtda"
+msgstr "Real-time stock control"
+
+#: templates/accounts/auth.html
+msgid "Kam qolgan mahsulotlar haqida ogohlantirish"
+msgstr "Alerts for low-stock products"
+
+#: templates/accounts/auth.html
+msgid "Kirim-chiqim tarixi har doim saqlanadi"
+msgstr "Full stock in/out history is always kept"
+
+#: templates/accounts/auth.html
+msgid "Yangi hisob yarating"
+msgstr "Create a new account"
+
+#: templates/accounts/auth.html
+msgid ""
+"Tanlangan til sizning asosiy tilingiz bo‘lib saqlanadi. Uni keyin yuqoridagi"
+" menyudan o‘zgartirishingiz mumkin."
+msgstr ""
+"The selected language will be saved as your default. You can change it later"
+" from the menu at the top."
+
+#: templates/accounts/auth.html
+msgid "Parolni ko‘rsatish"
+msgstr "Show password"
+
+#: templates/accounts/auth.html
+msgid "Hisob yaratish"
+msgstr "Create account"
+
+#: templates/accounts/auth.html
+msgid "Hisobingiz bormi?"
+msgstr "Already have an account?"
+
+#: templates/accounts/auth.html
+msgid "Tizimga kirish"
+msgstr "Sign in to your account"
+
+#: templates/accounts/auth.html
+msgid "Ombor hisobini yuritish uchun login va parolingizni kiriting."
+msgstr "Enter your username and password to manage your inventory."
+
+#: templates/accounts/auth.html
+msgid "Login yoki parol noto‘g‘ri."
+msgstr "Incorrect username or password."
+
+#: templates/accounts/auth.html
+msgid "Login"
+msgstr "Username"
+
+#: templates/accounts/auth.html
+msgid "Parol"
+msgstr "Password"
+
+#: templates/accounts/auth.html
+msgid "Hisobingiz yo‘qmi?"
+msgstr "Don’t have an account?"
+
+#: templates/accounts/user_list.html
+msgid "Foydalanuvchilar"
+msgstr "Users"
+
+#: templates/accounts/user_list.html
+msgid "Xodimlar hisobi va rollarini boshqaring"
+msgstr "Manage staff accounts and roles"
+
+#: templates/accounts/user_list.html
+msgid "Barcha foydalanuvchilar"
+msgstr "All users"
+
+#: templates/accounts/user_list.html
+msgid "Yangi foydalanuvchi"
+msgstr "New user"
+
+#: templates/accounts/user_list.html
+msgid "Foydalanuvchi"
+msgstr "User"
+
+#: templates/accounts/user_list.html
+msgid "Email"
+msgstr "Email"
+
+#: templates/accounts/user_list.html
+msgid "Telefon"
+msgstr "Phone"
+
+#: templates/accounts/user_list.html
+msgid "Rol"
+msgstr "Role"
+
+#: templates/accounts/user_list.html
+msgid "Holat"
+msgstr "Status"
+
+#: templates/accounts/user_list.html
+msgid "Amal"
+msgstr "Action"
+
+#: templates/accounts/user_list.html
+msgid "Administrator"
+msgstr "Administrator"
+
+#: templates/accounts/user_list.html
+msgid "Faol"
+msgstr "Active"
+
+#: templates/accounts/user_list.html
+msgid "Nofaol"
+msgstr "Inactive"
+
+#: templates/accounts/user_list.html
+msgid "Faol / nofaol"
+msgstr "Active / inactive"
+
+#: templates/accounts/user_list.html
+msgid "Xodim"
+msgstr "Employee"
+
+#: templates/base.html
+msgid "Asosiy"
+msgstr "Main"
+
+#: templates/base.html
+msgid "Boshqaruv paneli"
+msgstr "Dashboard"
+
+#: templates/base.html
+msgid "Mahsulotlar"
+msgstr "Products"
+
+#: templates/base.html
+msgid "Kirim"
+msgstr "Stock in"
+
+#: templates/base.html
+msgid "Chiqim"
+msgstr "Stock out"
+
+#: templates/base.html
+msgid "Harakatlar tarixi"
+msgstr "Movement history"
+
+#: templates/base.html
+msgid "Kategoriyalar"
+msgstr "Categories"
+
+#: templates/base.html
+msgid "Yetkazib beruvchilar"
+msgstr "Suppliers"
+
+#: templates/base.html
+msgid "Hisobotlar"
+msgstr "Reports"
+
+#: templates/base.html
+msgid "Boshqa"
+msgstr "Other"
+
+#: templates/base.html
+msgid "Admin panel"
+msgstr "Admin panel"
+
+#: templates/base.html
+msgid "Chiqish"
+msgstr "Log out"
+
+#: templates/base.html
+msgid "Yordam kerakmi?"
+msgstr "Need help?"
+
+#: templates/base.html
+msgid "Qo‘llab-quvvatlash xizmatiga yozing"
+msgstr "Contact our support team"
+
+#: templates/base.html
+msgid "Bog‘lanish"
+msgstr "Get support"
+
+#: templates/base.html
+msgid "Menyu"
+msgstr "Menu"
+
+#: templates/base.html
+msgid "Mahsulot, kategoriya, yetkazib beruvchi qidirish..."
+msgstr "Search products, categories, suppliers..."
+
+#: templates/base.html
+msgid "Qidirish"
+msgstr "Search"
+
+#: templates/base.html
+msgid "Ogohlantirishlar"
+msgstr "Alerts"
+
+#: templates/base.html
+msgid "oldin"
+msgstr "ago"
+
+#: templates/base.html
+msgid "Yangi ogohlantirish yo‘q"
+msgstr "No new alerts"
+
+#: templates/base.html
+msgid "Hammasini o‘qilgan deb belgilash"
+msgstr "Mark all as read"
+
+#: templates/base.html
+msgid "Menejer"
+msgstr "Manager"
+
+#: templates/base.html
+msgid "“%(name)s” tugadi!"
+msgstr "“%(name)s” is out of stock!"
+
+#: templates/base.html
+msgid "“%(name)s” kam qoldi: %(qty)s %(unit)s (min: %(min)s)"
+msgstr "“%(name)s” is running low: %(qty)s %(unit)s (min: %(min)s)"
+
+#: templates/confirm_delete.html
+msgid "O‘chirish"
+msgstr "Delete"
+
+#: templates/confirm_delete.html
+msgid "O‘chirishni tasdiqlang"
+msgstr "Confirm deletion"
+
+#: templates/confirm_delete.html
+msgid "Bu amalni qaytarib bo‘lmaydi"
+msgstr "This action cannot be undone"
+
+#: templates/confirm_delete.html
+msgid "Ha, o‘chirish"
+msgstr "Yes, delete"
+
+#: templates/confirm_delete.html
+msgid "Bekor qilish"
+msgstr "Cancel"
+
+#: templates/confirm_delete.html
+msgid "“<b>%(name)s</b>” yozuvini o‘chirishni xohlaysizmi?"
+msgstr "Do you want to delete “<b>%(name)s</b>”?"
+
+#: templates/dashboard/home.html
+msgid "Ombor holati va bugungi operatsiyalar"
+msgstr "Warehouse status and today’s operations"
+
+#: templates/dashboard/home.html
+msgid "Bugungi kirim"
+msgstr "Today’s stock in"
+
+#: templates/dashboard/home.html
+msgid "Bugungi chiqim"
+msgstr "Today’s stock out"
+
+#: templates/dashboard/home.html
+msgid "Ombor qiymati (xarid narxida)"
+msgstr "Inventory value (at cost)"
+
+#: templates/dashboard/home.html
+msgid "Kirim va chiqim"
+msgstr "Stock in & out"
+
+#: templates/dashboard/home.html
+msgid "So‘nggi 7 kun, dona/birlik"
+msgstr "Last 7 days, units"
+
+#: templates/dashboard/home.html
+msgid "Kam qolgan mahsulotlar"
+msgstr "Low stock products"
+
+#: templates/dashboard/home.html
+msgid "Hammasi"
+msgstr "View all"
+
+#: templates/dashboard/home.html
+msgid "Min:"
+msgstr "Min:"
+
+#: templates/dashboard/home.html
+msgid "Hamma mahsulot yetarli."
+msgstr "All products are well stocked."
+
+#: templates/dashboard/home.html
+msgid "So‘nggi operatsiyalar"
+msgstr "Recent operations"
+
+#: templates/dashboard/home.html
+msgid "Barchasi"
+msgstr "All"
+
+#: templates/dashboard/home.html
+msgid "Sana"
+msgstr "Date"
+
+#: templates/dashboard/home.html
+msgid "Mahsulot"
+msgstr "Product"
+
+#: templates/dashboard/home.html
+msgid "Turi"
+msgstr "Type"
+
+#: templates/dashboard/home.html
+msgid "O‘zgarish"
+msgstr "Change"
+
+#: templates/dashboard/home.html
+msgid "Qoldiq"
+msgstr "Balance"
+
+#: templates/dashboard/home.html
+msgid "Hali operatsiya yo‘q."
+msgstr "No operations yet."
+
+#: templates/dashboard/reports.html
+msgid "Hisobotlar va tahlil"
+msgstr "Reports & analytics"
+
+#: templates/dashboard/reports.html
+msgid "Kirim-chiqim, sotuv va foyda ko‘rsatkichlari"
+msgstr "Stock flow, sales and profit figures"
+
+#: templates/dashboard/reports.html
+msgid "Kirim (miqdor)"
+msgstr "Stock in (qty)"
+
+#: templates/dashboard/reports.html
+msgid "Xarajat:"
+msgstr "Cost:"
+
+#: templates/dashboard/reports.html
+msgid "Chiqim (miqdor)"
+msgstr "Stock out (qty)"
+
+#: templates/dashboard/reports.html
+msgid "Tushum:"
+msgstr "Revenue:"
+
+#: templates/dashboard/reports.html
+msgid "Sotuvdan foyda"
+msgstr "Profit from sales"
+
+#: templates/dashboard/reports.html
+msgid "Ombor qiymati"
+msgstr "Inventory value"
+
+#: templates/dashboard/reports.html
+msgid "Kirim va chiqim dinamikasi"
+msgstr "Stock in & out trend"
+
+#: templates/dashboard/reports.html
+msgid "Ombor qiymati kategoriya bo‘yicha"
+msgstr "Inventory value by category"
+
+#: templates/dashboard/reports.html
+msgid "Eng ko‘p sotilgan"
+msgstr "Best sellers"
+
+#: templates/dashboard/reports.html
+msgid "Eng kam sotilgan"
+msgstr "Least sold"
+
+#: templates/dashboard/reports.html
+msgid "Bu davrda sotuv bo‘lmagan."
+msgstr "No sales in this period."
+
+#: templates/dashboard/reports.html
+msgid "Mahsulotlar bo‘yicha foyda"
+msgstr "Profit by product"
+
+#: templates/dashboard/reports.html
+msgid "Sotilgan"
+msgstr "Sold"
+
+#: templates/dashboard/reports.html
+msgid "Tushum"
+msgstr "Revenue"
+
+#: templates/dashboard/reports.html
+msgid "Foyda"
+msgstr "Profit"
+
+#: templates/dashboard/reports.html
+msgid "Bu davrda sotuv ma’lumoti yo‘q."
+msgstr "No sales data for this period."
+
+#: templates/form.html
+msgid "Saqlash"
+msgstr "Save"
+
+#: templates/inventory/category_list.html
+msgid "Mahsulotlarni guruhlarga ajrating"
+msgstr "Organize products into groups"
+
+#: templates/inventory/category_list.html
+msgid "Barcha kategoriyalar"
+msgstr "All categories"
+
+#: templates/inventory/category_list.html
+msgid "Qidirish..."
+msgstr "Search..."
+
+#: templates/inventory/category_list.html
+msgid "Yangi kategoriya"
+msgstr "New category"
+
+#: templates/inventory/category_list.html
+msgid "Nomi"
+msgstr "Name"
+
+#: templates/inventory/category_list.html
+msgid "Tavsif"
+msgstr "Description"
+
+#: templates/inventory/category_list.html
+msgid "ta"
+msgstr "items"
+
+#: templates/inventory/category_list.html
+msgid "Hali kategoriya yo‘q."
+msgstr "No categories yet."
+
+#: templates/inventory/product_list.html
+msgid "Ombor boshqaruvi"
+msgstr "Inventory management"
+
+#: templates/inventory/product_list.html
+msgid "Zaxira darajalarini kuzating va mahsulotlarni boshqaring"
+msgstr "Monitor stock levels and manage products"
+
+#: templates/inventory/product_list.html
+msgid "Mahsulotlar ro‘yxati"
+msgstr "Product inventory"
+
+#: templates/inventory/product_list.html
+msgid "Mahsulot qo‘shish"
+msgstr "Add product"
+
+#: templates/inventory/product_list.html
+msgid "Eksport"
+msgstr "Export"
+
+#: templates/inventory/product_list.html
+msgid "Kategoriya"
+msgstr "Category"
+
+#: templates/inventory/product_list.html
+msgid "Zaxira darajasi"
+msgstr "Stock level"
+
+#: templates/inventory/product_list.html
+msgid "Narx"
+msgstr "Price"
+
+#: templates/inventory/product_list.html
+msgid "Yetkazib beruvchi"
+msgstr "Supplier"
+
+#: templates/inventory/product_list.html
+msgid "Amallar"
+msgstr "Actions"
+
+#: templates/inventory/product_list.html
+msgid "Kirim qo‘shish"
+msgstr "Add stock in"
+
+#: templates/inventory/product_list.html
+msgid "Chiqim qilish"
+msgstr "Record stock out"
+
+#: templates/inventory/product_list.html
+msgid "Tahrirlash"
+msgstr "Edit"
+
+#: templates/inventory/product_list.html
+msgid "Mahsulot topilmadi."
+msgstr "No products found."
+
+#: templates/inventory/product_list.html
+msgid "Birinchi mahsulotni qo‘shing"
+msgstr "Add your first product"
+
+#: templates/inventory/supplier_detail.html
+msgid "Yetkazib beruvchi ma’lumotlari va kirimlar tarixi"
+msgstr "Supplier details and delivery history"
+
+#: templates/inventory/supplier_detail.html
+msgid "Aloqa ma’lumotlari"
+msgstr "Contact details"
+
+#: templates/inventory/supplier_detail.html
+msgid "Manzil"
+msgstr "Address"
+
+#: templates/inventory/supplier_detail.html
+msgid "Mahsulotlari"
+msgstr "Products"
+
+#: templates/inventory/supplier_detail.html
+msgid "Mahsulot biriktirilmagan."
+msgstr "No products assigned."
+
+#: templates/inventory/supplier_detail.html
+msgid "So‘nggi kirimlar"
+msgstr "Recent deliveries"
+
+#: templates/inventory/supplier_detail.html
+msgid "Bekor qilingan"
+msgstr "Cancelled"
+
+#: templates/inventory/supplier_detail.html
+msgid "Kirimlar tarixi bo‘sh."
+msgstr "No delivery history."
+
+#: templates/inventory/supplier_list.html
+msgid "Hamkor kompaniyalar va ular bilan ishlash tarixi"
+msgstr "Partner companies and your history with them"
+
+#: templates/inventory/supplier_list.html
+msgid "Barcha yetkazib beruvchilar"
+msgstr "All suppliers"
+
+#: templates/inventory/supplier_list.html
+msgid "Yangi yetkazib beruvchi"
+msgstr "New supplier"
+
+#: templates/inventory/supplier_list.html
+msgid "Kompaniya"
+msgstr "Company"
+
+#: templates/inventory/supplier_list.html
+msgid "Hali yetkazib beruvchi yo‘q."
+msgstr "No suppliers yet."
+
+#: templates/stock/movement_list.html
+msgid "Ombor harakatlari tarixi"
+msgstr "Stock movement history"
+
+#: templates/stock/movement_list.html
+msgid "Har bir kirim, chiqim va bekor qilish qayd etiladi"
+msgstr "Every stock in, stock out and cancellation is recorded"
+
+#: templates/stock/movement_list.html
+msgid "Mahsulot qidirish..."
+msgstr "Search product..."
+
+#: templates/stock/movement_list.html
+msgid "Izoh"
+msgstr "Note"
+
+#: templates/stock/movement_list.html
+msgid "Harakatlar topilmadi."
+msgstr "No movements found."
+
+#: templates/stock/operation_list.html
+msgid "Mahsulot kirimi"
+msgstr "Stock in"
+
+#: templates/stock/operation_list.html
+msgid "Mahsulot chiqimi"
+msgstr "Stock out"
+
+#: templates/stock/operation_list.html
+msgid "Omborga kelgan mahsulotlar tarixi"
+msgstr "History of products received into stock"
+
+#: templates/stock/operation_list.html
+msgid "Ombordan chiqarilgan mahsulotlar tarixi"
+msgstr "History of products taken out of stock"
+
+#: templates/stock/operation_list.html
+msgid "Kirimlar"
+msgstr "Stock in records"
+
+#: templates/stock/operation_list.html
+msgid "Chiqimlar"
+msgstr "Stock out records"
+
+#: templates/stock/operation_list.html
+msgid "Yangi kirim"
+msgstr "New stock in"
+
+#: templates/stock/operation_list.html
+msgid "Yangi chiqim"
+msgstr "New stock out"
+
+#: templates/stock/operation_list.html
+msgid "Miqdor"
+msgstr "Quantity"
+
+#: templates/stock/operation_list.html
+msgid "Xarid narxi"
+msgstr "Purchase price"
+
+#: templates/stock/operation_list.html
+msgid "Sabab"
+msgstr "Reason"
+
+#: templates/stock/operation_list.html
+msgid "Sotuv narxi"
+msgstr "Selling price"
+
+#: templates/stock/operation_list.html
+msgid "Bajarilgan"
+msgstr "Completed"
+
+#: templates/stock/operation_list.html
+msgid "Operatsiyani bekor qilasizmi? Ombor qoldig‘i tiklanadi."
+msgstr "Cancel this operation? The stock balance will be restored."
+
+#: templates/stock/operation_list.html
+msgid "Operatsiyalar topilmadi."
+msgstr "No operations found."
+
+#: accounts/forms.py
+msgid "Parolni takrorlang"
+msgstr "Confirm password"
+
+#: accounts/forms.py
+msgid "Tahrirlashda bo‘sh qoldirsangiz, parol o‘zgarmaydi."
+msgstr "Leave blank when editing to keep the current password."
+
+#: accounts/forms.py
+msgid "Til"
+msgstr "Language"
+
+#: accounts/forms.py
+msgid "Ism"
+msgstr "First name"
+
+#: accounts/forms.py
+msgid "Familiya"
+msgstr "Last name"
+
+#: accounts/models.py
+msgid "Foydalanuvchi profili"
+msgstr "User profile"
+
+#: accounts/models.py
+msgid "Foydalanuvchi profillari"
+msgstr "User profiles"
+
+#: accounts/models.py
+msgid "Tizimga kirganda avtomatik tanlanadigan til."
+msgstr "Language selected automatically on sign in."
+
+#: accounts/views.py
+msgid "Foydalanuvchi qo‘shildi."
+msgstr "User added."
+
+#: accounts/views.py
+msgid "Foydalanuvchi ma’lumotlari saqlandi."
+msgstr "User details saved."
+
+#: accounts/views.py
+msgid "Xodim hisobini yarating va rolini belgilang"
+msgstr "Create a staff account and assign a role"
+
+#: accounts/views.py
+msgid "Foydalanuvchini tahrirlash"
+msgstr "Edit user"
+
+#: accounts/views.py
+msgid "Ma’lumotlar va rolni o‘zgartiring"
+msgstr "Update details and role"
+
+#: accounts/views.py
+msgid "Hisobingiz yaratildi. Xush kelibsiz!"
+msgstr "Your account has been created. Welcome!"
+
+#: accounts/views.py
+msgid "O‘zingizning hisobingizni o‘chira olmaysiz."
+msgstr "You cannot deactivate your own account."
+
+#: accounts/views.py
+msgid "Holat o‘zgartirildi."
+msgstr "Status updated."
+
+#: dashboard/apps.py
+msgid "Dashboard va hisobotlar"
+msgstr "Dashboard & reports"
+
+#: dashboard/forms.py
+msgid "Bugun"
+msgstr "Today"
+
+#: dashboard/forms.py
+msgid "7 kun"
+msgstr "7 days"
+
+#: dashboard/forms.py
+msgid "30 kun"
+msgstr "30 days"
+
+#: inventory/apps.py
+msgid "Ombor"
+msgstr "Warehouse"
+
+#: inventory/models.py
+msgid "Kompaniya nomi"
+msgstr "Company name"
+
+#: inventory/models.py
+msgid "SKU / kod"
+msgstr "SKU / code"
+
+#: inventory/models.py
+msgid "Rasm"
+msgstr "Image"
+
+#: inventory/models.py
+msgid "O‘lchov birligi"
+msgstr "Unit"
+
+#: inventory/models.py
+msgid "Minimal zaxira"
+msgstr "Minimum stock"
+
+#: inventory/models.py
+msgid "dona"
+msgstr "pcs"
+
+#: inventory/models.py
+msgid "kg"
+msgstr "kg"
+
+#: inventory/models.py
+msgid "o‘nlik"
+msgstr "dozen"
+
+#: inventory/models.py
+msgid "quti"
+msgstr "box"
+
+#: inventory/models.py
+msgid "m"
+msgstr "m"
+
+#: inventory/models.py
+msgid "Bo‘sh qoldirsangiz, avtomatik yaratiladi."
+msgstr "Generated automatically if left blank."
+
+#: inventory/views.py
+msgid ""
+"Mahsulot qo‘shildi. Zaxira qo‘shish uchun “Kirim” bo‘limidan foydalaning."
+msgstr "Product added. Use the “Stock in” section to add stock."
+
+#: inventory/views.py
+msgid "Mahsulot saqlandi."
+msgstr "Product saved."
+
+#: inventory/views.py
+msgid "Kategoriya qo‘shildi."
+msgstr "Category added."
+
+#: inventory/views.py
+msgid "Kategoriya saqlandi."
+msgstr "Category saved."
+
+#: inventory/views.py
+msgid "Yetkazib beruvchi qo‘shildi."
+msgstr "Supplier added."
+
+#: inventory/views.py
+msgid "Ma’lumotlar saqlandi."
+msgstr "Details saved."
+
+#: inventory/views.py
+msgid "Yangi mahsulot"
+msgstr "New product"
+
+#: inventory/views.py
+msgid "Mahsulot ma’lumotlarini kiriting"
+msgstr "Enter product details"
+
+#: inventory/views.py
+msgid "Mahsulotni tahrirlash"
+msgstr "Edit product"
+
+#: inventory/views.py
+msgid "Ma’lumotlarni yangilang"
+msgstr "Update the details"
+
+#: inventory/views.py
+msgid "Mahsulotlarni guruhlash uchun"
+msgstr "For grouping products"
+
+#: inventory/views.py
+msgid "Kategoriyani tahrirlash"
+msgstr "Edit category"
+
+#: inventory/views.py
+msgid "Kompaniya ma’lumotlari"
+msgstr "Company details"
+
+#: inventory/views.py
+msgid "Yetkazib beruvchini tahrirlash"
+msgstr "Edit supplier"
+
+#: inventory/views.py
+msgid "Yozuv o‘chirildi."
+msgstr "Record deleted."
+
+#: inventory/views.py
+msgid "Birlik"
+msgstr "Unit"
+
+#: inventory/views.py
+msgid ""
+"Bu yozuvga bog‘langan ma’lumotlar bor, uni o‘chirib bo‘lmaydi. Mahsulotni "
+"o‘chirish o‘rniga nofaol qiling."
+msgstr ""
+"This record has related data and cannot be deleted. Deactivate the product "
+"instead of deleting it."
+
+#: stock/apps.py
+msgid "Kirim-chiqim"
+msgstr "Stock flow"
+
+#: stock/forms.py
+msgid "Omborda faqat %(qty)s %(unit)s mavjud."
+msgstr "Only %(qty)s %(unit)s available in stock."
+
+#: stock/models.py
+msgid "Kirim sanasi"
+msgstr "Stock in date"
+
+#: stock/models.py
+msgid "Harakat"
+msgstr "Movement"
+
+#: stock/models.py
+msgid "Ombor harakatlari"
+msgstr "Stock movements"
+
+#: stock/models.py
+msgid "Ogohlantirish"
+msgstr "Alert"
+
+#: stock/models.py
+msgid "Sotuv"
+msgstr "Sale"
+
+#: stock/models.py
+msgid "Yaroqsiz / buzilgan"
+msgstr "Damaged / defective"
+
+#: stock/models.py
+msgid "Qaytarish"
+msgstr "Return"
+
+#: stock/models.py
+msgid "Bo‘sh qoldirsangiz, mahsulotning joriy narxi olinadi."
+msgstr "Uses the product’s current price if left blank."
+
+#: stock/models.py
+msgid "Kirim bekor qilindi"
+msgstr "Stock in cancelled"
+
+#: stock/models.py
+msgid "Chiqim bekor qilindi"
+msgstr "Stock out cancelled"
+
+#: stock/services.py
+msgid "Bu operatsiya allaqachon bekor qilingan."
+msgstr "This operation has already been cancelled."
+
+#: stock/services.py
+msgid "Operatsiya bekor qilindi"
+msgstr "Operation cancelled"
+
+#: stock/services.py
+msgid "Kirimni bekor qilib bo‘lmaydi: mahsulot qisman chiqarib yuborilgan."
+msgstr ""
+"This stock in cannot be cancelled: part of it has already been taken out."
+
+#: stock/views.py
+msgid "Omborga kelgan mahsulotni qayd eting"
+msgstr "Record the product received into stock"
+
+#: stock/views.py
+msgid "Ombordan chiqayotgan mahsulotni qayd eting"
+msgstr "Record the product leaving the warehouse"
+
+#: stock/views.py
+msgid "Kirim qayd etildi, ombor qoldig‘i yangilandi."
+msgstr "Stock in recorded, balance updated."
+
+#: stock/views.py
+msgid "Chiqim qayd etildi, ombor qoldig‘i yangilandi."
+msgstr "Stock out recorded, balance updated."
+
+#: stock/views.py
+msgid "Operatsiya bekor qilindi, qoldiq tiklandi."
+msgstr "Operation cancelled, balance restored."
