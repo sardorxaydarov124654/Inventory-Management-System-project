@@ -57,6 +57,7 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 {% trans "Kirim" as t_in %}{% trans "Chiqim" as t_out %}
 <script>
+  if (!window.Chart) throw new Error('Chart.js yuklanmadi');
   const d = JSON.parse(document.getElementById('chart-data').textContent);
   new Chart(document.getElementById('flowChart'), {
     type: 'bar',

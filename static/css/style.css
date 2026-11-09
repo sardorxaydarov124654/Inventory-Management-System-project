@@ -36,6 +36,7 @@ h1, h2, h3, p { margin: 0; }
   box-shadow: 0 12px 40px rgba(58, 82, 110, .12);
 }
 .main { min-width: 0; padding: 6px 4px 4px; }
+.scrim { display: none; } /* faqat mobil menyu ochilganda ko'rinadi (pastdagi media qoidaga qarang) */
 
 /* ===== Sidebar ===== */
 .sidebar {
