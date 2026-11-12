@@ -5,15 +5,51 @@
 {% block page_sub %}{% trans "Ombor holati va bugungi operatsiyalar" %}{% endblock %}
 
 {% block content %}
+{% if employee_view %}
+{% if pending_invitations %}
+<section class="panel invite-panel">
+  <div class="panel-head"><div><h2><i class="bi bi-envelope-heart-fill"></i> {% trans "Do‘konga takliflar" %}</h2>
+    <p class="sub">{% trans "Menejer sizni o‘z do‘koniga xodim sifatida taklif qildi" %}</p></div></div>
+  {% for inv in pending_invitations %}
+  <div class="invite-card">
+    <div class="invite-text">
+      <b>{{ inv.store.name }}</b>
+      <span>{% blocktrans with manager=inv.invited_by.get_full_name|default:inv.invited_by.get_username %}Menejer {{ manager }} sizni xodim sifatida taklif qildi.{% endblocktrans %}</span>
+      <small>{{ inv.created_at|date:"d.m.Y H:i" }}</small>
+    </div>
+    {% include '_invitation_actions.html' %}
+  </div>
+  {% endfor %}
+</section>
+{% endif %}
+{% if no_store %}
+<section class="panel">
+  <div class="empty"><i class="bi bi-shop-window"></i>
+    <b style="color:var(--ink);font-size:15px">{% trans "Siz hali hech qaysi do‘konga biriktirilmagansiz" %}</b><br>
+    {% trans "Do‘kon menejeri sizni taklif qilganda, taklif shu yerda va yuqoridagi qo‘ng‘iroq belgisida chiqadi. Login (username) ingizni menejerga ayting." %}
+    <br><br><span class="pill grey">@{{ request.user.username }}</span>
+  </div>
+</section>
+{% endif %}
+{% endif %}
+{% if not no_store %}
 {% include '_stats.html' %}
 
+{% if not employee_view %}
 <div class="stats three">
   <div class="stat"><div><span class="stat-label">{% trans "Bugungi kirim" %}</span><div class="stat-num sm pos">+{{ today_in }}</div></div><span class="stat-icon green"><i class="bi bi-box-arrow-in-down"></i></span></div>
   <div class="stat"><div><span class="stat-label">{% trans "Bugungi chiqim" %}</span><div class="stat-num sm neg">-{{ today_out }}</div></div><span class="stat-icon red"><i class="bi bi-box-arrow-up"></i></span></div>
   <div class="stat"><div><span class="stat-label">{% trans "Ombor qiymati (xarid narxida)" %}</span><div class="stat-num sm">{{ CURRENCY }}{{ inventory_value|floatformat:2 }}</div></div><span class="stat-icon blue"><i class="bi bi-wallet2"></i></span></div>
 </div>
 
-<div class="grid-2">
+{% else %}
+<div class="stats three">
+  <div class="stat"><div><span class="stat-label">{% trans "Mening bugungi chiqimim" %}</span><div class="stat-num sm neg">-{{ today_out }}</div></div><span class="stat-icon red"><i class="bi bi-box-arrow-up"></i></span></div>
+</div>
+{% endif %}
+
+<div class="{% if not employee_view %}grid-2{% endif %}">
+  {% if not employee_view %}
   <section class="panel">
     <div class="panel-head">
       <div><h2>{% trans "Kirim va chiqim" %}</h2><p class="sub">{% trans "So‘nggi 7 kun, dona/birlik" %}</p></div>
@@ -21,6 +57,7 @@
     </div>
     <div class="chart-box"><canvas id="flowChart"></canvas></div>
   </section>
+  {% endif %}
 
   <section class="panel">
     <div class="panel-head"><h2>{% trans "Kam qolgan mahsulotlar" %}</h2><a class="btn btn-soft btn-sm" href="{% url 'inventory:product_list' %}?status=low">{% trans "Hammasi" %}</a></div>
@@ -36,7 +73,7 @@
 </div>
 
 <section class="panel">
-  <div class="panel-head"><h2>{% trans "So‘nggi operatsiyalar" %}</h2><a class="btn btn-soft btn-sm" href="{% url 'stock:movement_list' %}">{% trans "Barchasi" %}</a></div>
+  <div class="panel-head"><h2>{% if employee_view %}{% trans "Mening operatsiyalarim" %}{% else %}{% trans "So‘nggi operatsiyalar" %}{% endif %}</h2><a class="btn btn-soft btn-sm" href="{% url 'stock:movement_list' %}">{% trans "Barchasi" %}</a></div>
   <div class="table-wrap"><table class="tbl">
     <thead><tr><th>{% trans "Sana" %}</th><th>{% trans "Mahsulot" %}</th><th>{% trans "Turi" %}</th><th>{% trans "O‘zgarish" %}</th><th>{% trans "Qoldiq" %}</th><th>{% trans "Xodim" %}</th></tr></thead>
     <tbody>
@@ -50,10 +87,11 @@
     {% empty %}<tr><td colspan="6"><div class="empty"><i class="bi bi-inbox"></i>{% trans "Hali operatsiya yo‘q." %}</div></td></tr>{% endfor %}
     </tbody></table></div>
 </section>
-{{ chart|json_script:"chart-data" }}
+{% endif %}
+{% if chart %}{{ chart|json_script:"chart-data" }}{% endif %}
 {% endblock %}
 
-{% block scripts %}
+{% block scripts %}{% if chart %}
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 {% trans "Kirim" as t_in %}{% trans "Chiqim" as t_out %}
 <script>
@@ -68,4 +106,4 @@
       scales: { y: { beginAtZero: true, grid: { color: '#eef1f6' }, border: { display: false } }, x: { grid: { display: false } } } }
   });
 </script>
-{% endblock %}
+{% endif %}{% endblock %}

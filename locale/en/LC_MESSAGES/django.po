@@ -155,20 +155,40 @@ msgid "Yangi hisob yarating"
 msgstr "Create a new account"
 
 #: templates/accounts/auth.html
+msgid "Hisob turi"
+msgstr "Account type"
+
+#: templates/accounts/auth.html
+msgid "Do‘kon / biznes egasi"
+msgstr "Store / business owner"
+
+#: templates/accounts/auth.html
+msgid "Do‘kon xodimi"
+msgstr "Store employee"
+
+#: templates/accounts/auth.html
 msgid ""
-"Tanlangan til sizning asosiy tilingiz bo‘lib saqlanadi. Uni keyin yuqoridagi"
-" menyudan o‘zgartirishingiz mumkin."
+"Arizangiz administrator tomonidan tasdiqlangach, tizimga kira olasiz. "
+"Do‘koningiz uchun alohida ombor yaratiladi."
 msgstr ""
-"The selected language will be saved as your default. You can change it later"
-" from the menu at the top."
+"Once an administrator approves your application, you can sign in. A separate"
+" warehouse will be created for your store."
+
+#: templates/accounts/auth.html
+msgid ""
+"Ro‘yxatdan o‘tgach darhol kirasiz. Do‘kon menejeri sizni taklif qilganda, "
+"taklif shu yerda xabar bo‘lib chiqadi."
+msgstr ""
+"You will be signed in right after registering. When a store manager invites "
+"you, the invitation will appear here as a message."
 
 #: templates/accounts/auth.html
 msgid "Parolni ko‘rsatish"
 msgstr "Show password"
 
 #: templates/accounts/auth.html
-msgid "Hisob yaratish"
-msgstr "Create account"
+msgid "Ariza yuborish"
+msgstr "Submit application"
 
 #: templates/accounts/auth.html
 msgid "Hisobingiz bormi?"
@@ -183,12 +203,8 @@ msgid "Ombor hisobini yuritish uchun login va parolingizni kiriting."
 msgstr "Enter your username and password to manage your inventory."
 
 #: templates/accounts/auth.html
-msgid "Login yoki parol noto‘g‘ri."
-msgstr "Incorrect username or password."
-
-#: templates/accounts/auth.html
-msgid "Login"
-msgstr "Username"
+msgid "Login yoki email"
+msgstr "Username or email"
 
 #: templates/accounts/auth.html
 msgid "Parol"
@@ -197,6 +213,145 @@ msgstr "Password"
 #: templates/accounts/auth.html
 msgid "Hisobingiz yo‘qmi?"
 msgstr "Don’t have an account?"
+
+#: templates/accounts/pending.html
+msgid "Ariza yuborildi"
+msgstr "Application submitted"
+
+#: templates/accounts/pending.html
+msgid ""
+"Manager sifatida ro‘yxatdan o‘tish arizangiz qabul qilindi. Administrator "
+"uni ko‘rib chiqib, tasdiqlagach tizimga kira olasiz."
+msgstr ""
+"Your manager application has been received. You can sign in after an "
+"administrator reviews and approves it."
+
+#: templates/accounts/pending.html
+msgid "Ism"
+msgstr "First name"
+
+#: templates/accounts/pending.html
+msgid "Do‘kon / biznes nomi"
+msgstr "Store / business name"
+
+#: templates/accounts/pending.html
+msgid "Holat"
+msgstr "Status"
+
+#: templates/accounts/pending.html
+msgid "Kutilmoqda"
+msgstr "Pending"
+
+#: templates/accounts/pending.html
+msgid "Kirish sahifasiga"
+msgstr "Go to sign in"
+
+#: templates/accounts/team.html
+msgid "Xodimlar"
+msgstr "Staff"
+
+#: templates/accounts/team.html
+msgid "Do‘kon xodimlari"
+msgstr "Store staff"
+
+#: templates/accounts/team.html
+msgid "ta xodim"
+msgstr "employees"
+
+#: templates/accounts/team.html
+msgid "Foydalanuvchi"
+msgstr "User"
+
+#: templates/accounts/team.html
+msgid "Email"
+msgstr "Email"
+
+#: templates/accounts/team.html
+msgid "Telefon"
+msgstr "Phone"
+
+#: templates/accounts/team.html
+msgid "Amal"
+msgstr "Action"
+
+#: templates/accounts/team.html
+msgid "Xodimni do‘kondan chiqarasizmi?"
+msgstr "Remove this employee from the store?"
+
+#: templates/accounts/team.html
+msgid "Do‘kondan chiqarish"
+msgstr "Remove from store"
+
+#: templates/accounts/team.html
+msgid "Hali xodim yo‘q. Quyidan ro‘yxatdan o‘tgan xodimni taklif qiling."
+msgstr "No employees yet. Invite a registered employee below."
+
+#: templates/accounts/team.html
+msgid "Xodimni do‘koningizga taklif qiling"
+msgstr "Invite an employee to your store"
+
+#: templates/accounts/team.html
+msgid ""
+"Employee sifatida ro‘yxatdan o‘tgan va hali do‘konga biriktirilmagan "
+"foydalanuvchilar"
+msgstr "Users registered as Employee who are not yet linked to a store"
+
+#: templates/accounts/team.html
+msgid "Login (username) bo‘yicha qidirish..."
+msgstr "Search by username..."
+
+#: templates/accounts/team.html
+msgid "Qidirish"
+msgstr "Search"
+
+#: templates/accounts/team.html
+msgid "Tozalash"
+msgstr "Clear"
+
+#: templates/accounts/team.html
+msgid "Login"
+msgstr "Username"
+
+#: templates/accounts/team.html
+msgid "Ro‘yxatdan o‘tgan sana"
+msgstr "Registered on"
+
+#: templates/accounts/team.html
+msgid "Taklif yuborilgan"
+msgstr "Invitation sent"
+
+#: templates/accounts/team.html
+msgid "Taklif qilish"
+msgstr "Invite"
+
+#: templates/accounts/team.html
+msgid "Xodim topilmadi."
+msgstr "No employees found."
+
+#: templates/accounts/team.html
+msgid ""
+"Hozircha taklif qilish mumkin bo‘lgan xodim yo‘q. Xodimlar bosh sahifadagi "
+"ro‘yxatdan o‘tish bo‘limida “Employee” turini tanlab ro‘yxatdan o‘tishi "
+"kerak."
+msgstr ""
+"There are no employees to invite yet. Employees need to sign up on the home "
+"page by choosing the “Employee” type."
+
+#: templates/accounts/team.html
+msgid "Yuborilgan takliflar"
+msgstr "Sent invitations"
+
+#: templates/accounts/team.html
+msgid "Bekor qilish"
+msgstr "Cancel"
+
+#: templates/accounts/team.html
+msgid "Hali taklif yuborilmagan."
+msgstr "No invitations sent yet."
+
+#: templates/accounts/team.html
+msgid "“%(q)s” logini bo‘yicha xodim topilmadi."
+msgstr "No employee found with username “%(q)s”."
 
 #: templates/accounts/user_list.html
 msgid "Foydalanuvchilar"
@@ -211,32 +366,24 @@ msgid "Barcha foydalanuvchilar"
 msgstr "All users"
 
 #: templates/accounts/user_list.html
+msgid "Do‘koningiz xodimlari"
+msgstr "Your store’s staff"
+
+#: templates/accounts/user_list.html
 msgid "Yangi foydalanuvchi"
 msgstr "New user"
 
 #: templates/accounts/user_list.html
-msgid "Foydalanuvchi"
-msgstr "User"
-
-#: templates/accounts/user_list.html
-msgid "Email"
-msgstr "Email"
-
-#: templates/accounts/user_list.html
-msgid "Telefon"
-msgstr "Phone"
+msgid "Yangi xodim"
+msgstr "New employee"
 
 #: templates/accounts/user_list.html
 msgid "Rol"
 msgstr "Role"
 
 #: templates/accounts/user_list.html
-msgid "Holat"
-msgstr "Status"
-
-#: templates/accounts/user_list.html
-msgid "Amal"
-msgstr "Action"
+msgid "Do‘kon"
+msgstr "Store"
 
 #: templates/accounts/user_list.html
 msgid "Administrator"
@@ -299,6 +446,10 @@ msgid "Boshqa"
 msgstr "Other"
 
 #: templates/base.html
+msgid "Manager arizalari"
+msgstr "Manager applications"
+
+#: templates/base.html
 msgid "Admin panel"
 msgstr "Admin panel"
 
@@ -327,10 +478,6 @@ msgid "Mahsulot, kategoriya, yetkazib beruvchi qidirish..."
 msgstr "Search products, categories, suppliers..."
 
 #: templates/base.html
-msgid "Qidirish"
-msgstr "Search"
-
-#: templates/base.html
 msgid "Ogohlantirishlar"
 msgstr "Alerts"
 
@@ -349,6 +496,21 @@ msgstr "Mark all as read"
 #: templates/base.html
 msgid "Menejer"
 msgstr "Manager"
+
+#: templates/base.html
+msgid ""
+"“%(store)s” do‘koni sizni xodim sifatida taklif qildi (menejer: "
+"%(manager)s)."
+msgstr ""
+"The store “%(store)s” invited you as an employee (manager: %(manager)s)."
+
+#: templates/base.html
+msgid "%(name)s taklifni qabul qildi."
+msgstr "%(name)s accepted the invitation."
+
+#: templates/base.html
+msgid "%(name)s taklifni rad etdi."
+msgstr "%(name)s rejected the invitation."
 
 #: templates/base.html
 msgid "“%(name)s” tugadi!"
@@ -375,16 +537,32 @@ msgid "Ha, o‘chirish"
 msgstr "Yes, delete"
 
 #: templates/confirm_delete.html
-msgid "Bekor qilish"
-msgstr "Cancel"
-
-#: templates/confirm_delete.html
 msgid "“<b>%(name)s</b>” yozuvini o‘chirishni xohlaysizmi?"
 msgstr "Do you want to delete “<b>%(name)s</b>”?"
 
 #: templates/dashboard/home.html
 msgid "Ombor holati va bugungi operatsiyalar"
 msgstr "Warehouse status and today’s operations"
+
+#: templates/dashboard/home.html
+msgid "Do‘konga takliflar"
+msgstr "Store invitations"
+
+#: templates/dashboard/home.html
+msgid "Menejer sizni o‘z do‘koniga xodim sifatida taklif qildi"
+msgstr "A manager invited you to join their store as an employee"
+
+#: templates/dashboard/home.html
+msgid "Siz hali hech qaysi do‘konga biriktirilmagansiz"
+msgstr "You are not linked to any store yet"
+
+#: templates/dashboard/home.html
+msgid ""
+"Do‘kon menejeri sizni taklif qilganda, taklif shu yerda va yuqoridagi "
+"qo‘ng‘iroq belgisida chiqadi. Login (username) ingizni menejerga ayting."
+msgstr ""
+"When a store manager invites you, the invitation will appear here and in the"
+" bell above. Tell the manager your username."
 
 #: templates/dashboard/home.html
 msgid "Bugungi kirim"
@@ -397,6 +575,10 @@ msgstr "Today’s stock out"
 #: templates/dashboard/home.html
 msgid "Ombor qiymati (xarid narxida)"
 msgstr "Inventory value (at cost)"
+
+#: templates/dashboard/home.html
+msgid "Mening bugungi chiqimim"
+msgstr "My stock out today"
 
 #: templates/dashboard/home.html
 msgid "Kirim va chiqim"
@@ -421,6 +603,10 @@ msgstr "Min:"
 #: templates/dashboard/home.html
 msgid "Hamma mahsulot yetarli."
 msgstr "All products are well stocked."
+
+#: templates/dashboard/home.html
+msgid "Mening operatsiyalarim"
+msgstr "My operations"
 
 #: templates/dashboard/home.html
 msgid "So‘nggi operatsiyalar"
@@ -453,6 +639,10 @@ msgstr "Balance"
 #: templates/dashboard/home.html
 msgid "Hali operatsiya yo‘q."
 msgstr "No operations yet."
+
+#: templates/dashboard/home.html
+msgid "Menejer %(manager)s sizni xodim sifatida taklif qildi."
+msgstr "Manager %(manager)s invited you as an employee."
 
 #: templates/dashboard/reports.html
 msgid "Hisobotlar va tahlil"
@@ -754,9 +944,69 @@ msgstr "Cancel this operation? The stock balance will be restored."
 msgid "Operatsiyalar topilmadi."
 msgstr "No operations found."
 
+#: accounts/admin.py
+msgid "Ariza sanasi"
+msgstr "Application date"
+
+#: accounts/admin.py
+msgid "Tanlangan arizalarni tasdiqlash (Approve)"
+msgstr "Approve selected applications"
+
+#: accounts/admin.py
+msgid "Tanlangan arizalarni rad etish (Reject)"
+msgstr "Reject selected applications"
+
+#: accounts/admin.py
+msgid "Tasdiqlandi: %(n)s ta ariza."
+msgstr "Approved applications: %(n)s."
+
+#: accounts/admin.py
+msgid "Rad etildi: %(n)s ta ariza."
+msgstr "Rejected applications: %(n)s."
+
+#: accounts/forms.py
+msgid "Login yoki parol noto‘g‘ri."
+msgstr "Incorrect username or password."
+
+#: accounts/forms.py
+msgid "Hisobingiz faol emas."
+msgstr "Your account is inactive."
+
+#: accounts/forms.py
+msgid ""
+"Arizangiz hali ko‘rib chiqilmoqda. Administrator tasdiqlagach, tizimga kira "
+"olasiz."
+msgstr ""
+"Your application is still under review. You can sign in once an "
+"administrator approves it."
+
+#: accounts/forms.py
+msgid ""
+"Arizangiz administrator tomonidan rad etilgan. Batafsil ma’lumot uchun "
+"administrator bilan bog‘laning."
+msgstr ""
+"Your application was rejected by an administrator. Contact the administrator"
+" for details."
+
 #: accounts/forms.py
 msgid "Parolni takrorlang"
 msgstr "Confirm password"
+
+#: accounts/forms.py
+msgid "Bu email bilan foydalanuvchi allaqachon mavjud."
+msgstr "A user with this email already exists."
+
+#: accounts/forms.py
+msgid "Manager"
+msgstr "Manager"
+
+#: accounts/forms.py
+msgid "Employee"
+msgstr "Employee"
+
+#: accounts/forms.py
+msgid "Familiya"
+msgstr "Last name"
 
 #: accounts/forms.py
 msgid "Tahrirlashda bo‘sh qoldirsangiz, parol o‘zgarmaydi."
@@ -767,12 +1017,44 @@ msgid "Til"
 msgstr "Language"
 
 #: accounts/forms.py
-msgid "Ism"
-msgstr "First name"
+msgid "Do‘kon / biznes nomini kiriting."
+msgstr "Enter the store / business name."
 
 #: accounts/forms.py
-msgid "Familiya"
-msgstr "Last name"
+msgid "Menejer va xodim uchun do‘kon tanlash shart."
+msgstr "A store is required for managers and employees."
+
+#: accounts/invitations.py
+msgid "Taklif yuborish uchun do‘konli menejer bo‘lishingiz kerak."
+msgstr "You must be a manager with a store to send invitations."
+
+#: accounts/invitations.py
+msgid "Bu foydalanuvchini taklif qilib bo‘lmaydi."
+msgstr "This user cannot be invited."
+
+#: accounts/invitations.py
+msgid "Bu foydalanuvchiga taklif allaqachon yuborilgan."
+msgstr "An invitation has already been sent to this user."
+
+#: accounts/invitations.py
+msgid "Bu taklif endi amal qilmaydi."
+msgstr "This invitation is no longer valid."
+
+#: accounts/invitations.py
+msgid "Siz allaqachon do‘konga biriktirilgansiz."
+msgstr "You are already linked to a store."
+
+#: accounts/invitations.py
+msgid "Bu foydalanuvchini do‘kondan chiqarib bo‘lmaydi."
+msgstr "This user cannot be removed from the store."
+
+#: accounts/mixins.py
+msgid "Bu obyekt boshqa do‘konga tegishli."
+msgstr "This object belongs to another store."
+
+#: accounts/models.py
+msgid "Do‘konlar"
+msgstr "Stores"
 
 #: accounts/models.py
 msgid "Foydalanuvchi profili"
@@ -783,16 +1065,52 @@ msgid "Foydalanuvchi profillari"
 msgstr "User profiles"
 
 #: accounts/models.py
+msgid "Manager arizasi"
+msgstr "Manager application"
+
+#: accounts/models.py
+msgid "Do‘konga taklif"
+msgstr "Store invitation"
+
+#: accounts/models.py
+msgid "Obyekt"
+msgstr "Object"
+
+#: accounts/models.py
+msgid "Tafsilot"
+msgstr "Details"
+
+#: accounts/models.py
+msgid "Audit yozuvi"
+msgstr "Audit entry"
+
+#: accounts/models.py
+msgid "Audit tarixi"
+msgstr "Audit log"
+
+#: accounts/models.py
+msgid "Tasdiqlangan"
+msgstr "Approved"
+
+#: accounts/models.py
+msgid "Rad etilgan"
+msgstr "Rejected"
+
+#: accounts/models.py
 msgid "Tizimga kirganda avtomatik tanlanadigan til."
 msgstr "Language selected automatically on sign in."
 
-#: accounts/views.py
-msgid "Foydalanuvchi qo‘shildi."
-msgstr "User added."
+#: accounts/models.py
+msgid "Qabul qilindi"
+msgstr "Accepted"
 
-#: accounts/views.py
-msgid "Foydalanuvchi ma’lumotlari saqlandi."
-msgstr "User details saved."
+#: accounts/models.py
+msgid "Rad etildi"
+msgstr "Rejected"
+
+#: accounts/models.py
+msgid "Bekor qilindi"
+msgstr "Cancelled"
 
 #: accounts/views.py
 msgid "Xodim hisobini yarating va rolini belgilang"
@@ -807,8 +1125,24 @@ msgid "Ma’lumotlar va rolni o‘zgartiring"
 msgstr "Update details and role"
 
 #: accounts/views.py
-msgid "Hisobingiz yaratildi. Xush kelibsiz!"
-msgstr "Your account has been created. Welcome!"
+msgid "Taklif rad etildi."
+msgstr "Invitation rejected."
+
+#: accounts/views.py
+msgid ""
+"Hisobingiz yaratildi. Menejer sizni do‘koniga taklif qilganda, xabar shu "
+"yerda chiqadi."
+msgstr ""
+"Your account has been created. When a manager invites you to a store, the "
+"message will appear here."
+
+#: accounts/views.py
+msgid "Foydalanuvchi qo‘shildi."
+msgstr "User added."
+
+#: accounts/views.py
+msgid "Foydalanuvchi ma’lumotlari saqlandi."
+msgstr "User details saved."
 
 #: accounts/views.py
 msgid "O‘zingizning hisobingizni o‘chira olmaysiz."
@@ -817,6 +1151,22 @@ msgstr "You cannot deactivate your own account."
 #: accounts/views.py
 msgid "Holat o‘zgartirildi."
 msgstr "Status updated."
+
+#: accounts/views.py
+msgid "Taklif yuborildi. Foydalanuvchi uni o‘z panelida ko‘radi."
+msgstr "Invitation sent. The user will see it in their dashboard."
+
+#: accounts/views.py
+msgid "Taklif bekor qilindi."
+msgstr "Invitation cancelled."
+
+#: accounts/views.py
+msgid "Xodim do‘kondan chiqarildi."
+msgstr "Employee removed from the store."
+
+#: accounts/views.py
+msgid "Siz “%(store)s” do‘koniga qo‘shildingiz."
+msgstr "You joined the store “%(store)s”."
 
 #: dashboard/apps.py
 msgid "Dashboard va hisobotlar"
@@ -837,6 +1187,14 @@ msgstr "30 days"
 #: inventory/apps.py
 msgid "Ombor"
 msgstr "Warehouse"
+
+#: inventory/forms.py
+msgid "Bu kategoriya nomi allaqachon mavjud."
+msgstr "A category with this name already exists."
+
+#: inventory/forms.py
+msgid "Bu SKU allaqachon ishlatilgan."
+msgstr "This SKU is already in use."
 
 #: inventory/models.py
 msgid "Kompaniya nomi"

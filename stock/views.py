@@ -8,7 +8,7 @@ from django.utils.http import url_has_allowed_host_and_scheme
 from django.views.decorators.http import require_POST
 from django.views.generic import FormView, ListView
 
-from accounts.mixins import ManagerMixin, QueryStringMixin, StaffMixin, get_role, role_required
+from accounts.mixins import ManagerMixin, QueryStringMixin, StaffMixin, get_role, get_store, role_required, scope
 
 from .forms import StockInForm, StockOutForm
 from .models import Notification, StockIn, StockMovement, StockOut
@@ -17,6 +17,11 @@ from .services import cancel_operation, register_stock_in, register_stock_out
 
 class OperationCreateMixin:
     template_name = "form.html"
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs["user"] = self.request.user
+        return kwargs
 
     def get_initial(self):
         initial = super().get_initial()
@@ -59,7 +64,7 @@ class OperationListView(QueryStringMixin, ListView):
     kind = ""
 
     def get_queryset(self):
-        qs = self.model.objects.select_related("product", "created_by")
+        qs = scope(self.model.objects.select_related("product", "created_by"), self.request.user, "product__store")
         q = self.request.GET.get("q", "").strip()
         if q:
             qs = qs.filter(Q(product__name__icontains=q) | Q(product__sku__icontains=q))
@@ -89,7 +94,7 @@ class MovementListView(StaffMixin, QueryStringMixin, ListView):
     paginate_by = 20
 
     def get_queryset(self):
-        qs = StockMovement.objects.select_related("product", "user")
+        qs = scope(StockMovement.objects.select_related("product", "user"), self.request.user, "product__store")
         q = self.request.GET.get("q", "").strip()
         if q:
             qs = qs.filter(Q(product__name__icontains=q) | Q(product__sku__icontains=q))
@@ -111,7 +116,7 @@ class MovementListView(StaffMixin, QueryStringMixin, ListView):
 @role_required("admin", "manager")
 def cancel_view(request, kind, pk):
     model = StockIn if kind == "in" else StockOut
-    obj = get_object_or_404(model, pk=pk)
+    obj = get_object_or_404(scope(model.objects.all(), request.user, "product__store"), pk=pk)
     try:
         cancel_operation(obj, request.user)
         messages.success(request, _("Operatsiya bekor qilindi, qoldiq tiklandi."))
@@ -123,7 +128,10 @@ def cancel_view(request, kind, pk):
 @require_POST
 @role_required("admin", "manager", "employee")
 def notifications_read(request):
-    Notification.objects.filter(is_read=False).update(is_read=True)
+    scope(Notification.objects.filter(is_read=False), request.user, "product__store").update(is_read=True)
+    if get_role(request.user) == "manager" and get_store(request.user):
+        from accounts.models import StoreInvitation
+        StoreInvitation.objects.filter(store=get_store(request.user), inviter_seen=False).update(inviter_seen=True)
     target = request.META.get("HTTP_REFERER", "")
     if not url_has_allowed_host_and_scheme(target, allowed_hosts={request.get_host()}):
         target = "/"

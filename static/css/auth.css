@@ -77,3 +77,40 @@
   .brand-m { display: flex; }
 }
 @media (max-width: 480px) { .reg-grid { grid-template-columns: 1fr; } }
+
+/* ===== Ariza yuborildi sahifasi ===== */
+.pending-card { width: 100%; max-width: 480px; background: #fff; border-radius: 28px; padding: 28px 32px 32px; text-align: center; box-shadow: 0 30px 80px rgba(40, 70, 100, .2); animation: rise .7s var(--ease) backwards; }
+.pending-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 26px; }
+.pending-top .brand { padding: 0; }
+.pending-icon { width: 72px; height: 72px; border-radius: 50%; margin: 0 auto 16px; display: grid; place-items: center; font-size: 30px; background: var(--amber-soft); color: var(--amber-ink); animation: rise .7s var(--ease) .2s backwards; }
+.pending-card h1 { font-size: 24px; font-weight: 800; }
+.pending-lead { color: var(--muted); font-size: 13.5px; margin: 8px 0 20px; }
+.pending-info { display: grid; grid-template-columns: auto 1fr; gap: 8px 16px; text-align: left; background: #f7f9fc; border-radius: 16px; padding: 14px 18px; margin: 0 0 22px; font-size: 13px; }
+.pending-info dt { color: var(--muted); } .pending-info dd { margin: 0; font-weight: 700; text-align: right; }
+
+/* ===== Manager / Employee tanlovi ===== */
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.type-switch { border: 0; padding: 0; margin: 14px 0 16px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; min-width: 0; }
+.type-opt { position: relative; display: block; cursor: pointer; }
+.type-opt input { position: absolute; opacity: 0; inset: 0; width: 100%; height: 100%; margin: 0; cursor: pointer; }
+.type-card {
+  display: grid; grid-template-columns: auto 1fr; grid-template-rows: auto auto; column-gap: 12px; align-items: center;
+  padding: 12px 14px; border-radius: 16px; border: 1.5px solid #e6ebf2; background: #fbfcfe;
+  transition: border-color .2s, background .2s, transform .3s var(--ease), box-shadow .3s;
+}
+.type-card i { grid-row: 1 / 3; width: 38px; height: 38px; border-radius: 12px; display: grid; place-items: center; background: #eef1f6; color: #667085; font-size: 18px; transition: background .2s, color .2s; }
+.type-card b { font-size: 13.5px; line-height: 1.2; }
+.type-card small { font-size: 11px; color: var(--muted); }
+.type-opt:hover .type-card { border-color: var(--mint); transform: translateY(-2px); }
+.type-opt input:focus-visible + .type-card { outline: 2px solid var(--green); outline-offset: 2px; }
+.type-opt input:checked + .type-card { border-color: var(--green); background: var(--green-soft); box-shadow: 0 8px 20px rgba(18, 165, 106, .14); }
+.type-opt input:checked + .type-card i { background: var(--green); color: #fff; }
+/* tanlangan turga qarab ko'rinadigan matn va maydonlar */
+#registerForm [data-for] { display: none; }
+#registerForm[data-type="manager"] [data-for="manager"], #registerForm[data-type="employee"] [data-for="employee"] { display: block; }
+#registerForm .btn [data-for] { display: none; }
+#registerForm[data-type="manager"] .btn [data-for="manager"], #registerForm[data-type="employee"] .btn [data-for="employee"] { display: inline; }
+#registerForm[data-type="employee"] .field-business { display: none; }
+.field-business { animation: rise .4s var(--ease); }
+.type-lead { margin: 0 0 16px !important; }
+@media (max-width: 480px) { .type-switch { grid-template-columns: 1fr; } }

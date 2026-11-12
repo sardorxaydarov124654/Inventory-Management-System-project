@@ -17,7 +17,7 @@
     <tbody>
     {% for c in categories %}
       <tr>
-        <td><b>{{ c.name }}</b></td>
+        <td><b>{{ c.name }}</b>{% if is_admin %}<br><small style="color:var(--muted)">{{ c.store.name }}</small>{% endif %}</td>
         <td>{{ c.description|truncatechars:70|default:"—" }}</td>
         <td><a href="{% url 'inventory:product_list' %}?category={{ c.pk }}"><span class="pill ok">{{ c.product_count }} {% trans "ta" %}</span></a></td>
         <td><div class="row-actions">

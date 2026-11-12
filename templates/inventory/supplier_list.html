@@ -17,7 +17,7 @@
     <tbody>
     {% for s in suppliers %}
       <tr>
-        <td><a href="{% url 'inventory:supplier_detail' s.pk %}"><div class="prod"><span class="thumb">{{ s.company_name|slice:":1"|upper }}</span><b>{{ s.company_name }}</b></div></a></td>
+        <td><a href="{% url 'inventory:supplier_detail' s.pk %}"><div class="prod"><span class="thumb">{{ s.company_name|slice:":1"|upper }}</span><b>{{ s.company_name }}</b>{% if is_admin %}<small style="color:var(--muted);display:block">{{ s.store.name }}</small>{% endif %}</div></a></td>
         <td>{{ s.phone|default:"—" }}</td><td>{{ s.email|default:"—" }}</td><td>{{ s.address|default:"—" }}</td>
         <td><span class="pill ok">{{ s.product_count }} {% trans "ta" %}</span></td>
         <td><div class="row-actions">

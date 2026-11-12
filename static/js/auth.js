@@ -22,6 +22,14 @@
     a.addEventListener("click", function (e) { e.preventDefault(); setMode(a.dataset.modeTab, true); });
   });
 
+  // Manager / Employee: do'kon nomi faqat Manager uchun ko'rinadi
+  var reg = document.getElementById("registerForm");
+  if (reg) {
+    reg.querySelectorAll('input[name="account_type"]').forEach(function (r) {
+      r.addEventListener("change", function () { if (r.checked) reg.dataset.type = r.value; });
+    });
+  }
+
   // Parolni ko'rsatish / yashirish
   shell.querySelectorAll(".pw-toggle").forEach(function (btn) {
     btn.addEventListener("click", function () {

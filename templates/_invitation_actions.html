@@ -1,0 +1,6 @@
+{% load i18n %}<form class="invite-actions" method="post" action="{% url 'accounts:invitation_respond' inv.pk %}">
+  {% csrf_token %}
+  <input type="hidden" name="next" value="{{ request.get_full_path }}">
+  <button class="btn btn-green btn-sm" type="submit" name="action" value="confirm"><i class="bi bi-check-lg"></i>Confirm</button>
+  <button class="btn btn-danger btn-sm" type="submit" name="action" value="reject"><i class="bi bi-x-lg"></i>Reject</button>
+</form>

@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %}{% trans "Xodimlar" %}{% endblock %}
+{% block page_title %}{% trans "Xodimlar" %}{% endblock %}
+{% block page_sub %}{{ store.name }}{% endblock %}
+
+{% block content %}
+<section class="panel">
+  <div class="panel-head">
+    <div><h2>{% trans "Do‘kon xodimlari" %}</h2><p class="sub">{{ members|length }} {% trans "ta xodim" %}</p></div>
+  </div>
+  <div class="table-wrap"><table class="tbl">
+    <thead><tr><th>{% trans "Foydalanuvchi" %}</th><th>{% trans "Email" %}</th><th>{% trans "Telefon" %}</th><th class="num">{% trans "Amal" %}</th></tr></thead>
+    <tbody>
+    {% for m in members %}
+      <tr>
+        <td><div class="prod"><span class="thumb">{{ m.username|slice:":1"|upper }}</span><div><b>{{ m.get_full_name|default:m.username }}</b><small>@{{ m.username }}</small></div></div></td>
+        <td>{{ m.email|default:"—" }}</td><td>{{ m.profile.phone|default:"—" }}</td>
+        <td><div class="row-actions">
+          <form method="post" action="{% url 'accounts:member_remove' m.pk %}" data-confirm="{% trans 'Xodimni do‘kondan chiqarasizmi?' %}">{% csrf_token %}
+            <button class="btn btn-soft btn-sm" type="submit"><i class="bi bi-person-dash"></i>{% trans "Do‘kondan chiqarish" %}</button></form>
+        </div></td>
+      </tr>
+    {% empty %}
+      <tr><td colspan="4"><div class="empty"><i class="bi bi-people"></i>{% trans "Hali xodim yo‘q. Quyidan ro‘yxatdan o‘tgan xodimni taklif qiling." %}</div></td></tr>
+    {% endfor %}
+    </tbody></table></div>
+</section>
+
+<section class="panel">
+  <div class="panel-head">
+    <div><h2>{% trans "Xodimni do‘koningizga taklif qiling" %}</h2>
+      <p class="sub">{% trans "Employee sifatida ro‘yxatdan o‘tgan va hali do‘konga biriktirilmagan foydalanuvchilar" %}</p></div>
+    <form method="get" class="filters" role="search">
+      <label class="field-search wide"><i class="bi bi-search"></i>
+        <input type="search" name="q" value="{{ q }}" placeholder="{% trans 'Login (username) bo‘yicha qidirish...' %}" aria-label="{% trans 'Login (username) bo‘yicha qidirish...' %}" autocomplete="off"></label>
+      <button class="btn btn-green btn-sm" type="submit">{% trans "Qidirish" %}</button>
+      {% if q %}<a class="btn btn-soft btn-sm" href="{% url 'accounts:team' %}">{% trans "Tozalash" %}</a>{% endif %}
+    </form>
+  </div>
+  <div class="table-wrap"><table class="tbl">
+    <thead><tr><th>{% trans "Login" %}</th><th>{% trans "Ism" %}</th><th>{% trans "Ro‘yxatdan o‘tgan sana" %}</th><th class="num">{% trans "Amal" %}</th></tr></thead>
+    <tbody>
+    {% for c in candidates %}
+      <tr>
+        <td><div class="prod"><span class="thumb">{{ c.username|slice:":1"|upper }}</span><b>@{{ c.username }}</b></div></td>
+        <td>{{ c.get_full_name|default:"—" }}</td>
+        <td>{{ c.date_joined|date:"d.m.Y" }}</td>
+        <td><div class="row-actions">
+          {% if c.pk in invited_ids %}
+            <span class="pill pending">{% trans "Taklif yuborilgan" %}</span>
+          {% else %}
+            <form method="post" action="{% url 'accounts:invite' c.pk %}">{% csrf_token %}
+              <input type="hidden" name="next" value="{{ request.get_full_path }}">
+              <button class="btn btn-green btn-sm" type="submit"><i class="bi bi-person-plus"></i>{% trans "Taklif qilish" %}</button></form>
+          {% endif %}
+        </div></td>
+      </tr>
+    {% empty %}
+      <tr><td colspan="4"><div class="empty"><i class="bi bi-person-x"></i>
+        {% if q %}{% blocktrans with q=q %}“{{ q }}” logini bo‘yicha xodim topilmadi.{% endblocktrans %}{% elif total_available %}{% trans "Xodim topilmadi." %}{% else %}{% trans "Hozircha taklif qilish mumkin bo‘lgan xodim yo‘q. Xodimlar bosh sahifadagi ro‘yxatdan o‘tish bo‘limida “Employee” turini tanlab ro‘yxatdan o‘tishi kerak." %}{% endif %}
+      </div></td></tr>
+    {% endfor %}
+    </tbody></table></div>
+  {% include '_pagination.html' %}
+</section>
+
+<section class="panel">
+  <div class="panel-head"><h2>{% trans "Yuborilgan takliflar" %}</h2></div>
+  <div class="list">
+    {% for i in sent %}
+    <div class="list-item">
+      <div><b>@{{ i.invited_user.username }}</b><br><small style="color:var(--muted)">{{ i.created_at|date:"d.m.Y H:i" }}</small></div>
+      <div class="row-actions">
+        <span class="pill {% if i.status == 'accepted' %}ok{% elif i.status == 'rejected' %}out{% else %}pending{% endif %}">{{ i.get_status_display }}</span>
+        {% if i.status == 'pending' %}
+        <form method="post" action="{% url 'accounts:invitation_cancel' i.pk %}">{% csrf_token %}
+          <button class="btn btn-soft btn-sm" type="submit">{% trans "Bekor qilish" %}</button></form>
+        {% endif %}
+      </div>
+    </div>
+    {% empty %}<div class="empty">{% trans "Hali taklif yuborilmagan." %}</div>{% endfor %}
+  </div>
+</section>
+{% endblock %}

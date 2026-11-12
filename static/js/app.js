@@ -18,6 +18,12 @@
     });
   });
 
+  // Escape bosilganda ochiq menyularni yopish
+  document.addEventListener("keydown", function (e) {
+    if (e.key !== "Escape") return;
+    document.querySelectorAll("details.menu[open]").forEach(function (d) { d.removeAttribute("open"); });
+  });
+
   // Tasdiqlash oynasi
   document.querySelectorAll("form[data-confirm]").forEach(function (f) {
     f.addEventListener("submit", function (e) {

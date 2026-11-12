@@ -11,14 +11,28 @@ from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import CreateView, DeleteView, DetailView, ListView, UpdateView
 
-from accounts.mixins import ManagerMixin, QueryStringMixin, StaffMixin
+from accounts.mixins import ManagerMixin, QueryStringMixin, StaffMixin, scope
 
 from .forms import CategoryForm, ProductForm, SupplierForm
 from .models import Category, Product, Supplier
 from .stats import inventory_stats
 
 
-class SafeDeleteView(ManagerMixin, DeleteView):
+class ScopedMixin:
+    """Faqat foydalanuvchi do'koniga tegishli yozuvlar (begona do'kon yozuvi -> 404)."""
+
+    def get_queryset(self):
+        return scope(super().get_queryset(), self.request.user)
+
+
+class FormUserMixin:
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs["user"] = self.request.user
+        return kwargs
+
+
+class SafeDeleteView(ScopedMixin, ManagerMixin, DeleteView):
     """Bog'langan ma'lumotlari bor yozuvni o'chirishga yo'l qo'ymaydi."""
     template_name = "confirm_delete.html"
 
@@ -35,7 +49,7 @@ class SafeDeleteView(ManagerMixin, DeleteView):
 
 # ---------------------------------------------------------------- Products
 def filtered_products(request):
-    qs = Product.objects.select_related("category", "supplier")
+    qs = scope(Product.objects.select_related("category", "supplier", "store"), request.user)
     q = request.GET.get("q", "").strip()
     if q:
         qs = qs.filter(
@@ -59,9 +73,9 @@ class ProductListView(StaffMixin, QueryStringMixin, ListView):
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data(**kwargs)
         ctx.update(
-            stats=inventory_stats(),
+            stats=inventory_stats(self.request.user),
             status=self.request.GET.get("status", ""),
-            categories=Category.objects.all(),
+            categories=scope(Category.objects.all(), self.request.user),
             category=self.request.GET.get("category", ""),
         )
         return ctx
@@ -81,7 +95,7 @@ class ProductExportView(StaffMixin, View):
         return response
 
 
-class ProductCreateView(ManagerMixin, SuccessMessageMixin, CreateView):
+class ProductCreateView(FormUserMixin, ManagerMixin, SuccessMessageMixin, CreateView):
     model = Product
     form_class = ProductForm
     template_name = "form.html"
@@ -90,7 +104,7 @@ class ProductCreateView(ManagerMixin, SuccessMessageMixin, CreateView):
     extra_context = {"title": _("Yangi mahsulot"), "subtitle": _("Mahsulot ma’lumotlarini kiriting")}
 
 
-class ProductUpdateView(ManagerMixin, SuccessMessageMixin, UpdateView):
+class ProductUpdateView(ScopedMixin, FormUserMixin, ManagerMixin, SuccessMessageMixin, UpdateView):
     model = Product
     form_class = ProductForm
     template_name = "form.html"
@@ -111,12 +125,12 @@ class CategoryListView(ManagerMixin, QueryStringMixin, ListView):
     paginate_by = 15
 
     def get_queryset(self):
-        qs = Category.objects.annotate(product_count=Count("products")).order_by("name")
+        qs = scope(Category.objects.all(), self.request.user).select_related("store").annotate(product_count=Count("products")).order_by("name")
         q = self.request.GET.get("q", "").strip()
         return qs.filter(name__icontains=q) if q else qs
 
 
-class CategoryCreateView(ManagerMixin, SuccessMessageMixin, CreateView):
+class CategoryCreateView(FormUserMixin, ManagerMixin, SuccessMessageMixin, CreateView):
     model = Category
     form_class = CategoryForm
     template_name = "form.html"
@@ -125,7 +139,7 @@ class CategoryCreateView(ManagerMixin, SuccessMessageMixin, CreateView):
     extra_context = {"title": _("Yangi kategoriya"), "subtitle": _("Mahsulotlarni guruhlash uchun")}
 
 
-class CategoryUpdateView(ManagerMixin, SuccessMessageMixin, UpdateView):
+class CategoryUpdateView(ScopedMixin, FormUserMixin, ManagerMixin, SuccessMessageMixin, UpdateView):
     model = Category
     form_class = CategoryForm
     template_name = "form.html"
@@ -146,14 +160,14 @@ class SupplierListView(ManagerMixin, QueryStringMixin, ListView):
     paginate_by = 15
 
     def get_queryset(self):
-        qs = Supplier.objects.annotate(product_count=Count("products", distinct=True)).order_by("company_name")
+        qs = scope(Supplier.objects.all(), self.request.user).select_related("store").annotate(product_count=Count("products", distinct=True)).order_by("company_name")
         q = self.request.GET.get("q", "").strip()
         if q:
             qs = qs.filter(Q(company_name__icontains=q) | Q(phone__icontains=q) | Q(email__icontains=q))
         return qs
 
 
-class SupplierDetailView(ManagerMixin, DetailView):
+class SupplierDetailView(ScopedMixin, ManagerMixin, DetailView):
     model = Supplier
     template_name = "inventory/supplier_detail.html"
 
@@ -164,7 +178,7 @@ class SupplierDetailView(ManagerMixin, DetailView):
         return ctx
 
 
-class SupplierCreateView(ManagerMixin, SuccessMessageMixin, CreateView):
+class SupplierCreateView(FormUserMixin, ManagerMixin, SuccessMessageMixin, CreateView):
     model = Supplier
     form_class = SupplierForm
     template_name = "form.html"
@@ -173,7 +187,7 @@ class SupplierCreateView(ManagerMixin, SuccessMessageMixin, CreateView):
     extra_context = {"title": _("Yangi yetkazib beruvchi"), "subtitle": _("Kompaniya ma’lumotlari")}
 
 
-class SupplierUpdateView(ManagerMixin, SuccessMessageMixin, UpdateView):
+class SupplierUpdateView(ScopedMixin, FormUserMixin, ManagerMixin, SuccessMessageMixin, UpdateView):
     model = Supplier
     form_class = SupplierForm
     template_name = "form.html"

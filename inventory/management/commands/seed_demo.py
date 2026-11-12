@@ -7,7 +7,7 @@ from django.contrib.auth import get_user_model
 from django.core.management.base import BaseCommand
 from django.utils import timezone
 
-from accounts.models import UserProfile
+from accounts.models import Store, UserProfile
 from inventory.models import Category, Product, Supplier
 from stock.models import StockIn, StockMovement, StockOut
 from stock.services import register_stock_in, register_stock_out
@@ -39,18 +39,41 @@ class Command(BaseCommand):
             return
         random.seed(7)
 
+        store = Store.objects.create(name="FreshCart Market")
+        store2 = Store.objects.create(name="Tech House")
         users = {}
-        for username, role, pw, lang in [("admin", "admin", "admin12345", "uz"), ("manager", "manager", "manager12345", "ru"),
-                                        ("employee", "employee", "employee12345", "en")]:
+        # (login, rol, parol, til, do'kon, holat)
+        for username, role, pw, lang, st, status in [
+            ("admin", "admin", "admin12345", "uz", None, "approved"),
+            ("manager", "manager", "manager12345", "ru", store, "approved"),
+            ("employee", "employee", "employee12345", "en", store, "approved"),
+            ("manager2", "manager", "manager12345", "uz", store2, "approved"),
+        ]:
             u, _ = User.objects.get_or_create(username=username, defaults={
                 "first_name": username.capitalize(), "email": f"{username}@company.com",
                 "is_superuser": role == "admin", "is_staff": role == "admin"})
             u.set_password(pw)
             u.save()
-            UserProfile.objects.update_or_create(user=u, defaults={"role": role, "language": lang})
-            users[role] = u
+            UserProfile.objects.update_or_create(user=u, defaults={"role": role, "language": lang, "store": st,
+                                                                    "status": status})
+            users[username] = u
+        users["admin_"] = users["admin"]
+        # Ro'yxatdan o'tgan, lekin hali do'konga biriktirilmagan Employee lar (manager taklif qiladi)
+        for uname, fn in [("freelancer1", "Jasur"), ("freelancer2", "Malika"), ("freelancer3", "Dilshod")]:
+            fu = User.objects.create_user(uname, f"{uname}@mail.uz", "freelancer12345", first_name=fn, last_name="Karimov")
+            UserProfile.objects.update_or_create(user=fu, defaults={"role": "employee", "status": "approved",
+                                                                     "store": None, "language": "uz"})
+        from accounts.models import StoreInvitation
+        StoreInvitation.objects.create(store=store, invited_user=User.objects.get(username="freelancer1"),
+                                       invited_by=users["manager"])
 
-        suppliers = [Supplier.objects.create(company_name=n, phone="+998 90 123 45 67",
+        # Tasdiqlash kutayotgan manager (admin uchun demo)
+        pend = User.objects.create_user("pending_manager", "pending@company.com", "pending12345",
+                                         first_name="Pending", last_name="Manager", is_active=False)
+        UserProfile.objects.update_or_create(user=pend, defaults={
+            "role": "manager", "status": "pending", "store": Store.objects.create(name="Green Valley Shop")})
+
+        suppliers = [Supplier.objects.create(store=store, company_name=n, phone="+998 90 123 45 67",
                                              email=f"info@{n.split()[0].lower()}.uz", address="Toshkent")
                      for n in SUPPLIERS]
         cats = {}
@@ -63,8 +86,8 @@ class Command(BaseCommand):
                                          ).update(created_at=ts)
 
         for name, cat, price, cost, unit, sup, minq, final in PRODUCTS:
-            category = cats[cat] = Category.objects.get_or_create(name=cat)[0]
-            product = Product.objects.create(name=name, category=category, price=Decimal(price),
+            category = cats[cat] = Category.objects.get_or_create(store=store, name=cat)[0]
+            product = Product.objects.create(store=store, name=name, category=category, price=Decimal(price),
                                              cost_price=Decimal(cost), unit=unit, supplier=suppliers[sup],
                                              min_quantity=minq)
             out_days = sorted(random.sample(range(0, 14), 8), reverse=True)
@@ -86,6 +109,15 @@ class Command(BaseCommand):
             # Backdate qilingan operatsiyalar tartibi sababli qoldiqni aniq belgilaymiz
             Product.objects.filter(pk=product.pk).update(quantity=final)
 
+        # Ikkinchi do'kon: ma'lumotlar do'konlar orasida aralashmasligini ko'rsatish uchun
+        sup2 = Supplier.objects.create(store=store2, company_name="Samsung Distribution", phone="+998 90 555 00 11")
+        cat2 = Category.objects.create(store=store2, name="Elektronika")
+        for name, price, cost, qty in [("Smartfon A15", "199.00", "150.00", 25), ("Quloqchin Buds", "49.00", "30.00", 8)]:
+            p2 = Product.objects.create(store=store2, name=name, category=cat2, supplier=sup2, price=Decimal(price),
+                                        cost_price=Decimal(cost), unit="pcs", min_quantity=10)
+            register_stock_in(product=p2, quantity=qty, purchase_price=Decimal(cost), supplier=sup2,
+                              date=now.date(), note="Boshlang‘ich zaxira", user=users["manager2"])
+
         from stock.models import Notification
         from stock.services import check_alert
         Notification.objects.all().delete()
@@ -93,4 +125,6 @@ class Command(BaseCommand):
             check_alert(p)
 
         self.stdout.write(self.style.SUCCESS(
-            "Tayyor! Loginlar: admin/admin12345, manager/manager12345, employee/employee12345"))
+            "Tayyor! Loginlar: admin/admin12345, manager/manager12345 (FreshCart), employee/employee12345, "
+            "manager2/manager12345 (Tech House). pending_manager/pending12345 — tasdiq kutmoqda. "
+            "freelancer1..3 / freelancer12345 — do‘konsiz Employee (freelancer1 ga taklif yuborilgan)."))

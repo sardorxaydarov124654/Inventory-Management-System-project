@@ -48,18 +48,35 @@
         <!-- Ro'yxatdan o'tish -->
         <div class="auth-panel panel-register" data-panel="register"{% if mode != 'register' %} inert{% endif %}>
           <h1 class="auth-title">{% trans "Yangi hisob yarating" %}</h1>
-          <p class="auth-lead">{% trans "Tanlangan til sizning asosiy tilingiz bo‘lib saqlanadi. Uni keyin yuqoridagi menyudan o‘zgartirishingiz mumkin." %}</p>
-          <form method="post" action="{% url 'accounts:register' %}" class="reg-grid" novalidate>{% csrf_token %}
-            <input type="hidden" name="next" value="{{ next }}">
+          <form method="post" action="{% url 'accounts:register' %}" class="reg-grid" id="registerForm" data-type="{{ register_form.account_type.value|default:'manager' }}" novalidate>{% csrf_token %}
             {% if register_form.non_field_errors %}<div class="form-errors">{{ register_form.non_field_errors|join:" " }}</div>{% endif %}
-            {% for f in register_form %}
-            <div class="field{% if f.name == 'username' or f.name == 'email' %} full{% endif %}">
+
+            <fieldset class="type-switch full">
+              <legend class="sr-only">{% trans "Hisob turi" %}</legend>
+              {% for radio in register_form.account_type %}
+              <label class="type-opt">
+                {{ radio.tag }}
+                <span class="type-card">
+                  <i class="bi {% if radio.data.value == 'manager' %}bi-shop{% else %}bi-person-badge{% endif %}"></i>
+                  <b>{{ radio.choice_label }}</b>
+                  <small>{% if radio.data.value == 'manager' %}{% trans "Do‘kon / biznes egasi" %}{% else %}{% trans "Do‘kon xodimi" %}{% endif %}</small>
+                </span>
+              </label>
+              {% endfor %}
+              {% for e in register_form.account_type.errors %}<div class="err">{{ e }}</div>{% endfor %}
+            </fieldset>
+
+            <p class="auth-lead full type-lead" data-for="manager">{% trans "Arizangiz administrator tomonidan tasdiqlangach, tizimga kira olasiz. Do‘koningiz uchun alohida ombor yaratiladi." %}</p>
+            <p class="auth-lead full type-lead" data-for="employee">{% trans "Ro‘yxatdan o‘tgach darhol kirasiz. Do‘kon menejeri sizni taklif qilganda, taklif shu yerda xabar bo‘lib chiqadi." %}</p>
+
+            {% for f in register_form %}{% if f.name != 'account_type' %}
+            <div class="field{% if f.name == 'username' or f.name == 'email' or f.name == 'business_name' %} full{% endif %}{% if f.name == 'business_name' %} field-business{% endif %}">
               <label for="{{ f.id_for_label }}">{{ f.label }}</label>
               {% if f.name == 'password1' or f.name == 'password2' %}<div class="pw">{{ f }}<button type="button" class="pw-toggle" aria-label="{% trans 'Parolni ko‘rsatish' %}"><i class="bi bi-eye"></i></button></div>{% else %}{{ f }}{% endif %}
               {% for e in f.errors %}<div class="err">{{ e }}</div>{% endfor %}
             </div>
-            {% endfor %}
-            <button class="btn btn-green full" type="submit">{% trans "Hisob yaratish" %}</button>
+            {% endif %}{% endfor %}
+            <button class="btn btn-green full" type="submit"><span data-for="manager">{% trans "Ariza yuborish" %}</span><span data-for="employee">{% trans "Ro‘yxatdan o‘tish" %}</span></button>
           </form>
           <p class="auth-alt">{% trans "Hisobingiz bormi?" %} <a href="{% url 'accounts:login' %}" data-mode-tab="login">{% trans "Kirish" %}</a></p>
         </div>
@@ -69,8 +86,8 @@
           <h1 class="auth-title">{% trans "Tizimga kirish" %}</h1>
           <p class="auth-lead">{% trans "Ombor hisobini yuritish uchun login va parolingizni kiriting." %}</p>
           <form method="post" action="{% url 'accounts:login' %}" novalidate>{% csrf_token %}
-            {% if mode == 'login' and login_form.errors %}<div class="form-errors" style="margin-bottom:14px">{% trans "Login yoki parol noto‘g‘ri." %}</div>{% endif %}
-            <div class="field"><label for="login_username">{% trans "Login" %}</label>
+            {% if mode == 'login' and login_form.non_field_errors %}<div class="form-errors" style="margin-bottom:14px">{{ login_form.non_field_errors|join:" " }}</div>{% endif %}
+            <div class="field"><label for="login_username">{% trans "Login yoki email" %}</label>
               <input class="input" type="text" name="username" id="login_username" autocomplete="username" required value="{% if mode == 'login' %}{{ login_form.username.value|default:'' }}{% endif %}"></div>
             <div class="field"><label for="login_password">{% trans "Parol" %}</label>
               <div class="pw"><input class="input" type="password" name="password" id="login_password" autocomplete="current-password" required>

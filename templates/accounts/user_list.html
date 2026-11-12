@@ -1,17 +1,17 @@
 {% extends 'base.html' %}
 {% load i18n %}
-{% block title %}{% trans "Foydalanuvchilar" %}{% endblock %}
-{% block page_title %}{% trans "Foydalanuvchilar" %}{% endblock %}
+{% block title %}{% if is_admin %}{% trans "Foydalanuvchilar" %}{% else %}{% trans "Xodimlar" %}{% endif %}{% endblock %}
+{% block page_title %}{% if is_admin %}{% trans "Foydalanuvchilar" %}{% else %}{% trans "Xodimlar" %}{% endif %}{% endblock %}
 {% block page_sub %}{% trans "Xodimlar hisobi va rollarini boshqaring" %}{% endblock %}
 {% block content %}
 <section class="panel">
   <div class="panel-head">
-    <h2>{% trans "Barcha foydalanuvchilar" %}</h2>
-    <a class="btn btn-green" href="{% url 'accounts:user_add' %}"><i class="bi bi-plus-lg"></i>{% trans "Yangi foydalanuvchi" %}</a>
+    <h2>{% if is_admin %}{% trans "Barcha foydalanuvchilar" %}{% else %}{% trans "Do‘koningiz xodimlari" %}{% endif %}</h2>
+    <a class="btn btn-green" href="{% url 'accounts:user_add' %}"><i class="bi bi-plus-lg"></i>{% if is_admin %}{% trans "Yangi foydalanuvchi" %}{% else %}{% trans "Yangi xodim" %}{% endif %}</a>
   </div>
   <div class="table-wrap">
     <table class="tbl">
-      <thead><tr><th>{% trans "Foydalanuvchi" %}</th><th>{% trans "Email" %}</th><th>{% trans "Telefon" %}</th><th>{% trans "Rol" %}</th><th>{% trans "Holat" %}</th><th class="num">{% trans "Amal" %}</th></tr></thead>
+      <thead><tr><th>{% trans "Foydalanuvchi" %}</th><th>{% trans "Email" %}</th><th>{% trans "Telefon" %}</th><th>{% trans "Rol" %}</th>{% if is_admin %}<th>{% trans "Do‘kon" %}</th>{% endif %}<th>{% trans "Holat" %}</th><th class="num">{% trans "Amal" %}</th></tr></thead>
       <tbody>
       {% for u in users %}
         <tr>
@@ -19,7 +19,8 @@
           <td>{{ u.email|default:"—" }}</td>
           <td>{{ u.profile.phone|default:"—" }}</td>
           <td>{% if u.is_superuser %}{% trans "Administrator" %}{% else %}{{ u.profile.get_role_display|default:_("Xodim") }}{% endif %}</td>
-          <td><span class="pill {% if u.is_active %}ok{% else %}out{% endif %}">{% if u.is_active %}{% trans "Faol" %}{% else %}{% trans "Nofaol" %}{% endif %}</span></td>
+          {% if is_admin %}<td>{{ u.profile.store.name|default:"—" }}</td>{% endif %}
+          <td>{% if u.profile.status != "approved" %}<span class="pill {{ u.profile.status }}">{{ u.profile.get_status_display }}</span>{% else %}<span class="pill {% if u.is_active %}ok{% else %}out{% endif %}">{% if u.is_active %}{% trans "Faol" %}{% else %}{% trans "Nofaol" %}{% endif %}</span>{% endif %}</td>
           <td><div class="row-actions">
             <a class="btn btn-soft btn-sm" href="{% url 'accounts:user_edit' u.pk %}"><i class="bi bi-pencil"></i></a>
             {% if u != request.user %}

@@ -15,19 +15,21 @@
   <div class="shell">
 
     <aside class="sidebar" id="sidebar">
-      <a class="brand" href="{% url 'dashboard:home' %}">
+      <a class="brand" href="{{ dashboard_url }}">
         <span class="brand-logo"><i class="bi bi-box-seam-fill"></i></span>{{ SITE_NAME }}
       </a>
 
       <div class="nav-label">{% trans "Asosiy" %}</div>
       <nav class="nav">
-        <a href="{% url 'dashboard:home' %}" class="{% if section == '' %}active{% endif %}"><i class="bi bi-grid"></i>{% trans "Boshqaruv paneli" %}</a>
+        <a href="{{ dashboard_url }}" class="{% if section == '' %}active{% endif %}"><i class="bi bi-grid"></i>{% trans "Boshqaruv paneli" %}</a>
+        {% if has_store %}
         <a href="{% url 'inventory:product_list' %}" class="{% if section == 'products' %}active{% endif %}"><i class="bi bi-box2"></i>{% trans "Mahsulotlar" %}</a>
         {% if can_manage %}
         <a href="{% url 'stock:stockin_list' %}" class="{% if section == 'stock-in' %}active{% endif %}"><i class="bi bi-box-arrow-in-down"></i>{% trans "Kirim" %}</a>
         {% endif %}
         <a href="{% url 'stock:stockout_list' %}" class="{% if section == 'stock-out' %}active{% endif %}"><i class="bi bi-box-arrow-up"></i>{% trans "Chiqim" %}</a>
         <a href="{% url 'stock:movement_list' %}" class="{% if section == 'movements' %}active{% endif %}"><i class="bi bi-arrow-left-right"></i>{% trans "Harakatlar tarixi" %}</a>
+        {% endif %}
         {% if can_manage %}
         <a href="{% url 'inventory:category_list' %}" class="{% if section == 'categories' %}active{% endif %}"><i class="bi bi-tags"></i>{% trans "Kategoriyalar" %}</a>
         <a href="{% url 'inventory:supplier_list' %}" class="{% if section == 'suppliers' %}active{% endif %}"><i class="bi bi-truck"></i>{% trans "Yetkazib beruvchilar" %}</a>
@@ -39,6 +41,11 @@
       <nav class="nav">
         {% if is_admin %}
         <a href="{% url 'accounts:user_list' %}" class="{% if section == 'users' %}active{% endif %}"><i class="bi bi-people"></i>{% trans "Foydalanuvchilar" %}</a>
+        {% elif role == 'manager' %}
+        <a href="{% url 'accounts:team' %}" class="{% if section == 'team' %}active{% endif %}"><i class="bi bi-people"></i>{% trans "Xodimlar" %}</a>
+        {% endif %}
+        {% if is_admin %}
+        <a href="{% url 'admin:accounts_managerapplication_changelist' %}?status__exact=pending"><i class="bi bi-person-check"></i>{% trans "Manager arizalari" %}{% if pending_applications %}<span class="nav-badge">{{ pending_applications }}</span>{% endif %}</a>
         <a href="{% url 'admin:index' %}"><i class="bi bi-gear"></i>{% trans "Admin panel" %}</a>
         {% endif %}
         <form method="post" action="{% url 'accounts:logout' %}">{% csrf_token %}
@@ -75,15 +82,29 @@
               {% if unread_count %}<span class="dot">{{ unread_count }}</span>{% endif %}
             </summary>
             <div class="menu-list notif-list">
+              {% for inv in pending_invitations %}
+                <div class="notif-invite">
+                  <div class="notif-invite-head"><i class="bi bi-envelope-heart-fill"></i>
+                    <span>{% blocktrans with store=inv.store.name manager=inv.invited_by.get_username %}“{{ store }}” do‘koni sizni xodim sifatida taklif qildi (menejer: {{ manager }}).{% endblocktrans %}<small>{{ inv.created_at|timesince }} {% trans "oldin" %}</small></span></div>
+                  {% include '_invitation_actions.html' %}
+                </div>
+              {% endfor %}
+              {% for u in inviter_updates %}
+                <a class="notif-item" href="{% url 'accounts:team' %}">
+                  <i class="bi {% if u.status == 'accepted' %}bi-person-check-fill ok{% else %}bi-person-x-fill out{% endif %}"></i>
+                  <span>{% if u.status == 'accepted' %}{% blocktrans with name=u.invited_user.get_username %}{{ name }} taklifni qabul qildi.{% endblocktrans %}{% else %}{% blocktrans with name=u.invited_user.get_username %}{{ name }} taklifni rad etdi.{% endblocktrans %}{% endif %}</span>
+                </a>
+              {% endfor %}
               {% for n in recent_notifications %}
                 <a class="notif-item" href="{% url 'inventory:product_list' %}?q={{ n.product.name|urlencode }}">
                   <i class="bi {% if n.kind == 'out' %}bi-x-octagon-fill out{% else %}bi-exclamation-triangle-fill low{% endif %}"></i>
                   <span>{% if n.kind == 'out' %}{% blocktrans with name=n.product.name %}“{{ name }}” tugadi!{% endblocktrans %}{% else %}{% blocktrans with name=n.product.name qty=n.product.quantity unit=n.product.get_unit_display min=n.product.min_quantity %}“{{ name }}” kam qoldi: {{ qty }} {{ unit }} (min: {{ min }}){% endblocktrans %}{% endif %}<small>{{ n.created_at|timesince }} {% trans "oldin" %}</small></span>
                 </a>
-              {% empty %}
-                <div class="notif-empty">{% trans "Yangi ogohlantirish yo‘q" %}</div>
               {% endfor %}
-              {% if unread_count %}
+              {% if not pending_invitations and not inviter_updates and not recent_notifications %}
+                <div class="notif-empty">{% trans "Yangi ogohlantirish yo‘q" %}</div>
+              {% endif %}
+              {% if alert_count or inviter_updates %}
               <form method="post" action="{% url 'stock:notifications_read' %}">{% csrf_token %}
                 <button type="submit"><i class="bi bi-check2-all"></i>{% trans "Hammasini o‘qilgan deb belgilash" %}</button>
               </form>

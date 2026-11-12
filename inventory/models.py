@@ -6,12 +6,14 @@ from django.db.models import F
 
 
 class Category(models.Model):
-    name = models.CharField(_("Nomi"), max_length=100, unique=True)
+    store = models.ForeignKey("accounts.Store", verbose_name=_("Do‘kon"), on_delete=models.PROTECT, related_name="categories")
+    name = models.CharField(_("Nomi"), max_length=100)
     description = models.TextField(_("Tavsif"), blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         ordering = ["name"]
+        constraints = [models.UniqueConstraint(fields=["store", "name"], name="uniq_category_store_name")]
         verbose_name = _("Kategoriya")
         verbose_name_plural = _("Kategoriyalar")
 
@@ -20,6 +22,7 @@ class Category(models.Model):
 
 
 class Supplier(models.Model):
+    store = models.ForeignKey("accounts.Store", verbose_name=_("Do‘kon"), on_delete=models.PROTECT, related_name="suppliers")
     company_name = models.CharField(_("Kompaniya nomi"), max_length=150)
     phone = models.CharField(_("Telefon"), max_length=30, blank=True)
     email = models.EmailField(_("Email"), blank=True)
@@ -59,8 +62,9 @@ class Product(models.Model):
         (_("m"), _("m")),
     ]
 
+    store = models.ForeignKey("accounts.Store", verbose_name=_("Do‘kon"), on_delete=models.PROTECT, related_name="products")
     name = models.CharField(_("Nomi"), max_length=200)
-    sku = models.CharField(_("SKU / kod"), max_length=40, unique=True, blank=True,
+    sku = models.CharField(_("SKU / kod"), max_length=40, blank=True,
                            help_text=_("Bo‘sh qoldirsangiz, avtomatik yaratiladi."))
     category = models.ForeignKey(Category, verbose_name=_("Kategoriya"), on_delete=models.PROTECT,
                                  related_name="products", null=True, blank=True)
@@ -81,6 +85,7 @@ class Product(models.Model):
 
     class Meta:
         ordering = ["name"]
+        constraints = [models.UniqueConstraint(fields=["store", "sku"], name="uniq_product_store_sku")]
         verbose_name = _("Mahsulot")
         verbose_name_plural = _("Mahsulotlar")
 

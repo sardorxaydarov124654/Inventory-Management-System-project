@@ -4,6 +4,7 @@ from django.core.exceptions import ValidationError
 from django.db import transaction
 from django.utils import timezone
 
+from accounts.audit import audit
 from inventory.models import Product
 
 from .models import Notification, StockIn, StockMovement, StockOut
@@ -45,6 +46,7 @@ def register_stock_in(*, product, quantity, purchase_price, supplier, date, note
         balance_after=product.quantity, stock_in=obj, user=user, note=note[:255],
     )
     check_alert(product)
+    audit(user, "stock_in", product.name, f"+{quantity}", store=product.store)
     return obj
 
 
@@ -65,6 +67,7 @@ def register_stock_out(*, product, quantity, reason, unit_price, note, user):
         balance_after=product.quantity, stock_out=obj, user=user, note=note[:255],
     )
     check_alert(product)
+    audit(user, "stock_out", product.name, f"-{quantity}", store=product.store)
     return obj
 
 
@@ -91,3 +94,4 @@ def cancel_operation(obj, user):
     StockMovement.objects.create(product=product, balance_after=product.quantity, user=user,
                                  note=_("Operatsiya bekor qilindi"), **movement)
     check_alert(product)
+    audit(user, "operation_cancelled", product.name, movement["movement_type"], store=product.store)

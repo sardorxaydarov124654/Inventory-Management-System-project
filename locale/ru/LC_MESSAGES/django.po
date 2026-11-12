@@ -155,20 +155,40 @@ msgid "Yangi hisob yarating"
 msgstr "Создайте новый аккаунт"
 
 #: templates/accounts/auth.html
+msgid "Hisob turi"
+msgstr "Тип аккаунта"
+
+#: templates/accounts/auth.html
+msgid "Do‘kon / biznes egasi"
+msgstr "Владелец магазина / бизнеса"
+
+#: templates/accounts/auth.html
+msgid "Do‘kon xodimi"
+msgstr "Сотрудник магазина"
+
+#: templates/accounts/auth.html
 msgid ""
-"Tanlangan til sizning asosiy tilingiz bo‘lib saqlanadi. Uni keyin yuqoridagi"
-" menyudan o‘zgartirishingiz mumkin."
+"Arizangiz administrator tomonidan tasdiqlangach, tizimga kira olasiz. "
+"Do‘koningiz uchun alohida ombor yaratiladi."
 msgstr ""
-"Выбранный язык сохранится как основной. Позже его можно изменить в меню "
-"сверху."
+"После одобрения заявки администратором вы сможете войти в систему. Для "
+"вашего магазина будет создан отдельный склад."
+
+#: templates/accounts/auth.html
+msgid ""
+"Ro‘yxatdan o‘tgach darhol kirasiz. Do‘kon menejeri sizni taklif qilganda, "
+"taklif shu yerda xabar bo‘lib chiqadi."
+msgstr ""
+"После регистрации вы сразу войдёте в систему. Когда менеджер магазина "
+"пригласит вас, приглашение появится здесь в виде сообщения."
 
 #: templates/accounts/auth.html
 msgid "Parolni ko‘rsatish"
 msgstr "Показать пароль"
 
 #: templates/accounts/auth.html
-msgid "Hisob yaratish"
-msgstr "Создать аккаунт"
+msgid "Ariza yuborish"
+msgstr "Отправить заявку"
 
 #: templates/accounts/auth.html
 msgid "Hisobingiz bormi?"
@@ -183,12 +203,8 @@ msgid "Ombor hisobini yuritish uchun login va parolingizni kiriting."
 msgstr "Введите логин и пароль, чтобы вести складской учёт."
 
 #: templates/accounts/auth.html
-msgid "Login yoki parol noto‘g‘ri."
-msgstr "Неверный логин или пароль."
-
-#: templates/accounts/auth.html
-msgid "Login"
-msgstr "Логин"
+msgid "Login yoki email"
+msgstr "Логин или email"
 
 #: templates/accounts/auth.html
 msgid "Parol"
@@ -197,6 +213,147 @@ msgstr "Пароль"
 #: templates/accounts/auth.html
 msgid "Hisobingiz yo‘qmi?"
 msgstr "Нет аккаунта?"
+
+#: templates/accounts/pending.html
+msgid "Ariza yuborildi"
+msgstr "Заявка отправлена"
+
+#: templates/accounts/pending.html
+msgid ""
+"Manager sifatida ro‘yxatdan o‘tish arizangiz qabul qilindi. Administrator "
+"uni ko‘rib chiqib, tasdiqlagach tizimga kira olasiz."
+msgstr ""
+"Ваша заявка на регистрацию менеджера принята. Вы сможете войти в систему "
+"после того, как администратор её рассмотрит и одобрит."
+
+#: templates/accounts/pending.html
+msgid "Ism"
+msgstr "Имя"
+
+#: templates/accounts/pending.html
+msgid "Do‘kon / biznes nomi"
+msgstr "Название магазина / бизнеса"
+
+#: templates/accounts/pending.html
+msgid "Holat"
+msgstr "Статус"
+
+#: templates/accounts/pending.html
+msgid "Kutilmoqda"
+msgstr "Ожидает"
+
+#: templates/accounts/pending.html
+msgid "Kirish sahifasiga"
+msgstr "На страницу входа"
+
+#: templates/accounts/team.html
+msgid "Xodimlar"
+msgstr "Сотрудники"
+
+#: templates/accounts/team.html
+msgid "Do‘kon xodimlari"
+msgstr "Сотрудники магазина"
+
+#: templates/accounts/team.html
+msgid "ta xodim"
+msgstr "сотр."
+
+#: templates/accounts/team.html
+msgid "Foydalanuvchi"
+msgstr "Пользователь"
+
+#: templates/accounts/team.html
+msgid "Email"
+msgstr "Email"
+
+#: templates/accounts/team.html
+msgid "Telefon"
+msgstr "Телефон"
+
+#: templates/accounts/team.html
+msgid "Amal"
+msgstr "Действие"
+
+#: templates/accounts/team.html
+msgid "Xodimni do‘kondan chiqarasizmi?"
+msgstr "Убрать сотрудника из магазина?"
+
+#: templates/accounts/team.html
+msgid "Do‘kondan chiqarish"
+msgstr "Убрать из магазина"
+
+#: templates/accounts/team.html
+msgid "Hali xodim yo‘q. Quyidan ro‘yxatdan o‘tgan xodimni taklif qiling."
+msgstr "Сотрудников пока нет. Пригласите зарегистрированного сотрудника ниже."
+
+#: templates/accounts/team.html
+msgid "Xodimni do‘koningizga taklif qiling"
+msgstr "Пригласите сотрудника в свой магазин"
+
+#: templates/accounts/team.html
+msgid ""
+"Employee sifatida ro‘yxatdan o‘tgan va hali do‘konga biriktirilmagan "
+"foydalanuvchilar"
+msgstr ""
+"Пользователи, зарегистрированные как Employee и ещё не привязанные к "
+"магазину"
+
+#: templates/accounts/team.html
+msgid "Login (username) bo‘yicha qidirish..."
+msgstr "Поиск по логину (username)..."
+
+#: templates/accounts/team.html
+msgid "Qidirish"
+msgstr "Поиск"
+
+#: templates/accounts/team.html
+msgid "Tozalash"
+msgstr "Сбросить"
+
+#: templates/accounts/team.html
+msgid "Login"
+msgstr "Логин"
+
+#: templates/accounts/team.html
+msgid "Ro‘yxatdan o‘tgan sana"
+msgstr "Дата регистрации"
+
+#: templates/accounts/team.html
+msgid "Taklif yuborilgan"
+msgstr "Приглашение отправлено"
+
+#: templates/accounts/team.html
+msgid "Taklif qilish"
+msgstr "Пригласить"
+
+#: templates/accounts/team.html
+msgid "Xodim topilmadi."
+msgstr "Сотрудники не найдены."
+
+#: templates/accounts/team.html
+msgid ""
+"Hozircha taklif qilish mumkin bo‘lgan xodim yo‘q. Xodimlar bosh sahifadagi "
+"ro‘yxatdan o‘tish bo‘limida “Employee” turini tanlab ro‘yxatdan o‘tishi "
+"kerak."
+msgstr ""
+"Пока нет сотрудников, которых можно пригласить. Сотрудники должны "
+"зарегистрироваться на главной странице, выбрав тип «Employee»."
+
+#: templates/accounts/team.html
+msgid "Yuborilgan takliflar"
+msgstr "Отправленные приглашения"
+
+#: templates/accounts/team.html
+msgid "Bekor qilish"
+msgstr "Отмена"
+
+#: templates/accounts/team.html
+msgid "Hali taklif yuborilmagan."
+msgstr "Приглашений пока нет."
+
+#: templates/accounts/team.html
+msgid "“%(q)s” logini bo‘yicha xodim topilmadi."
+msgstr "Сотрудник с логином «%(q)s» не найден."
 
 #: templates/accounts/user_list.html
 msgid "Foydalanuvchilar"
@@ -211,32 +368,24 @@ msgid "Barcha foydalanuvchilar"
 msgstr "Все пользователи"
 
 #: templates/accounts/user_list.html
+msgid "Do‘koningiz xodimlari"
+msgstr "Сотрудники вашего магазина"
+
+#: templates/accounts/user_list.html
 msgid "Yangi foydalanuvchi"
 msgstr "Новый пользователь"
 
 #: templates/accounts/user_list.html
-msgid "Foydalanuvchi"
-msgstr "Пользователь"
-
-#: templates/accounts/user_list.html
-msgid "Email"
-msgstr "Email"
-
-#: templates/accounts/user_list.html
-msgid "Telefon"
-msgstr "Телефон"
+msgid "Yangi xodim"
+msgstr "Новый сотрудник"
 
 #: templates/accounts/user_list.html
 msgid "Rol"
 msgstr "Роль"
 
 #: templates/accounts/user_list.html
-msgid "Holat"
-msgstr "Статус"
-
-#: templates/accounts/user_list.html
-msgid "Amal"
-msgstr "Действие"
+msgid "Do‘kon"
+msgstr "Магазин"
 
 #: templates/accounts/user_list.html
 msgid "Administrator"
@@ -299,6 +448,10 @@ msgid "Boshqa"
 msgstr "Прочее"
 
 #: templates/base.html
+msgid "Manager arizalari"
+msgstr "Заявки менеджеров"
+
+#: templates/base.html
 msgid "Admin panel"
 msgstr "Админ-панель"
 
@@ -327,10 +480,6 @@ msgid "Mahsulot, kategoriya, yetkazib beruvchi qidirish..."
 msgstr "Поиск товаров, категорий, поставщиков..."
 
 #: templates/base.html
-msgid "Qidirish"
-msgstr "Поиск"
-
-#: templates/base.html
 msgid "Ogohlantirishlar"
 msgstr "Уведомления"
 
@@ -349,6 +498,22 @@ msgstr "Отметить все как прочитанные"
 #: templates/base.html
 msgid "Menejer"
 msgstr "Менеджер"
+
+#: templates/base.html
+msgid ""
+"“%(store)s” do‘koni sizni xodim sifatida taklif qildi (menejer: "
+"%(manager)s)."
+msgstr ""
+"Магазин «%(store)s» приглашает вас в качестве сотрудника (менеджер: "
+"%(manager)s)."
+
+#: templates/base.html
+msgid "%(name)s taklifni qabul qildi."
+msgstr "%(name)s принял(а) приглашение."
+
+#: templates/base.html
+msgid "%(name)s taklifni rad etdi."
+msgstr "%(name)s отклонил(а) приглашение."
 
 #: templates/base.html
 msgid "“%(name)s” tugadi!"
@@ -375,16 +540,32 @@ msgid "Ha, o‘chirish"
 msgstr "Да, удалить"
 
 #: templates/confirm_delete.html
-msgid "Bekor qilish"
-msgstr "Отмена"
-
-#: templates/confirm_delete.html
 msgid "“<b>%(name)s</b>” yozuvini o‘chirishni xohlaysizmi?"
 msgstr "Удалить запись «<b>%(name)s</b>»?"
 
 #: templates/dashboard/home.html
 msgid "Ombor holati va bugungi operatsiyalar"
 msgstr "Состояние склада и операции за сегодня"
+
+#: templates/dashboard/home.html
+msgid "Do‘konga takliflar"
+msgstr "Приглашения в магазин"
+
+#: templates/dashboard/home.html
+msgid "Menejer sizni o‘z do‘koniga xodim sifatida taklif qildi"
+msgstr "Менеджер приглашает вас в свой магазин в качестве сотрудника"
+
+#: templates/dashboard/home.html
+msgid "Siz hali hech qaysi do‘konga biriktirilmagansiz"
+msgstr "Вы пока не привязаны ни к одному магазину"
+
+#: templates/dashboard/home.html
+msgid ""
+"Do‘kon menejeri sizni taklif qilganda, taklif shu yerda va yuqoridagi "
+"qo‘ng‘iroq belgisida chiqadi. Login (username) ingizni menejerga ayting."
+msgstr ""
+"Когда менеджер магазина пригласит вас, приглашение появится здесь и в "
+"колокольчике сверху. Сообщите менеджеру свой логин (username)."
 
 #: templates/dashboard/home.html
 msgid "Bugungi kirim"
@@ -397,6 +578,10 @@ msgstr "Расход за сегодня"
 #: templates/dashboard/home.html
 msgid "Ombor qiymati (xarid narxida)"
 msgstr "Стоимость склада (по закупке)"
+
+#: templates/dashboard/home.html
+msgid "Mening bugungi chiqimim"
+msgstr "Мой расход за сегодня"
 
 #: templates/dashboard/home.html
 msgid "Kirim va chiqim"
@@ -421,6 +606,10 @@ msgstr "Мин:"
 #: templates/dashboard/home.html
 msgid "Hamma mahsulot yetarli."
 msgstr "Всех товаров достаточно."
+
+#: templates/dashboard/home.html
+msgid "Mening operatsiyalarim"
+msgstr "Мои операции"
 
 #: templates/dashboard/home.html
 msgid "So‘nggi operatsiyalar"
@@ -453,6 +642,10 @@ msgstr "Остаток"
 #: templates/dashboard/home.html
 msgid "Hali operatsiya yo‘q."
 msgstr "Операций пока нет."
+
+#: templates/dashboard/home.html
+msgid "Menejer %(manager)s sizni xodim sifatida taklif qildi."
+msgstr "Менеджер %(manager)s приглашает вас в качестве сотрудника."
 
 #: templates/dashboard/reports.html
 msgid "Hisobotlar va tahlil"
@@ -754,9 +947,69 @@ msgstr "Отменить операцию? Остаток на складе бу
 msgid "Operatsiyalar topilmadi."
 msgstr "Операции не найдены."
 
+#: accounts/admin.py
+msgid "Ariza sanasi"
+msgstr "Дата заявки"
+
+#: accounts/admin.py
+msgid "Tanlangan arizalarni tasdiqlash (Approve)"
+msgstr "Одобрить выбранные заявки (Approve)"
+
+#: accounts/admin.py
+msgid "Tanlangan arizalarni rad etish (Reject)"
+msgstr "Отклонить выбранные заявки (Reject)"
+
+#: accounts/admin.py
+msgid "Tasdiqlandi: %(n)s ta ariza."
+msgstr "Одобрено заявок: %(n)s."
+
+#: accounts/admin.py
+msgid "Rad etildi: %(n)s ta ariza."
+msgstr "Отклонено заявок: %(n)s."
+
+#: accounts/forms.py
+msgid "Login yoki parol noto‘g‘ri."
+msgstr "Неверный логин или пароль."
+
+#: accounts/forms.py
+msgid "Hisobingiz faol emas."
+msgstr "Ваш аккаунт неактивен."
+
+#: accounts/forms.py
+msgid ""
+"Arizangiz hali ko‘rib chiqilmoqda. Administrator tasdiqlagach, tizimga kira "
+"olasiz."
+msgstr ""
+"Ваша заявка ещё на рассмотрении. Вы сможете войти после одобрения "
+"администратором."
+
+#: accounts/forms.py
+msgid ""
+"Arizangiz administrator tomonidan rad etilgan. Batafsil ma’lumot uchun "
+"administrator bilan bog‘laning."
+msgstr ""
+"Ваша заявка отклонена администратором. Для подробностей свяжитесь с "
+"администратором."
+
 #: accounts/forms.py
 msgid "Parolni takrorlang"
 msgstr "Повторите пароль"
+
+#: accounts/forms.py
+msgid "Bu email bilan foydalanuvchi allaqachon mavjud."
+msgstr "Пользователь с таким email уже существует."
+
+#: accounts/forms.py
+msgid "Manager"
+msgstr "Менеджер"
+
+#: accounts/forms.py
+msgid "Employee"
+msgstr "Сотрудник (Employee)"
+
+#: accounts/forms.py
+msgid "Familiya"
+msgstr "Фамилия"
 
 #: accounts/forms.py
 msgid "Tahrirlashda bo‘sh qoldirsangiz, parol o‘zgarmaydi."
@@ -767,12 +1020,44 @@ msgid "Til"
 msgstr "Язык"
 
 #: accounts/forms.py
-msgid "Ism"
-msgstr "Имя"
+msgid "Do‘kon / biznes nomini kiriting."
+msgstr "Введите название магазина / бизнеса."
 
 #: accounts/forms.py
-msgid "Familiya"
-msgstr "Фамилия"
+msgid "Menejer va xodim uchun do‘kon tanlash shart."
+msgstr "Для менеджера и сотрудника необходимо выбрать магазин."
+
+#: accounts/invitations.py
+msgid "Taklif yuborish uchun do‘konli menejer bo‘lishingiz kerak."
+msgstr "Чтобы отправлять приглашения, нужно быть менеджером с магазином."
+
+#: accounts/invitations.py
+msgid "Bu foydalanuvchini taklif qilib bo‘lmaydi."
+msgstr "Этого пользователя нельзя пригласить."
+
+#: accounts/invitations.py
+msgid "Bu foydalanuvchiga taklif allaqachon yuborilgan."
+msgstr "Этому пользователю приглашение уже отправлено."
+
+#: accounts/invitations.py
+msgid "Bu taklif endi amal qilmaydi."
+msgstr "Это приглашение больше не действует."
+
+#: accounts/invitations.py
+msgid "Siz allaqachon do‘konga biriktirilgansiz."
+msgstr "Вы уже привязаны к магазину."
+
+#: accounts/invitations.py
+msgid "Bu foydalanuvchini do‘kondan chiqarib bo‘lmaydi."
+msgstr "Этого пользователя нельзя убрать из магазина."
+
+#: accounts/mixins.py
+msgid "Bu obyekt boshqa do‘konga tegishli."
+msgstr "Этот объект принадлежит другому магазину."
+
+#: accounts/models.py
+msgid "Do‘konlar"
+msgstr "Магазины"
 
 #: accounts/models.py
 msgid "Foydalanuvchi profili"
@@ -783,16 +1068,52 @@ msgid "Foydalanuvchi profillari"
 msgstr "Профили пользователей"
 
 #: accounts/models.py
+msgid "Manager arizasi"
+msgstr "Заявка менеджера"
+
+#: accounts/models.py
+msgid "Do‘konga taklif"
+msgstr "Приглашение в магазин"
+
+#: accounts/models.py
+msgid "Obyekt"
+msgstr "Объект"
+
+#: accounts/models.py
+msgid "Tafsilot"
+msgstr "Подробности"
+
+#: accounts/models.py
+msgid "Audit yozuvi"
+msgstr "Запись аудита"
+
+#: accounts/models.py
+msgid "Audit tarixi"
+msgstr "История аудита"
+
+#: accounts/models.py
+msgid "Tasdiqlangan"
+msgstr "Одобрено"
+
+#: accounts/models.py
+msgid "Rad etilgan"
+msgstr "Отклонено"
+
+#: accounts/models.py
 msgid "Tizimga kirganda avtomatik tanlanadigan til."
 msgstr "Язык, который выбирается автоматически при входе."
 
-#: accounts/views.py
-msgid "Foydalanuvchi qo‘shildi."
-msgstr "Пользователь добавлен."
+#: accounts/models.py
+msgid "Qabul qilindi"
+msgstr "Принято"
 
-#: accounts/views.py
-msgid "Foydalanuvchi ma’lumotlari saqlandi."
-msgstr "Данные пользователя сохранены."
+#: accounts/models.py
+msgid "Rad etildi"
+msgstr "Отклонено"
+
+#: accounts/models.py
+msgid "Bekor qilindi"
+msgstr "Отменено"
 
 #: accounts/views.py
 msgid "Xodim hisobini yarating va rolini belgilang"
@@ -807,8 +1128,24 @@ msgid "Ma’lumotlar va rolni o‘zgartiring"
 msgstr "Измените данные и роль"
 
 #: accounts/views.py
-msgid "Hisobingiz yaratildi. Xush kelibsiz!"
-msgstr "Аккаунт создан. Добро пожаловать!"
+msgid "Taklif rad etildi."
+msgstr "Приглашение отклонено."
+
+#: accounts/views.py
+msgid ""
+"Hisobingiz yaratildi. Menejer sizni do‘koniga taklif qilganda, xabar shu "
+"yerda chiqadi."
+msgstr ""
+"Аккаунт создан. Когда менеджер пригласит вас в магазин, сообщение появится "
+"здесь."
+
+#: accounts/views.py
+msgid "Foydalanuvchi qo‘shildi."
+msgstr "Пользователь добавлен."
+
+#: accounts/views.py
+msgid "Foydalanuvchi ma’lumotlari saqlandi."
+msgstr "Данные пользователя сохранены."
 
 #: accounts/views.py
 msgid "O‘zingizning hisobingizni o‘chira olmaysiz."
@@ -817,6 +1154,22 @@ msgstr "Нельзя деактивировать собственный акк�
 #: accounts/views.py
 msgid "Holat o‘zgartirildi."
 msgstr "Статус изменён."
+
+#: accounts/views.py
+msgid "Taklif yuborildi. Foydalanuvchi uni o‘z panelida ko‘radi."
+msgstr "Приглашение отправлено. Пользователь увидит его в своей панели."
+
+#: accounts/views.py
+msgid "Taklif bekor qilindi."
+msgstr "Приглашение отменено."
+
+#: accounts/views.py
+msgid "Xodim do‘kondan chiqarildi."
+msgstr "Сотрудник убран из магазина."
+
+#: accounts/views.py
+msgid "Siz “%(store)s” do‘koniga qo‘shildingiz."
+msgstr "Вы присоединились к магазину «%(store)s»."
 
 #: dashboard/apps.py
 msgid "Dashboard va hisobotlar"
@@ -837,6 +1190,14 @@ msgstr "30 дней"
 #: inventory/apps.py
 msgid "Ombor"
 msgstr "Склад"
+
+#: inventory/forms.py
+msgid "Bu kategoriya nomi allaqachon mavjud."
+msgstr "Категория с таким названием уже существует."
+
+#: inventory/forms.py
+msgid "Bu SKU allaqachon ishlatilgan."
+msgstr "Этот SKU уже используется."
 
 #: inventory/models.py
 msgid "Kompaniya nomi"
